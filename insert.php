@@ -1,18 +1,75 @@
 <html>
 <body>
 <?php
-require_once('../../secureHtdocs/conn.php'); // connect to socius database
-  
-// insert into sql database
-$sql = "INSERT INTO resources(requestDate, requestSummary, organization, 
-	  address, lattitude, longitude, priority)  VALUES ('$date', 
-	  '$_POST[request]','$_POST[organization]', '$_POST[address]',0,0,1)";
-  if ($conn->query($sql) === TRUE) {
-      echo "New record created successfully";
-  } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+
+if(isset($_POST['submit'])){
+  $data_missing = array();
+  if(empty($_POST['request'])){
+    // Add request date to array
+    $data_missing[] = 'request summary';  
+  } else{
+    // trim white space
+    $r_sum = trim($_POST['request']);
+  } 
+  if(empty($_POST['organization'])){
+    // Add request date to array
+    $data_missing[] = 'organization';  
+  } else{
+    // trim white space
+    $org = trim($_POST['organization']);
   }
-//mysqli_close($conn);
+  if(empty($_POST['address'])){
+    // Add request date to array
+    $data_missing[] = 'address';  
+  } else{
+    // trim white space
+    $add = trim($_POST['address']);
+  }
+
+  if(empty($data_missing)){
+    require_once('../../secureHtdocs/conn.php'); // connect to socius database
+  
+    // insert into sql database
+    $query = "INSERT INTO resources(requestDate, requestSummary, organization, 
+	    address, lattitude, longitude, priority)  
+	    VALUES ('$date', ?, ?, ?,0,0,1)";
+    
+    $stmt = mysqli_prepare($conn, $query);
+    /*
+    i Integers
+    d Doubles
+    b Blobs
+    s Everything Else
+     */
+    mysqli_stmt_bind_param($stmt, "sss", $r_sum, $org, $add);
+    mysqli_stmt_execute($stmt);
+    $affected_rows = mysqli_stmt_affected_rows($stmt);
+    if($affected_rows == 1){
+      echo "<strong>New record created successfully</strong> <br />";
+      echo "<br>";
+      mysqli_stmt_close($stmt);
+      mysqli_close($conn);
+    } else{
+      echo 'Error Occured<br />';
+      echo mysqli_error();
+      mysqli_stmt_close($stmt);
+      mysqli_close($conn);
+    }
+  } else{
+      echo '<strong>You need to enter the following data:</strong> <br />';
+      foreach($data_missing as $missing){
+        echo "<strong>-$missing</strong><br />";
+      }
+      echo"<br>";
+  }
+} 
 ?>
+<form action="insert.php" method="post">
+    organization: <input type = 'text' name='organization' id='organization'/><br><br>
+    address: <input type='text'name='address'id='address'/><br><br>
+    Request Summary (200 character limit): <br>
+    <textarea name = 'request' id='request'maxlength="200"></textarea><br/>
+    <input type='submit' name='submit' value='Submit'/>
+</form> 
 </body>
 </html>
