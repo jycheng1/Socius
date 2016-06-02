@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
     // insert into sql database
     $query = "INSERT INTO resources(requestDate, requestSummary, organization, 
 	    address, lattitude, longitude, priority)  
-	    VALUES ('$date', ?, ?, ?,0,0,1)";
+	    VALUES (NOW(), ?, ?, ?,0,0,1)";
     
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "sss", $r_sum, $org, $add);

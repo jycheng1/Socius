@@ -19,8 +19,7 @@ if(isset($_POST['login']))
  if($row['password']==md5($upass))
  {
    $_SESSION['user'] = $row['user_id'];
-   //header("Location: home.php");
-   echo "worked";
+   header("Location: home.php");
  }
  else
  {
