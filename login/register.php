@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// is true if a user is already logged in
+// is true if a user is already logged on
 if(isset($_SESSION['user']))
 {
   header("Location: home.php");
