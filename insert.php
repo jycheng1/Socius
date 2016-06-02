@@ -35,12 +35,6 @@ if(isset($_POST['submit'])){
 	    VALUES ('$date', ?, ?, ?,0,0,1)";
     
     $stmt = mysqli_prepare($conn, $query);
-    /*
-    i Integers
-    d Doubles
-    b Blobs
-    s Everything Else
-     */
     mysqli_stmt_bind_param($stmt, "sss", $r_sum, $org, $add);
     mysqli_stmt_execute($stmt);
     $affected_rows = mysqli_stmt_affected_rows($stmt);
