@@ -1,4 +1,3 @@
-<!DOCTYPE HTML>
 <html>
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="drop.js"></script>
@@ -11,17 +10,18 @@
       Request Summary (200 character limit): <br>
       <textarea name = 'request' id='request'maxlength="200"></textarea><br/>
       <input type='submit' name='submit' value='Submit'/>
-    </form>
-<div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-  <div id="myDropdown" class="dropdown-content">
-    <a href="#">Sort 1</a>
-    <a href="#">Sort 2</a>
-    <a href="#">Sort 3</a>
-    <a href="#">Sort 4</a>
-    <a href="#">Sort 5</a>
-  </div>
-</div> 
+    </form> 
+    <div class="dropdown">
+      <button onclick="myFunction()" class="dropbtn">Select Sort</button>
+      <div id="myDropdown"class="drop_content">
+        <a href="#">Sort 1</a>
+        <a href="#">Sort 2</a>
+        <a href="#">Sort 3</a>
+        <a href="#">Sort 4</a>
+        <a href="#">Sort 5</a>
+      </div>
+    </div>
+        
 
 <?php
 require('../../secureHtdocs/conn.php'); // connect to socius database

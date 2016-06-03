@@ -1,12 +1,5 @@
 <html>
 <body>
-<form action="insert.php" method="post">
-    organization: <input type = 'text' name='organization' id='organization'/><br><br>
-    address: <input type='text'name='address'id='address'/><br><br>
-    Request Summary (200 character limit): <br>
-    <textarea name = 'request' id='request'maxlength="200"></textarea><br/>
-    <input type='submit' name='submit' value='Submit'/>
-</form> 
 <?php
 
 if(isset($_POST['submit'])){
@@ -45,7 +38,10 @@ if(isset($_POST['submit'])){
     mysqli_stmt_bind_param($stmt, "sss", $r_sum, $org, $add);
     mysqli_stmt_execute($stmt);
     $affected_rows = mysqli_stmt_affected_rows($stmt);
-    if(!$affected_rows == 1){
+    if($affected_rows == 1){
+      echo "<strong>New record created successfully</strong> <br />";
+      echo "<br>";
+    } else{
       echo 'Error Occured<br />';
       echo mysqli_error();
       mysqli_stmt_close($stmt);
@@ -102,6 +98,12 @@ echo mysqli_error($dbc);
 
 mysqli_close($conn);
 ?>
-
+<form action="insert.php" method="post">
+    organization: <input type = 'text' name='organization' id='organization'/><br><br>
+    address: <input type='text'name='address'id='address'/><br><br>
+    Request Summary (200 character limit): <br>
+    <textarea name = 'request' id='request'maxlength="200"></textarea><br/>
+    <input type='submit' name='submit' value='Submit'/>
+</form> 
 </body>
 </html>
