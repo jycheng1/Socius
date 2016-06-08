@@ -1,28 +1,28 @@
 <?php
-if(isset($_POST['submit'])){
-  $data_missing = array();
-  if(empty($_POST['request'])){
+//if(isset($_POST['submit'])){
+  //$data_missing = array();
+  //if(empty($_POST['request'])){
     // Add request date to array
-    $data_missing[] = 'request summary';  
-  } else{
+  //  $data_missing[] = 'request summary';  
+ // } else{
     // trim white space
     $r_sum = trim($_POST['request']);
-  } 
-  if(empty($_POST['organization'])){
+  //} 
+  //if(empty($_POST['organization'])){
     // Add request date to array
-    $data_missing[] = 'organization';  
-  } else{
+  //  $data_missing[] = 'organization';  
+  //} else{
     // trim white space
     $org = trim($_POST['organization']);
-  }
-  if(empty($_POST['address'])){
+  //}
+ // if(empty($_POST['address'])){
     // Add request date to array
-    $data_missing[] = 'address';  
-  } else{
+ //   $data_missing[] = 'address';  
+ // } else{
     // trim white space
     $add = trim($_POST['address']);
-  }
-  if(empty($data_missing)){
+ // }
+//  if(empty($data_missing)){
     require_once('../../secureHtdocs/conn.php'); // connect to socius database
   
     // insert into sql database
@@ -40,12 +40,17 @@ if(isset($_POST['submit'])){
       mysqli_stmt_close($stmt);
       mysqli_close($conn);
     }
-  } else{
+  //} 
+    /*
+  else{
       echo '<strong>You need to enter the following data:</strong> <br />';
       foreach($data_missing as $missing){
         echo "<strong>-$missing</strong><br />";
       }
       echo"<br>";
+
   }
-} 
+  */
+//}
+echo "HI";
 ?>

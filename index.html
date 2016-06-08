@@ -15,19 +15,17 @@
 
   <body>
     <div id="requestForm">
-      <form method="post" id="request_form" onsubmit="return false">
+      
+      <form method="post" id="request_form" >
       organization: <input type = 'text' name='organization' 
       		class='textbox'id='organization'/><br><br>
       address: <input type='text'name='address'class="textbox"
                 id='address'/><br><br>
-      <!--
-      <input type='text'name='address'class="textbox"
-      id='address' placeholder="Address"/><br><br>
-      --> 
       Request Summary (200 character limit): <br>
       <textarea name = 'request' id='request'maxlength="200"></textarea><br/>
-      <input type='button' name='submit' value='Submit' id='submitReq'/>
+      <input type='button' onclick='f1()' name='submit' value='Submit' id='submitReq'/>
     </form>
+
     </div>
     <br>
     <form>
