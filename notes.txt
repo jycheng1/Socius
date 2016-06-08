@@ -1,5 +1,7 @@
+Webhosting notes
+
 -four users, OSN, NOR, 412, donors, food banks
 -phase 4: entries- 200 entries a month- datapoints, each one has multiple properties
 -figure out the cost per month: AWS, google app engine, 
 -drop down for requested items, add column for qty
--
+

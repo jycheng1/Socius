@@ -1,40 +1,34 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-  <script>
-  function sortI(sortType){
-    if (window.XMLHttpRequest) {
-      // code for IE7+, Firefox, Chrome, Opera, Safari
-      var xmlhttp = new XMLHttpRequest();
-    } else {
-      // code for IE6, IE5
-      var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange = function() {
-      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        document.getElementById("table").innerHTML = xmlhttp.responseText;
-      }
-    };
-    xmlhttp.open("GET","display.php?q="+sortType,true);
-    xmlhttp.send();
-  }
-</script>
   <link rel="stylesheet" type="text/css" href="style.css">
-<!--
-<script src="sort.js"></script>
---> 
+  <script src="jquery.js"></script>
+  <script src="sortFxn.js"></script>
+  <script src="submit.js"></script>
+  <!--
+  <script src="insertFxn.js"></script>
+  <script src="insertFxn.js"></script>
+  -->
   </head>
+
   <?php require('../../secureHtdocs/conn.php'); ?>
+
   <body>
-    <form action="insert.php" method="post">
+    <div id="requestForm">
+      <form method="post" id="request_form" onsubmit="return false">
       organization: <input type = 'text' name='organization' 
       		class='textbox'id='organization'/><br><br>
       address: <input type='text'name='address'class="textbox"
-      		id='address'/><br><br>
+                id='address'/><br><br>
+      <!--
+      <input type='text'name='address'class="textbox"
+      id='address' placeholder="Address"/><br><br>
+      --> 
       Request Summary (200 character limit): <br>
       <textarea name = 'request' id='request'maxlength="200"></textarea><br/>
-      <input type='submit' name='submit' value='Submit'/>
+      <input type='button' name='submit' value='Submit' id='submitReq'/>
     </form>
+    </div>
     <br>
     <form>
       <select name="sort" onchange="sortI(this.value)">
@@ -49,7 +43,7 @@
     <div id="table">
     </div>
     <script>
-      sortI("requestDate ASC")
+      sortI("requestDate ASC");
       </script>
   </body>
 </html>

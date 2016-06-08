@@ -1,3 +1,5 @@
+Various commands to manipulate the data
+
 SELECT * FROM resources ORDER BY requestDate ASC --- what it was originally
 SELECT * FROM resources ORDER BY requestDate ASC --- newest requests are first
 SELECT * FROM resources ORDER BY requestSummary DESC -- reverse alphabetic order (Z to A)

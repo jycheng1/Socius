@@ -1,4 +1,4 @@
-function sort(sortType){
+function insertI(){
   if (window.XMLHttpRequest) {
     // code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp = new XMLHttpRequest();
@@ -11,7 +11,7 @@ function sort(sortType){
       document.getElementById("table").innerHTML = xmlhttp.responseText;
     }
   };
-  xmlhttp.open("GET","display.php?q="+sortType,true);
+  xmlhttp.open("POST","insert.php",true);
   xmlhttp.send();
 }
 

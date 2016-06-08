@@ -3,10 +3,6 @@
 <?php
 require('../../secureHtdocs/conn.php'); // connect to socius database
 
-/*
-$q = intval($_GET['q']);
- */
-
 $q = (string)($_GET['q']);
 
 // query database

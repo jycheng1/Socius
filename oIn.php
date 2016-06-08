@@ -1,5 +1,6 @@
 <?php
-if(isset($_POST['submit'])){
+
+if(isset($_POST['submitReq'])){
   $data_missing = array();
   if(empty($_POST['request'])){
     // Add request date to array
@@ -22,13 +23,14 @@ if(isset($_POST['submit'])){
     // trim white space
     $add = trim($_POST['address']);
   }
+
   if(empty($data_missing)){
     require_once('../../secureHtdocs/conn.php'); // connect to socius database
   
     // insert into sql database
     $query = "INSERT INTO resources(requestDate, requestSummary, organization, 
-            address, lattitude, longitude, priority)  
-            VALUES (NOW(), ?, ?, ?,0,0,1)";
+	    address, lattitude, longitude, priority)  
+	    VALUES (NOW(), ?, ?, ?,0,0,1)";
     
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "sss", $r_sum, $org, $add);
@@ -47,5 +49,14 @@ if(isset($_POST['submit'])){
       }
       echo"<br>";
   }
-} 
+/*
+  $res = new stdClass();
+  $resp->success = false;
+  if($response) {
+    $resp->success = true;
+  }
+  print json_encode($resp);
+ */
+
+}
 ?>
