@@ -1,9 +1,0 @@
-commands.txt
-index.html
-notes.txt
-sortFxn.js
-display.php
-style.css
-insert.php
-resources.sql
-
