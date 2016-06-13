@@ -17,10 +17,16 @@
       		class='textbox'id='organization'/><br><br>
       address: <input type='text'name='address'class="textbox"
                 id='address'/><br><br>
-      Request Summary (200 character limit): <br>
-      <textarea name = 'request' id='request'maxlength="200"></textarea><br/>
+      <select name="request">
+       <option value="sel">Select a request </option>
+       <option value="req1">Request 1 </option>
+       <option value="req2">Request 2</option> 
+      </select>
+     <br> <br>
+      Comments (200 character limit): <br>
+      <textarea name = 'comments' id='comments'maxlength="200"></textarea><br/>
       <input type='button' onclick='submitForm()' name='submit' value='Submit' id='submitReq'/>
-    </form>
+      </form>
 
   </div>
   <div id="errorMsg" class="errorMsg">

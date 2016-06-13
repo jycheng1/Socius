@@ -1,18 +1,14 @@
 <?php
 include('../../secureHtdocs/conn.php'); // connect to socius database
 $data_missing = array();
-// deals with request summary box
-  if(empty($_POST['request'])){
-    // Add request date to array
-    $data_missing[] = 'request summary';  
-  } else{
-    // trim white space
-    $r_sum = trim($_POST['request']);
-  } 
+
+// deals with comments
+  // trim white space
+  $comm = trim($_POST['comments']);
 
 // deals with org name box
   if(empty($_POST['organization'])){
-    // Add request date to array
+    // Add org name to array
     $data_missing[] = 'organization';  
   } else{
     // trim white space
@@ -21,15 +17,24 @@ $data_missing = array();
 
 // deals with address box
   if(empty($_POST['address'])){
-    // Add request date to array
+    // Add address to array
     $data_missing[] = 'address';  
   } else{
     // trim white space
     $add = trim($_POST['address']);
   }
-  $a = array();
-  // enters this if no data is missing
+// deals with request dropdown
+  if($_POST['request'] == "sel"){
+    // add request to array
+    $data_missing[] = 'request';  
+  } else{
+    // trim white space
+    $req = trim($_POST['request']);
+  }
+
+// enters this if no data is missing
   if(empty($data_missing)){
+    $a = array();
  
     // insert into sql database
     
@@ -38,7 +43,7 @@ $data_missing = array();
             VALUES (NOW(), ?, ?, ?,0,0,1)";
 
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "sss", $r_sum, $org, $add);
+    mysqli_stmt_bind_param($stmt, "sss", $comm, $org, $add);
     mysqli_stmt_execute($stmt);
     $affected_rows = mysqli_stmt_affected_rows($stmt);
 
