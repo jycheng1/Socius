@@ -5,10 +5,6 @@
   <script src="jquery.js"></script>
   <script src="sortFxn.js"></script>
   <script src="submit.js"></script>
-  <!--
-  <script src="insertFxn.js"></script>
-  <script src="insertFxn.js"></script>
-  -->
   </head>
 
   <?php require('../../secureHtdocs/conn.php'); ?>
@@ -23,7 +19,7 @@
                 id='address'/><br><br>
       Request Summary (200 character limit): <br>
       <textarea name = 'request' id='request'maxlength="200"></textarea><br/>
-      <input type='button' onclick='f1()' name='submit' value='Submit' id='submitReq'/>
+      <input type='button' onclick='submitForm()' name='submit' value='Submit' id='submitReq'/>
     </form>
 
   </div>
