@@ -9,7 +9,7 @@ function submitForm(){
       success: function(data){
         if (!data['isFilled']){
           // there are parts of the form that aren't filled
-          document.getElementById('errorMsg').innerHTML=data["message"];
+          document.getElementById('errorMsg').innerHTML=data["message"].replace(/\n/g, "<br />");
         }
         if(data['isFilled']){
           // all text boxes are filled
