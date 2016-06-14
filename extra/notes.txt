@@ -6,3 +6,9 @@ Webhosting notes
 
 D3, node.js, servlets
 elastic beanstalk
+
+- clothing
+- household essentials
+- bedding
+- food
+
