@@ -5,3 +5,7 @@
 .errorMsg{
   white-space: pre-wrap;
 }
+
+.textarea{
+  height:auto;
+}
