@@ -17,6 +17,7 @@ function submitForm(){
           // erases the text in forms after you submit
           $('input[type="text"], textarea').val('');
           $('input[type="text"], text').val('');
+          $('#requestItem').val('sel');
         }
         sortI(document.getElementById("sortOp").value); // updates the table
       },

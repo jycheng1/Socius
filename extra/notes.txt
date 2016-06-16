@@ -12,3 +12,21 @@ elastic beanstalk
 - bedding
 - food
 
+todo: add users and create a login system
+
+-mapping (google api)
+-look at vincent's code
+-dashboard template
+
+-beanstalk
+-node.js, react, material ui, bootstrap, combining bootstrap and material
+
+look into: MVC
+
+-when an item is restocked, have it text the requester
+-tracking what you checked out
+
+-donors can have multiple accounts
+-each org has their own account
+
+

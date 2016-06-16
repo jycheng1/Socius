@@ -6,3 +6,7 @@ SELECT * FROM resources ORDER BY requestSummary DESC -- reverse alphabetic order
 SELECT * FROM resources ORDER BY requestSummary ASC -- alphabetic order (A to Z)
 SELECT * FROM resources ORDER BY organization ASC -- alphabetic order of organizations
 
+
+TO COUNT:
+SELECT request, COUNT(*) FROM resources WHERE request='bedding' GROUP BY request;
+
