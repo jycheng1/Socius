@@ -19,13 +19,18 @@ cellspacing="5" cellpadding="8">
 <td align="left"><b>Count</b></td>';
 
 // mysqli_fetch_array returns an array
-while($row = mysqli_fetch_array($response)){
-
-echo '<tr><td align="left">' .
-$row['request'] . '</td><td align="left">' .
-$row['COUNT(*)'] . '</td><td align="left">';
-
-echo '</tr>';
+while($row = mysqli_fetch_array($response))
+{
+  echo '<li id="item_'.$row["request"].'">'; 
+  echo '<tr><td align="left">' .
+  $row['request'] . '</td><td align="left">' .
+  $row['COUNT(*)'] . '</td><td align="left">';
+  echo '<div class="del_wrapper"><a href="#" class="del_button" id="del-'.
+    $row["request"].'">' . 'donate';
+  // echo '<img src="icon_del.gif" border="0" />';
+  echo '</a></div>';
+  echo '</li>';
+  echo '</tr>';
 }	 
 echo '</table>';
 }
