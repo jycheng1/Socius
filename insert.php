@@ -42,9 +42,14 @@ $data_missing = array();
             address, comments, lattitude, longitude, priority)  
             VALUES (NOW(), ?, ?, ?,?,0,0,1)";
 
+    $query1 = "UPDATE reqAgg SET quantity = quantity + 1 WHERE request = ?";
+
     $stmt = mysqli_prepare($conn, $query);
+    $stmt1 = mysqli_prepare($conn, $query1);
     mysqli_stmt_bind_param($stmt, "ssss", $req, $org, $add, $comm);
+    mysqli_stmt_bind_param($stmt1, "s", $req);
     mysqli_stmt_execute($stmt);
+    mysqli_stmt_execute($stmt1);
     $affected_rows = mysqli_stmt_affected_rows($stmt);
 
     if(!$affected_rows == 1){

@@ -10,6 +10,7 @@ CREATE TABLE resources
   lattitude varchar(255) NOT NULL,
   longitude varchar(255) NOT NULL,
   priority smallint unsigned NOT NULL,
+  isDeleted char(2) NOT NULL DEFAULT 'N',
   
   PRIMARY KEY (id)
 );
