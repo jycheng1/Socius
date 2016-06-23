@@ -15,9 +15,12 @@ DONATE
 donorRequest.html
 reqAgg.sql
 sortAgg.js
-delete.js
 displayAgg.php
-delete.php
+donate.js
+donate.php
 
 DONATIONS
 donations.sql
+donations.html
+donationView.js
+donationDisplay.php
