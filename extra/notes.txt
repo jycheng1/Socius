@@ -29,4 +29,6 @@ look into: MVC
 -donors can have multiple accounts
 -each org has their own account
 
+############################################################
+-resources was changed, so i have to change queries and things like that
 

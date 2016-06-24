@@ -3,7 +3,10 @@ CREATE TABLE resources
 (
   id smallint unsigned NOT NULL auto_increment,
   requestDate TIMESTAMP NOT NULL,
-  request mediumtext NOT NULL,
+  request1 text NOT NULL,
+  request2 text NOT NULL,
+  request3 text NOT NULL,
+  why mediumtext NOT NULL,
   organization text NOT NULL,
   address text NOT NULL,
   comments mediumtext NOT NULL,
