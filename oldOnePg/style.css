@@ -1,0 +1,11 @@
+.textbox{
+  width:300px;
+  }
+
+.errorMsg{
+  white-space: pre-wrap;
+}
+
+.textarea{
+  height:auto;
+}
