@@ -1,7 +1,5 @@
 /* -------------------------------- 
-
 Primary style
-
 -------------------------------- */
 
 html * {
@@ -37,9 +35,7 @@ img {
 }
 
 /* -------------------------------- 
-
 Modules - reusable parts of our design
-
 -------------------------------- */
 .cd-container {
   /* this class is used to horizontally align the gallery of items */
@@ -64,18 +60,14 @@ Modules - reusable parts of our design
 }
 
 /* -------------------------------- 
-
 Button
-
 -------------------------------- */
-
 
 #img_container {
     position:relative;
     display:inline-block;
     text-align:center;
 }
-
 
 .button {
     position:absolute;
@@ -91,9 +83,7 @@ Button
     font-size: 16px;
 }
 /* -------------------------------- 
-
 xheader  #31353d
-
 -------------------------------- */
 header {
   position: fixed;

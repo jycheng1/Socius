@@ -13,20 +13,30 @@
     <div id="requestForm">
       
       <form method="post" id="request_form" >
-      organization: <input type = 'text' name='organization' 
-      		class='textbox'id='organization'/><br><br>
-      address: <input type='text'name='address'class="textbox"
-                id='address'/><br><br>
-      <select name="request" id="requestItem">
-       <option value="sel">Select a request </option>
+      <select name="request1" id="requestItem1">
+       <option value="sel1">Select a request </option>
        <option value="Clothing">Clothing</option>
        <option value="Household essentials">Household Essentials</option> 
        <option value="Bedding">Bedding</option> 
        <option value="Food">Food</option> 
-      </select>
+     </select>
+
+      <select name="request2" id="requestItem2">
+       <option value="sel2">Select a request </option>
+       <option value="Clothing">Clothing</option>
+       <option value="Household essentials">Household Essentials</option> 
+       <option value="Bedding">Bedding</option> 
+       <option value="Food">Food</option> 
+     </select>
+
+      <select name="request3" id="requestItem3">
+       <option value="sel3">Select a request </option>
+       <option value="Clothing">Clothing</option>
+       <option value="Household essentials">Household Essentials</option> 
+       <option value="Bedding">Bedding</option> 
+       <option value="Food">Food</option> 
+     </select>
      <br> <br>
-      Comments (200 character limit): <br>
-      <textarea rows="6" cols="50" name = 'comments' id='comments'maxlength="200"></textarea><br/>
       <input type='button' onclick='submitForm()' name='submit' value='Submit' id='submitReq'/>
       </form>
 

@@ -1,0 +1,10 @@
+.demo-card-square.mdl-card {
+  width: 150px;
+  height: 150px;
+}
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+  background:
+    url('http://ll-us-i5.wal.co/asr/6667ddd0-c889-49cd-b283-54f75afae6f0_1.91c427d5953da89fa7e2229ba15a383d.jpeg?odnHeight=150&odnWidth=150') bottom right 15% no-repeat #46B6AC;
+}
+

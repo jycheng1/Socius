@@ -15,11 +15,13 @@ function submitForm(){
           // all text boxes are filled
           document.getElementById('errorMsg').innerHTML="";
           // erases the text in forms after you submit
-          $('input[type="text"], textarea').val('');
-          $('input[type="text"], text').val('');
-          $('#requestItem').val('sel');
+          //$('input[type="text"], textarea').val('');
+          //$('input[type="text"], text').val('');
+         $('#requestItem1').val('sel1');
+         $('#requestItem2').val('sel2');
+         $('#requestItem3').val('sel3');
         }
-        sortI(document.getElementById("sortOp").value); // updates the table
+      //  sortI(document.getElementById("sortOp").value); // updates the table
       },
       error: function(jqXHR, textStatus, errorThrown){
         alert(jqXHR.status);

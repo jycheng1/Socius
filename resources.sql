@@ -7,13 +7,13 @@ CREATE TABLE resources
   request2 text NOT NULL,
   request3 text NOT NULL,
   why mediumtext NOT NULL,
+  /*
   organization text NOT NULL,
   address text NOT NULL,
   comments mediumtext NOT NULL,
+  */
   lattitude varchar(255) NOT NULL,
   longitude varchar(255) NOT NULL,
-  priority smallint unsigned NOT NULL,
-  isDeleted char(2) NOT NULL DEFAULT 'N',
   
   PRIMARY KEY (id)
 );
