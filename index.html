@@ -5,6 +5,7 @@
   <script src="jquery.js"></script>
   <script src="sortFxn.js"></script>
   <script src="submit.js"></script>
+  <script src="displayCart.js"></script>
 
   <meta charset="UTF-8">
   <link rel="stylesheet" href="css/style.css"> <!-- Gem style -->
@@ -42,6 +43,7 @@
   <script src="./material.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
   <link rel="stylesheet" href="css/imgStyle.css">
+  <script src="colorChange.js"></script>
 
   </head>
 
@@ -71,12 +73,12 @@
       <!--First columnn-->
       <div class="col-md-2">
         <div class="demo-card-square mdl-card mdl-shadow--2dp">
-            <div class="mdl-card__title mdl-card--expand">
-            <h2 class="mdl-card__title-text mdl-color-text--black">Orange</h2>
+            <div class="mdl-card__title mdl-card--expand" id="img1">
+              <h2 id="or1" class="mdl-card__title-text">Orange</h2>
           </div>
-            <div class="mdl-card__actions mdl-card--border">
-              <input type='button' class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                onclick='addCart()' name='request' value='Request' id='request'/>
+            <div class="mdl-card__actions mdl-card--border" id='b1'>
+              <button id="request" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                name='request'>Request</button>
         </div>
       </div>
     </div>
@@ -94,42 +96,8 @@
 
 <!--/.Main layout-->
     <div id="cd-cart">
-      <h2>Requests</h2>
-      <ul class="cd-cart-items">
-        <li>
-          <span class="cd-qty"></span> Orange
-          <div class="cd-price">
-            <form action="#">
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="sample3">
-              <label class="mdl-textfield__label" for="sample3">Why was the item requested?</label>
-              </div>
-              <a href="#0" class="cd-item-remove cd-img-replace">Remove</a>
-            </form>
-          </div>
-        </li>
-        <li>
-          <span class="cd-qty"></span> Apple
-          <div class="cd-price"><form action="#">
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="sample3">
-              <label class="mdl-textfield__label" for="sample3">Why was the item requested?</label>
-              </div>
-              <a href="#0" class="cd-item-remove cd-img-replace">Remove</a>
-            </form>
-          </div>
-        </li>
-        <li>
-          <span class="cd-qty"></span> Strawberry
-          <div class="cd-price"><div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="sample3">
-              <label class="mdl-textfield__label" for="sample3">Why was the item requested?</label>
-              </div>
-              <a href="#0" class="cd-item-remove cd-img-replace">Remove</a>
-            </form>
-          </div>
-        </li>
-      </ul> <!-- cd-cart-items -->
+      </ul>
+      <!-- end of cart items -->
 
       <div class="cd-cart-total">
               <p>Total <span>3</span></p>
@@ -173,4 +141,3 @@
   </div>
 </body>
 </html>
-
