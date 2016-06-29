@@ -1,0 +1,249 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+     <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+    <script src="js/buttonChange.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+
+  <body>
+
+    <!-- Dropdown Structure
+ <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center btn">Logo</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+<nav class="navbar grey lighten-3 navbar-fixed-bottom">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li>
+                <p class="navbar-btn">
+                    <a href="#" class="waves-effect waves-light grey darken-1 btn">Check Added Items</a>
+                </p>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+-->
+<nav>
+    <div class="navbar-fixed-bottom">
+        <div class="row center">
+          <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Check Added Items</a>
+        </div>
+    </div>
+</nav>
+
+  <div class="row">
+    <div class="col s12">
+      <h5 class="grey-text text-darken-3">Fresh Produce<h5>
+        <div class="card-panel">
+          <div class="row">
+
+            <!--Row 1-->
+            <div class="col-md-2">
+                <div class="card img1">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator b1" src="image/banana.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Banana</span>
+                    <h6><button id="add" class="waves-effect waves-light light-green accent btn" name='add'>Add</button></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcT-PKJFfsRj9x8wj_rGWMPZ_p6ZDZXIjf8vWBAjvG3kuWufQDJF4-5N_iDMVMktKvSj6gG6Sy52&usqp=CAk">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Straberry</span>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQwQvDc5ZpGlxld_RMLz2HLA6QF9Apqz8gcfHK4_d3ncHp1DZs6v_XiKGf1qwtXg1fQ_u2rwa1Amw&usqp=CAk">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Orange</span>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSYIK_tG7kQV5dmh8GZpJsc_GhxP0-ebcrG1EPsjuuE_3zDmklagnTvsFkEusqg59PuG2teRkM4cgs&usqp=CAk">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Avocado</span>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+               <div class="col-md-2">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcROhGxBXFvtJO54sKINypv-GfdCYocKi_mz7Dod5wxZR4OE9eYOFKv2fJ0K298IA8JgrcoMvH0&usqp=CAk">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Watermelon</span>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTGYsTQve0dyLFB6df9ABDDFeL12NqhLKfGxj6Z3IxE_b7E7_NIo3XmPblC_Oa_4GMsB12fVAhX&usqp=CAk">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Apple</span>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+
+                <!--Row 2-->
+
+                <div class="col-md-2">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRGGMxkG9Z5-YcGfgaQrYRsgD06jHxi5hE6LFHLFwqZcJN6dNSoyWfQZhELz6akD-2sQCYFM5FP6w&usqp=CAk">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Banana</span>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcT-PKJFfsRj9x8wj_rGWMPZ_p6ZDZXIjf8vWBAjvG3kuWufQDJF4-5N_iDMVMktKvSj6gG6Sy52&usqp=CAk">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Straberry</span>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQwQvDc5ZpGlxld_RMLz2HLA6QF9Apqz8gcfHK4_d3ncHp1DZs6v_XiKGf1qwtXg1fQ_u2rwa1Amw&usqp=CAk">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Orange</span>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSYIK_tG7kQV5dmh8GZpJsc_GhxP0-ebcrG1EPsjuuE_3zDmklagnTvsFkEusqg59PuG2teRkM4cgs&usqp=CAk">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Avocado</span>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+               <div class="col-md-2">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcROhGxBXFvtJO54sKINypv-GfdCYocKi_mz7Dod5wxZR4OE9eYOFKv2fJ0K298IA8JgrcoMvH0&usqp=CAk">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Watermelon</span>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTGYsTQve0dyLFB6df9ABDDFeL12NqhLKfGxj6Z3IxE_b7E7_NIo3XmPblC_Oa_4GMsB12fVAhX&usqp=CAk">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Apple</span>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+
+               <div class="row">
+    <div class="col s12">
+      <h5 class="grey-text text-darken-3">Fresh Produce<h5>
+        <div class="card-panel">
+          <div class="row">
+
+            <!--Row 1-->
+            <div class="col-md-2">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRGGMxkG9Z5-YcGfgaQrYRsgD06jHxi5hE6LFHLFwqZcJN6dNSoyWfQZhELz6akD-2sQCYFM5FP6w&usqp=CAk">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Banana</span>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+
+          
+  </body>
+</html>
