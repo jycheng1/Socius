@@ -4,9 +4,6 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-
-.top-buffer { margin-top:20px; }
-
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -1175,7 +1172,6 @@ hr {
 [role="button"] {
   cursor: pointer;
 }
-
 h1,
 h2,
 h3,
@@ -1294,7 +1290,6 @@ h6,
 p {
   margin: 0 0 10px;
 }
-
 .lead {
   margin-bottom: 20px;
   font-size: 16px;
@@ -4935,7 +4930,7 @@ a.label:focus {
   display: none;
 }
 .btn .badge {
-  position: right;
+  position: relative;
   top: -1px;
 }
 .btn-xs .badge,
