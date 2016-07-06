@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html lang="en" class="no-js">
+        <head>
+        {% load staticfiles %}
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="jquery.js"></script>
+        <script src="sortFxn.js"></script>
+        <script src="submit.js"></script>
+
+        <meta charset="UTF-8">
+        <!-- Gem style -->
+        {% static 'css/custom.css' %}
+        <link rel="stylesheet" type='text/css' href="{% static 'css/style.css' %}"> 
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Roboto:200,300,100,400,500,700'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/material.min.css' %}">
+
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" type='text/css' href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type='text/css' href="{% static 'css/bootstrap.css' %}">
+
+        <link rel="stylesheet" href="{% static 'css/reset.css' %}"> <!-- CSS reset -->
+
+        <script src="{% static 'js/modernizr.js' %}"></script> <!-- Modernizr -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+        <!-- cd-cart -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="{% static 'js/main.js' %}"></script> <!-- Gem jQuery -->
+
+        <!-- jQuery -->
+        <script src="{% static 'js/jquery.js' %}"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <!-- Material Design Lite Java Script -->
+        <script src="{% static 'js/material.min.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/imgStyle.css' %}">
+
+        </head>
+
+
+        <body>
+                <header>
+                <div id="logo"><img src="img/sociuslogo.png" alt="Homepage"></div>
+
+                <div id="cd-hamburger-menu"><a class="cd-img-replace" href="#0">Menu</a></div>
+                <div id="cd-cart-trigger"><a span class="cd-img-replace" href="#0">Cart</a></div>
+
+                </header>
+                <nav id="main-nav">
+                        <ul>
+                                <li><a href="#0">Voices</a></li>
+                                <li><a href="#0"><span class="mdl-badge" data-badge="4">Requests</span></a></li>
+                        </ul>
+                </nav>
+                <div class="container-fluid">
+
+                <!--Main layout-->
+                <div class="container">
+                <h2 class="mdl-typography--headline">Fresh Grocery</h2>
+
+                <div class="row">
+                <!--First columnn-->
+                <div class="col-md-2">
+                        <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                                <div class="mdl-card__title mdl-card--expand">
+                                        <h2 class="mdl-card__title-text mdl-color-text--black">Orange</h2>
+                                </div>
+                                <div class="mdl-card__actions mdl-card--border">
+                                        <input type='button' class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                                        onclick='addCart()' name='request' value='Request' id='request'/>
+                                </div>
+                        </div>
+                </div>
+
+                <div class="col-md-2">
+                        <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                                <div class="mdl-card__title mdl-card--expand">
+                                        <h2 class="mdl-card__title-text mdl-color-text--black">Orange</h2>
+                                </div>
+                                <div class="mdl-card__actions mdl-card--border">
+                                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Request</a>
+                                </div>
+                        </div>
+                </div>
+
+                <!--/.Main layout-->
+                <div id="cd-cart">
+                        <h2>Requests</h2>
+                        <ul class="cd-cart-items">
+                                <li>
+                                        <span class="cd-qty"></span> Orange
+                                        <div class="cd-price">
+                                        <form action="#">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                <input class="mdl-textfield__input" type="text" id="sample3">
+                                                <label class="mdl-textfield__label" for="sample3">Why was the item requested?</label>
+                                                </div>
+                                                <a href="#0" class="cd-item-remove cd-img-replace">Remove</a>
+                                        </form>
+                                        </div>
+                                </li>
+                                <li>
+                                        <span class="cd-qty"></span> Apple
+                                        <div class="cd-price">
+                                        <form action="#">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                <input class="mdl-textfield__input" type="text" id="sample3">
+                                                <label class="mdl-textfield__label" for="sample3">Why was the item requested?</label>
+                                                </div>
+                                                <a href="#0" class="cd-item-remove cd-img-replace">Remove</a>
+                                        </form>
+                                        </div>
+                                </li>
+                                <li>
+                                        <span class="cd-qty"></span> Strawberry
+                                        <div class="cd-price">
+                                        <form action="#">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                <input class="mdl-textfield__input" type="text" id="sample3">
+                                                <label class="mdl-textfield__label" for="sample3">Why was the item requested?</label>
+                                                </div>
+                                                <a href="#0" class="cd-item-remove cd-img-replace">Remove</a>
+                                        </form>
+                                        </div>
+                                </li>
+                        </ul> <!-- cd-cart-items -->
+
+                        <div class="cd-cart-total">
+                                <p>Total <span>3</span></p>
+                        </div> <!-- cd-cart-total -->
+
+                <a href="#0" class="checkout-btn">Request</a>
+                </div> 
+
+                <div id="requestForm">
+                <form method="post" id="request_form" >
+                        <select name="request1" id="requestItem1">
+                                <option value="sel1">Select a request </option>
+                                <option value="Clothing">Clothing</option>
+                                <option value="Household essentials">Household Essentials</option> 
+                                <option value="Bedding">Bedding</option> 
+                                <option value="Food">Food</option> 
+                        </select>
+
+                        <select name="request2" id="requestItem2">
+                                <option value="sel2">Select a request </option>
+                                <option value="Clothing">Clothing</option>
+                                <option value="Household essentials">Household Essentials</option> 
+                                <option value="Bedding">Bedding</option> 
+                                <option value="Food">Food</option> 
+                        </select>
+
+                        <select name="request3" id="requestItem3">
+                                <option value="sel3">Select a request </option>
+                                <option value="Clothing">Clothing</option>
+                                <option value="Household essentials">Household Essentials</option> 
+                                <option value="Bedding">Bedding</option> 
+                                <option value="Food">Food</option> 
+                        </select>
+                        <br> 
+                        <br>
+                        <input type='button' onclick='submitForm()' name='submit' value='Submit' id='submitReq'/>
+                </form>
+                </div>
+
+                <div id="errorMsg" class="errorMsg">
+                </div>
+                </div>
+                </div>
+        </body>
+</html>
