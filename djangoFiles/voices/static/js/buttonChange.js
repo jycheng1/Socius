@@ -5,9 +5,10 @@ $(document).ready(function(){
       $(".img1").css({
         /*
         'webkit-filter':'grayscale(100%)'
+        'webkit-filter':'blur(5px)'
         */
 
-        'webkit-filter':'blur(5px)'
+        
       });
       $(".b1").css({
         'border': "solid 2px green",
