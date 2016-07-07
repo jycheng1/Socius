@@ -72,6 +72,7 @@
           <div class="row">
 
             <!--Row 1-->
+            {% if all_prod %}
             {% for product in all_prod %}
 
             <div class="col-md-2">
@@ -85,8 +86,10 @@
                   </div>
                 </div>
             </div>
-
             {% endfor %}
+            {% else %}
+            <p> You have no products </p>
+            {% endif %}
 
           </div>
         </div>
@@ -95,7 +98,7 @@
 
 
 
-               <div class="row">
+  <div class="row">
     <div class="col s12">
       <h5 class="grey-text text-darken-3">Fresh Produce<h5>
         <div class="card-panel">
@@ -113,6 +116,11 @@
                   </div>
                 </div>
               </div>
+           </div>
+        </div>
+    </div>
+  </div>
+
 
 
           
