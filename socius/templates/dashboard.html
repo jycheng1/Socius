@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+	<!-- Map Display -->
+	<div id="map-display">
+	</div>
+	<!-- /Map Display -->
+
+	<!-- Side Display -->
+	<div id = 'pantry-info'>
+<!-- 		<div class='pantry-box'>
+			<h4 style='padding: 0 4px'>Northside Food Pantry</h4>
+			<div class='pantry-img'> 
+				<img src="{% static 'images/NorthsideFoodPantry.jpg'%}" width ="200" height="150" />
+			</div>
+			<p class='pantry-info'>
+				Address: 1601 Brighton Rd, Pittsburgh, PA 15212
+				<br/>
+				Phone: 412-323-1170
+				<br/>
+				Site: <a href='http://www.northsidefoodpantry.org/'>http://www.northsidefoodpantry.org/</a>
+			</p>
+
+		</div>  -->
+
+				{% if requests %}
+				{% for request in requests reversed %}
+					<h4>Request {{request.id}}</h4>
+					<p>
+					{{request.requester_firstname}}
+					{{request.requester_lastname}}
+					</p>
+					<p style = 'color:blue'>
+					{{request.date}}
+					</p>
+					<p> Requested items: 
+					{{request.item1}}
+					{{request.item2}}
+					{{request.item3}}
+					</p>
+					<p> Reason: 
+					{{request.reason}}
+					</p>	
+					================================
+				{% endfor %}
+				{% endif %}
+<!-- 	
+	# request 3 items at a time 
+	# 1 item can be requested multiple times
+	# manytomanyfield, but temporarilly..
+	item1 = models.CharField(max_length = 30)
+	item2 = models.CharField(max_length = 30, blank=True)
+	item3 = models.CharField(max_length = 30, blank=True)
+
+	date = models.DateTimeField(auto_now_add = True)
+	reason = models.CharField(max_length = 200) 
+
+ -->
+
+	<!-- /Side Display -->
+
+	<!-- JS -->
+	{% block js %}
+		{{block.super}}
+	 	<!-- Google Map API -->
+	    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDVvMEZC9f6v9E_Q6jzqXgo_gg06cuxclM"></script>
+
+		<script src="{% static 'js/map.js' %}"></script>
+	{% endblock %}   
+
+{% endblock %}

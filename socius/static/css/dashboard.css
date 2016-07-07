@@ -1,0 +1,70 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	/*background-color: rgba(243,245,249,0.74);*/
+	margin: 0; 
+	padding: 0;
+}
+
+#wrapper {
+	position: relative;
+	height: 100%;
+}
+
+
+#main-display {
+	position: absolute;
+	top: 51px;
+	width: 100%; 
+
+	/* Firefox */
+	height: -moz-calc(100% - 51px);
+	/* WebKit */
+	height: -webkit-calc(100% - 51px);
+	/* Opera */
+	height: -o-calc(100% - 51px);
+	 /*Standard */
+	height: calc(100% - 51px);
+}
+
+#map-display {
+	position: absolute;
+	margin-left: -15px;
+	width: 70%;
+	height: 100%;
+	border: solid 1px silver;
+}
+
+
+#pantry-info {
+	position: absolute;
+	left: 70%;
+	width: 30%;
+	height: 100%;
+	padding: 5px;
+	border-top: solid 1px silver;
+	overflow: scroll;
+}
+
+.pantry-box { 
+	padding: 0;
+	margin: 0;
+	height: 250px;
+	border: solid 1px black;
+	margin: 2px 0;
+}
+
+p.pantry-info {
+	padding: 0 4px;
+	margin: 0;
+	font-size: 13px;
+	height: 50px;
+}
+
+.pantry-img {
+	text-align: center;
+	padding: 2px 0;
+}
+
