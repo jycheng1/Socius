@@ -75,13 +75,13 @@
             {% for product in all_prod %}
 
             <div class="col-md-2">
-                <div class="card" id="{{ product.id }}">
+                <div class="card outerBox" id="id-{{ product.id }}">
                   <div class="card-image waves-effect waves-block waves-light">
                     <img class="activator"  src="{{ product.prodImg }}">
                   </div>
                   <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4"> {{ product.prodName }}</span>
-                    <h6><button id="add" class="waves-effect waves-light light-green accent btn" name='add'>Add</button></h6>
+                    <h6><button class="waves-effect waves-light light-green accent btn add" name="id-{{ product.id }}">Add</button></h6>
                   </div>
                 </div>
             </div>
