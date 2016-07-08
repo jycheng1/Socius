@@ -40,6 +40,10 @@
       width: 50%;
     }
 
+    #radio {
+      font-size: 1.3rem;
+    }
+
 
 
 
@@ -99,7 +103,7 @@
                     <div class="row">
                       <div class="input-field col s12">
                         <h6>Why was this item added?</h6>
-                        <textarea id="textarea-1" placeholder="I need it for..." id="first_name" type="text" class="materialize-textarea"></textarea><br><br><br><br><br><br><br>
+                        <textarea id="textarea-1" placeholder="ex. I need it for..." id="first_name" type="text" class="materialize-textarea"></textarea><br><br><br><br><br><br><br>
                       </div>
                     </div>
                   </form>
@@ -130,7 +134,7 @@
                     <div class="row">
                       <div class="input-field col s12">
                         <h6>Why was this item added?</h6>
-                        <textarea id="textarea-1" placeholder="I need it for..." id="first_name" type="text" class="materialize-textarea"></textarea><br><br><br><br><br><br><br>
+                        <textarea id="textarea-1" placeholder="ex. I need it for..." id="first_name" type="text" class="materialize-textarea"></textarea><br><br><br><br><br><br><br>
                       </div>
                     </div>
                   </form>
@@ -159,7 +163,7 @@
                     <div class="row">
                       <div class="input-field col s12">
                         <h6>Why was this item added?</h6>
-                        <textarea id="textarea-1" placeholder="I need it for..." id="first_name" type="text" class="materialize-textarea"></textarea><br><br><br><br><br><br><br>
+                        <textarea id="textarea-1" placeholder="ex. I need it for..." id="first_name" type="text" class="materialize-textarea"></textarea><br><br><br><br><br><br><br>
                       </div>
                     </div>
                   </form>
@@ -205,50 +209,210 @@
 
             </form>
 
-          <div class="col s12 offset-s1">
+          <div class="col s11 offset-s1">
+            <h5 class="grey-text text-darken-4">Gender</h5>
+            
+            <form action="#">
+                <p>
+                  <input name="Gender" type="radio" id="Male" />
+                  <label for="Male">Male</label>
+                </p>
+
+                <p>
+                  <input name="Gender" type="radio" id="Female" />
+                  <label for="Female">Female</label>
+                </p>
+
+                <p>
+                  <input name="Gender" type="radio" id="Othergender"  />
+                  <label for="Othergender">Other</label>
+                </p>
+
+                 <div class="input-field col s6">
+                    <input placeholder="Gender" id="Othergender" type="text" class="validate">
+                    <label for="Othergender">If Other: Please Specify</label>
+                </div>
+
+            </form>
+          </div>
+         
+
+          <div class="col s11 offset-s1">
   
-              <h5 class="grey-text darken-1n">Ethnicity</h5>
+              <h5 class="grey-text text-darken-4">Ethnicity</h5>
 
             <form action="#">
               <p>
-                <input name="group1" type="radio" id="test1" />
-                <label for="test1">Black or African-American</label>
+                <input name="Ethnicity" type="radio" id="Black" />
+                <label for="Black">Black or African-American</label>
               </p>
               <p>
-                <input name="group1" type="radio" id="test2" />
-                <label for="test2">White</label>
+                <input name="Ethnicity" type="radio" id="White" />
+                <label for="White">White or Caucasian</label>
               </p>
+
               <p>
-                <input class="group1" name="group1" type="radio" id="test3"  />
-                <label for="test3">Hispanic or Latino</label>
+                <input name="Ethnicity" type="radio" id="Hispanic"  />
+                <label for="Hispanic">Hispanic or Latino</label>
               </p>
                 <p>
-                  <input name="group1" type="radio" id="test4"  />
-                  <label for="test4">Native Hawaiian or Pacific Islander</label>
+                  <input name="Ethnicity" type="radio" id="Island"  />
+                  <label for="Island">Native Hawaiian or Pacific Islander</label>
               </p>
-                <p>
-                  <input name="group1" type="radio" id="test5"  />
-                  <label for="test5">Native American</label>
+
+              <p>
+                <input name="Ethnicity" type="radio" id="Native"  />
+                <label for="Native">Native American</label>
+              </p>
+
+              <p>
+                <input name="Ethnicity" type="radio" id="Asian"  />
+                <label for="Asian">Asian</label>
+              </p>
+
+              <p>
+                <input name="Ethnicity" type="radio" id="Otherethnicity"  />
+                <label for="Otherethnicity">Other</label>
+              </p>
+              
+              <div class="input-field col s6">
+                  <input placeholder="Ethnicity" id="Otherethnicity" type="text" class="validate">
+                  <label for="Otherethnicity">If Other: Please Specify</label>
+              </div>   
+          </form>
+        </div>
+
+            <div class="col s11 offset-s1">
+  
+              <h5 class="grey-text text-darken-4">Do you have any of the following types of dietary Restrictions?</h5>
+
+            <form action="#">
+              <p>
+                <input name="Diet" type="radio" id="Health" />
+                <label for="Health">Health</label>
               </p>
               <p>
-                  <input name="group1" type="radio" id="test6"  />
-                  <label for="test6">Asian</label>
+                <input name="Diet" type="radio" id="Religious" />
+                <label for="Religious">Religious</label>
               </p>
-               <p>
-                <input type="radio" name="group1" id="test7" />
-                <label for="test7">Other</label>
-                </div>
+              <p>
+                <input class="Diet" name="group1" type="radio" id="Cultural"  />
+                <label for="Cultural">Cultural</label>
+              </p>
+              <p>
+                <input class="Diet" name="group1" type="radio" id="None"  />
+                <label for="None">None</label>
+              </p>
+                <p>
+                  <input name="Diet" type="radio" id="Otherdiet"  />
+                  <label for="Otherdiet">Other</label>
+              </p>
+
+               <div class="input-field col s6">
+                  <input placeholder="Dietary Need" id="Otherdiet" type="text" class="validate">
+                  <label for="Otherdiet">If Other: Please Specify</label>
               </div>
-              </p>
-              
-              
-              
+
+              </div>
             </form>
-          </div>
+
+
+            <div class="col s11 offset-s1">
+  
+              <h5 class="grey-text text-darken-4">If you selected Health, please specify below</h5>
+
+            <form action="#">
+              <p>
+                <input name="Diet" type="radio" id="Health" />
+                <label for="Health">Food Allergy</label>
+              </p>
+              <p>
+                <input name="Diet" type="radio" id="Religious" />
+                <label for="Religious">Diabetic Diet</label>
+              </p>
+              <p>
+                <input class="Diet" name="group1" type="radio" id="Cultural"  />
+                <label for="Cultural">Gluten-free Diet</label>
+              </p>
+              <p>
+                <input class="Diet" name="group1" type="radio" id="None"  />
+                <label for="None">Vegetarian Diet</label>
+              </p>
+              <p>
+                <input class="Diet" name="group1" type="radio" id="None"  />
+                <label for="None">High Blood Pressure Diet</label>
+              </p>
+              <p>
+                <input class="Diet" name="group1" type="radio" id="None"  />
+                <label for="None">Liquid Only Diet</label>
+              </p>
+              <p>
+                <input class="Diet" name="group1" type="radio" id="None"  />
+                <label for="None">Low Calorie/Carbohydrate Diet</label>
+              </p>
+                <p>
+                  <input name="Diet" type="radio" id="Otherdiet"  />
+                  <label for="Otherdiet">Other</label>
+              </p>
+
+               <div class="input-field col s6">
+                  <input placeholder="Dietary Restriction" id="Otherdiet" type="text" class="validate">
+                  <label for="Otherdiet">If Other: Please Specify</label>
+              </div>
+
+              </div>
+            </form>
+
+            <div class="col s11 offset-s1">
+  
+              <h5 class="grey-text text-darken-4">If you selected Religion, please specify below</h5>
+             <form action="#">
+              <p>
+                <input name="Diet" type="radio" id="Health" />
+                <label for="Health">Islam(Halal)</label>
+              </p>
+              <p>
+                <input class="Diet" name="group1" type="radio" id="Cultural"  />
+                <label for="Cultural">Judaism(Kosher)</label>
+              </p>
+              <p>
+                <input class="Diet" name="group1" type="radio" id="None"  />
+                <label for="None">Hinduism(Lacto-vegetarian)</label>
+              </p>
+              <p>
+                <input class="Diet" name="group1" type="radio" id="None"  />
+                <label for="None">Buddhism(Lacto-vegetarian)</label>
+              </p>
+              <p>
+                <input class="Diet" name="group1" type="radio" id="None"  />
+                <label for="None">Christianity</label>
+              </p>
+                <p>
+                  <input name="Diet" type="radio" id="Otherdiet"  />
+                  <label for="Otherdiet">Other</label>
+              </p>
+
+               <div class="input-field col s6">
+                  <input placeholder="Religious Diet" id="Otherdiet" type="text" class="validate">
+                  <label for="Otherdiet">If Other: Please Specify</label>
+              </div>
+
+              </div>
+            </form>
+
+
 
 
         </div>
+
+            <div class="row">
+
+              <div class="col s12 offset-s9">
+               <a class="waves-effect waves-light btn-large blue lighten-1">Submit</a>
+              </div>
+            </div>
       </div>
+
     </div>  
   </div>
 
