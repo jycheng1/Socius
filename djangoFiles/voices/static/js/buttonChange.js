@@ -1,10 +1,10 @@
 $(document).ready(function(){
+
   var selected = 0;
   $(".add").click(function(){
     if ($(this).text() == "Add"){
       if (selected != 3){
         selected += 1;
-        console.log(selected)
         $(this).text("Added");
         /*
         $("#img1").css({
@@ -13,7 +13,7 @@ $(document).ready(function(){
           'webkit-filter':'blur(5px)'
         });
          */
-       var buttonId = "#".concat(this.name)
+        var buttonId = "#".concat(this.id)
         $(buttonId).css({
           'border': "solid 2px green",
           '-webkit-box-shadow':'0px 0px 7px #000000',
@@ -24,13 +24,12 @@ $(document).ready(function(){
     else{
       $(this).text("Add");
       selected -= 1;
-      console.log(selected)
       /*
       $("#img1").css({
         'webkit-filter':'blur(0px)'
       });
        */
-      var buttonId = "#".concat(this.name)
+      var buttonId = "#".concat(this.id)
       $(buttonId).css({
         'border': "solid 2px white",
         '-webkit-box-shadow': 'none',
@@ -40,4 +39,19 @@ $(document).ready(function(){
     };
   });
 });
+
+
+$(document).ready(function(){
+  var limit = 3;
+  $('input.single-checkbox').on('change', function(evt) {
+     if($(this).siblings(':checked').length >= limit) {
+         this.checked = false;
+     }
+  });
+});
+
+
+
+
+
 

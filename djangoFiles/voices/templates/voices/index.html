@@ -71,22 +71,25 @@
         <div class="card-panel">
           <div class="row">
 
-            <!--Row 1-->
             {% if all_prod %}
-            {% for product in all_prod %}
+              <form action="voices/voices_form.html" method="POST">
+              {% for product in all_prod %}
 
-            <div class="col-md-2">
-                <div class="card outerBox" id="id-{{ product.id }}">
-                  <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator"  src="{{ product.prodImg }}">
+              <div class="col-md-2">
+                  <div class="card outerBox" id="id-{{ product.id }}">
+                    <div class="card-image waves-effect waves-block waves-light">
+                      <img class="activator"  src="{{ product.prodImg }}">
+                    </div>
+                    <div class="card-content">
+                      <span class="card-title activator grey-text text-darken-4"> {{ product.prodName }}</span>
+
+                      <input class="single-checkbox" type="checkbox" name="id-{{ product.id }}" />
+                      <label for="id-{{ product.id }}" id = "id-{{ product.id }}" name="id-{{ product.id }}"
+                      class="waves-effect waves-light light-green accent btn add">Add</label><br>
+                    </div>
                   </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4"> {{ product.prodName }}</span>
-                    <h6><button class="waves-effect waves-light light-green accent btn add" name="id-{{ product.id }}">Add</button></h6>
-                  </div>
-                </div>
-            </div>
-            {% endfor %}
+              </div>
+              {% endfor %}
             {% else %}
             <p> You have no products </p>
             {% endif %}
@@ -120,6 +123,9 @@
         </div>
     </div>
   </div>
+
+
+  
 
 
 
