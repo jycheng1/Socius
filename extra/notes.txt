@@ -1,0 +1,34 @@
+Webhosting notes
+
+-four users, OSN, NOR, 412, donors, food banks
+-phase 4: entries- 200 entries a month- datapoints, each one has multiple properties
+-drop down for requested items, add column for qty
+
+D3, node.js, servlets
+elastic beanstalk
+
+- clothing
+- household essentials
+- bedding
+- food
+
+todo: add users and create a login system
+
+-mapping (google api)
+-look at vincent's code
+-dashboard template
+
+-beanstalk
+-node.js, react, material ui, bootstrap, combining bootstrap and material
+
+look into: MVC
+
+-when an item is restocked, have it text the requester
+-tracking what you checked out
+
+-donors can have multiple accounts
+-each org has their own account
+
+############################################################
+-resources was changed, so i have to change queries and things like that
+
