@@ -1,0 +1,17 @@
+<!--
+                    <a  class="waves-effect waves-light light-green accent btn add" name="id-{{ product.id }}"  role='button'>Add</a>
+
+                        <button class="waves-effect waves-light light-green accent btn add" 
+                            name="id-{{ product.id }}"
+                            id="{{ product.id }}">Add</button>
+
+                            <button class="waves-effect waves-light light-green accent btn add" 
+                            name="id-{{ product.id }}"
+                            href="{% url 'voices:changeList' product.id %}"
+                            id="{{ product.id }}">Add</button>
+
+                             <a  class="waves-effect waves-light light-green accent btn add" name="id-{{ product.id }}"  role='button' href="{% url 'voices:changeList' product.id %}">Add</a>
+
+                    --> 
+
+***** for index.html, adding the products to the cart

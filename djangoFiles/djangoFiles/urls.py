@@ -21,7 +21,7 @@ from voices.views import ContactWizard
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^$', views.index),
-    url(r'^voices/$', include('voices.urls')),
+    url(r'^voices/', include('voices.urls', namespace="voices")),
     url(r'^contact/$', ContactWizard.as_view([VoicesForm, WhyForm])),
 ]
 

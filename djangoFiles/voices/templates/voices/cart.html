@@ -1,0 +1,9 @@
+<html>
+    <body>
+        {% if prodChosen %}
+            {% for product in prodChosen %}
+                <p>{{ product.prodName }}</p>
+            {% endfor %}
+        {% endif %}
+    </body>
+</html>

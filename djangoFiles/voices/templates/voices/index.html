@@ -1,6 +1,7 @@
 <html lang="en">
   <head>
     {% load staticfiles %}
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,6 +28,8 @@
     <script src="{% static 'js/buttonChange.js' %}"></script>
   
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+
   </head>
 
   <body>
@@ -60,7 +63,15 @@
 <nav>
     <div class="navbar-fixed-bottom">
         <div class="row center">
-          <a href="http://materializecss.com/getting-started.html" id="cartSubmit" class="btn-large waves-effect waves-light orange">Check Added Items</a>
+        <form id="getArr" action="cart/" method="POST">
+          {% csrf_token %}
+          <!--
+          <input type="text" name="ab[]" value="product_id_1"/>
+          <input type="text" name="ab[]" value="product_id_2"/>
+          <input type="text" name="ab[]" value="product_id_3"/>
+          -->
+          <button type='submit' id="checkCart" class="btn-large waves-effect waves-light orange">Check Added Items</button>
+        </form>
         </div>
     </div>
 </nav>
@@ -71,25 +82,28 @@
         <div class="card-panel">
           <div class="row">
 
+            <!--Row 1-->
             {% if all_prod %}
-              <form action="voices/voices_form.html" method="POST">
-              {% for product in all_prod %}
-
-              <div class="col-md-2">
-                  <div class="card outerBox" id="id-{{ product.id }}">
-                    <div class="card-image waves-effect waves-block waves-light">
-                      <img class="activator"  src="{{ product.prodImg }}">
-                    </div>
-                    <div class="card-content">
-                      <span class="card-title activator grey-text text-darken-4"> {{ product.prodName }}</span>
-
-                      <input class="single-checkbox" type="checkbox" name="id-{{ product.id }}" />
-                      <label for="id-{{ product.id }}" id = "id-{{ product.id }}" name="id-{{ product.id }}"
-                      class="waves-effect waves-light light-green accent btn add">Add</label><br>
-                    </div>
+            {% for product in all_prod %}
+            <div class="col-md-2">
+                <div class="card outerBox" id="id-{{ product.id }}">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator"  src="{{ product.prodImg }}">
                   </div>
-              </div>
-              {% endfor %}
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4"> {{ product.prodName }}</span>
+                    <h6>
+                   
+                    <button class="waves-effect waves-light light-green accent btn add" 
+                            name="id-{{ product.id }}"
+                            
+                            id="{{ product.id }}">Add</button>
+                    
+                    </h6>
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
             {% else %}
             <p> You have no products </p>
             {% endif %}
@@ -123,9 +137,6 @@
         </div>
     </div>
   </div>
-
-
-  
 
 
 
