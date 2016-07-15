@@ -77,17 +77,13 @@ def cart(request):
     else:
         template = loader.get_template('voices/cart.html')
         context = {}
-        # return HttpRepsonse('fail')
         return HttpResponse(template.render(context, request))
 
 
-
-
-    '''
-    a = []
-    for i in range(len(chosen)):
-        a[i] = Products.objects.get(pk=chosen[i])
-    '''
+def thanks(request):
+    template = loader.get_template('voices/thanks.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
 
 
 

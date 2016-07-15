@@ -87,11 +87,6 @@ $(document).ready(function(){
 
   });
 
-
-
-
-
-
 /*
   $("#getArr").submit(function(){
     var data = {'ab[]' : chosen};

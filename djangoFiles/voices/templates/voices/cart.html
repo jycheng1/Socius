@@ -43,7 +43,23 @@
           </ul>
           <ul class="right hide-on-med-and-down">
             
-            <li><a href="badges.html"><i class="material-icons right">arrow_forward</i>Submit</a></li>
+
+            <form id="submitDem" action="thanks/" method="POST">
+              {% csrf_token %}
+              
+              {% if prodChosen %}
+                {% for product in prodChosen %}
+                <input type="hidden" name="selected[]" value={{ product.id }}>
+                {% endfor %}
+              {% endif %}
+
+
+              <a onclick="document.getElementById('submitDem').submit();">
+                <i class="material-icons right">arrow_forward</i>Submit</a>
+            </form>
+
+
+            <li><a></li>
           </ul>
         </div>
       </nav>
