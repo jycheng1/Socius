@@ -7,12 +7,18 @@
     <!-- Bootstrap -->
     
 
-
+<!-- Bootstrap Core CSS -->
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+  
+    <!-- Theme CSS -->
+   <link href="css/sb-bare.css" rel="stylesheet">
 
     <!--Import Google Icon Font-->
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+
 
   </head>
 
@@ -32,14 +38,33 @@ img {
 
   <body>
 <div class="navbar-fixed">
+  <ul id="dropdown1" class="dropdown-content">
+  <li><a href="#fresh-produce">Fresh Produce</a></li>
+  <li class="divider"></li>
+  <li><a href="#canned-goods&soup">Canned Goods & Soup</a></li>
+  <li class="divider"></li>
+  <li><a href="#boxed-meals">Boxed Meals</a></li>
+  <li class="divider"></li>
+  <li><a href="#grains-rice-beans">Grains,Rice & Beans</a></li>
+  <li class="divider"></li>
+  <li><a href="#household-essentials">Household Essentials</a></li>
+  <li class="divider"></li>
+  <li><a href="#clothing">Clothing</a></li>
+</ul>
   <nav>
     <div class="nav-wrapper blue">
       <ul class="left hide-on-med-and-down blue">
+
         <li><a href="sass.html"><i class="material-icons left">arrow_back</i>Back</a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
+      
+
+
       <ul class="right hide-on-med-and-down blue">
         
         <li><a href="badges.html"><i class="material-icons right">arrow_forward</i>Check Added Items</a></li>
+
       </ul>
     </div>
   </nav>
@@ -50,9 +75,9 @@ img {
 
 <div class="section no-pad-bot" id="index-banner">
           <br><br>
-          <h1 class="header center blue-text">Northside Food Pantry</h1>
+          <h4 class="header center blue-text">Pick up to 3 items you would like to see in the food pantry on your next visit</h4>
           <div class="row center">
-            <h5 class="header col s12 light">Pick up to 3 items you would like to see the most in the food pantry</h5>
+            <h5 class="header col s12 light">Your input will help the food pantry to better cater to your needs and donors to better understand what to donate</h5>
           </div>
 
           <br><br>
@@ -63,156 +88,215 @@ img {
 
   <div class="row">
     <div class="row">
-      <h4 class="grey-text col s12 offset-s1 text-darken-2">Fresh Produce<h4>
+      <h4 class="grey-text col s12 offset-s1 text-darken-2" id="fresh-produce">Fresh Produce<h4>
     <div class="col s12">
         <div class="card-panel grey  lighten-4">
           <div class="row">
 
             <!--Row 1-->
-            <div class="col s12 m4 l2">
+            <div class="col s12 m6 l3">
                 <div class="card">
                   <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="image/banana.jpeg">
+                    <img class="activator" src="image/onion.jpeg">
                   </div>
+
                   <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Banana</span>
+                    <span class="card-title activator grey-text text-darken-4">Onion</span>
+                    <div class="form-group">
+                  <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
                     <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
                   </div>
                 </div>
               </div>
 
-              <div class="col s12 m4 l2">
+              <div class="col s12 m4 l3">
                 <div class="card">
                   <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcT-PKJFfsRj9x8wj_rGWMPZ_p6ZDZXIjf8vWBAjvG3kuWufQDJF4-5N_iDMVMktKvSj6gG6Sy52&usqp=CAk">
+                    <img class="activator" src="image/cabbage.jpeg">
                   </div>
                   <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Straberry</span>
+                    <span class="card-title activator grey-text text-darken-4">Cabbage</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I need to eat healthier due to my medical condition, but I can not afford to buy fresh produce...."></textarea>
+                </div>
                     <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
                   </div>
                 </div>
               </div>
 
-              <div class="col s12 m4 l2">
+              <div class="col s12 m4 l3">
                 <div class="card">
                   <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQwQvDc5ZpGlxld_RMLz2HLA6QF9Apqz8gcfHK4_d3ncHp1DZs6v_XiKGf1qwtXg1fQ_u2rwa1Amw&usqp=CAk">
+                    <img class="activator" src="image/tomato.jpeg">
                   </div>
                   <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Orange</span>
+                    <span class="card-title activator grey-text text-darken-4">Tomato</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
                     <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
                   </div>
                 </div>
               </div>
 
-              <div class="col s12 m4 l2">
+               <div class="col s12 m4 l3">
                 <div class="card">
                   <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSYIK_tG7kQV5dmh8GZpJsc_GhxP0-ebcrG1EPsjuuE_3zDmklagnTvsFkEusqg59PuG2teRkM4cgs&usqp=CAk">
+                    <img class="activator" src="image/potato.jpeg">
                   </div>
                   <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Avocado</span>
+                    <span class="card-title activator grey-text text-darken-4">Potato</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
                     <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
                   </div>
                 </div>
               </div>
 
-               <div class="col s12 m4 l2">
+               <!--Row 2-->
+
+              <div class="col s12 m4 l3">
                 <div class="card">
                   <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcROhGxBXFvtJO54sKINypv-GfdCYocKi_mz7Dod5wxZR4OE9eYOFKv2fJ0K298IA8JgrcoMvH0&usqp=CAk">
+                    <img class="activator" src="image/carrot.jpeg">
                   </div>
                   <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Watermelon</span>
+                    <span class="card-title activator grey-text text-darken-4">Carrot</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
                     <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
                   </div>
                 </div>
               </div>
 
-              <div class="col s12 m4 l2">
+              <div class="col s12 m4 l3">
                 <div class="card">
                   <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTGYsTQve0dyLFB6df9ABDDFeL12NqhLKfGxj6Z3IxE_b7E7_NIo3XmPblC_Oa_4GMsB12fVAhX&usqp=CAk">
+                    <img class="activator" src="image/broccoli.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Broccoli</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/asparagus.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Asparagus</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/lettuce.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Lettuce</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <!--Row 3-->
+              
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/strawberry.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Strawberry</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/apple.jpeg">
                   </div>
                   <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">Apple</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
                     <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
                   </div>
                 </div>
               </div>
 
-
-                <!--Row 2-->
-
-                <div class="col s12 m4 l2">
+              <div class="col s12 m4 l3">
                 <div class="card">
                   <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRGGMxkG9Z5-YcGfgaQrYRsgD06jHxi5hE6LFHLFwqZcJN6dNSoyWfQZhELz6akD-2sQCYFM5FP6w&usqp=CAk">
-                  </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Banana</span>
-                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col s12 m4 l2">
-                <div class="card">
-                  <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcT-PKJFfsRj9x8wj_rGWMPZ_p6ZDZXIjf8vWBAjvG3kuWufQDJF4-5N_iDMVMktKvSj6gG6Sy52&usqp=CAk">
-                  </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Straberry</span>
-                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col s12 m4 l2">
-                <div class="card">
-                  <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQwQvDc5ZpGlxld_RMLz2HLA6QF9Apqz8gcfHK4_d3ncHp1DZs6v_XiKGf1qwtXg1fQ_u2rwa1Amw&usqp=CAk">
+                    <img class="activator" src="image/orange.jpeg">
                   </div>
                   <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">Orange</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
                     <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
                   </div>
                 </div>
               </div>
 
-              <div class="col s12 m4 l2">
-                <div class="card">
-                  <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSYIK_tG7kQV5dmh8GZpJsc_GhxP0-ebcrG1EPsjuuE_3zDmklagnTvsFkEusqg59PuG2teRkM4cgs&usqp=CAk">
-                  </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Avocado</span>
-                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
-                  </div>
-                </div>
-              </div>
 
-               <div class="col s12 m4 l2">
+              <div class="col s12 m4 l3">
                 <div class="card">
                   <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcROhGxBXFvtJO54sKINypv-GfdCYocKi_mz7Dod5wxZR4OE9eYOFKv2fJ0K298IA8JgrcoMvH0&usqp=CAk">
+                    <img class="activator" src="image/watermelon.jpeg">
                   </div>
                   <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">Watermelon</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
                     <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
                   </div>
                 </div>
               </div>
-
-              <div class="col s12 m4 l2">
-                <div class="card">
-                  <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTGYsTQve0dyLFB6df9ABDDFeL12NqhLKfGxj6Z3IxE_b7E7_NIo3XmPblC_Oa_4GMsB12fVAhX&usqp=CAk">
-                  </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Apple</span>
-                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
-                  </div>
+               
+               
+          
+               
                 </div>
               </div>
             </div>
@@ -226,79 +310,633 @@ img {
 
 
     <div class="row">
-      <h4 class="grey-text col s12 offset-s1 text-darken-2">Canned Goods<h4>
+      <h4 class="grey-text col s12 offset-s1 text-darken-2" id="canned-goods&soup">Canned Goods & Soup<h4>
             <div class="row">
       <div class="col s12">
           <div class="card-panel grey lighten-4">
             
             <div class="row">
             <!--Row 1-->
-            <div class="col s12 m4 l2">
+            <div class="col s12 m4 l3">
                 <div class="card">
                   <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRGGMxkG9Z5-YcGfgaQrYRsgD06jHxi5hE6LFHLFwqZcJN6dNSoyWfQZhELz6akD-2sQCYFM5FP6w&usqp=CAk">
+                    <img class="activator" src="image/cancorn.jpeg">
                   </div>
                   <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Banana</span>
+                    <span class="card-title activator grey-text text-darken-4">Corn</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
                     <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
                   </div>
                 </div>
               </div>
+
+               <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/cangreenbean.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Green Bean</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+               
+               <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/cantuna.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Tuna</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/spam.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Spam</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+
+                <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/tomatosoup.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Tomato Soup</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+
+                <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/chickennoodlesoup.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Chicken Noodle Soup</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+
+                <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/mushroomsoup.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Mushroom Soup</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+                 <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/vegetablebeefsoup.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Vegetable Beef Soup</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+
+
              </div>
           </div>
         </div>
       </div>
     </div>
 
+
+     <div class="row">
+      <h4 class="grey-text col s12 offset-s1 text-darken-2" id="boxed-meals">Boxed Meals<h4>
+            <div class="row">
+      <div class="col s12">
+          <div class="card-panel grey lighten-4">
+            
+            <div class="row">
+            <!--Row 1-->
+            <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/multigraincereal.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Multi Grain Cereal</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+               <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/mac&cheese.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Macaroni & Cheese</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+               
+               <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/minuterice.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Minute White Rice</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/savorychicken.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Savory Chicken Meal</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <h4 class="grey-text col s12 offset-s1 text-darken-2" id="grains-rice-beans">Grains, Rice & Beans<h4>
+            <div class="row">
+      <div class="col s12">
+          <div class="card-panel grey lighten-4">
+            
+            <div class="row">
+            <!--Row 1-->
+            <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/whiterice.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">White Rice</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+               <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/brownrice.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Brown Rice</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+               
+               <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/couscous.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Couscous</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/quinoa.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Quinoa</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+
+               <!-- Row 2 -->
+
+                <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/lentil.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Lentil</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/pintobean.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Pinto Bean</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/blackbean.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Black Bean</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/kidneybean.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Red Kidney Bean</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <h4 class="grey-text col s12 offset-s1 text-darken-2" id="household-essentials">Household Essentials<h4>
+            <div class="row">
+      <div class="col s12">
+          <div class="card-panel grey lighten-4">
+            
+            <div class="row">
+            <!--Row 1-->
+            <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/toothpaste.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Toothpaste</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="After buying my groceries I am out of budget to pay for my household items..."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+               <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/toiletpaper.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Toilet Paper</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="After buying my groceries I am out of budget to pay for my household items..."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+               
+               <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/shampoo.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Shampoo</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="After buying my groceries I am out of budget to pay for my household items..."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/soap.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Soap</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="After buying my groceries I am out of budget to pay for my household items..."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+
+               <!-- Row 2 -->
+
+                <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/laundrydetergent.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Laundry Detergent</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="After buying my groceries I am out of budget to pay for my household items..."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/dishsoap.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Dish Soap</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="After buying my groceries I am out of budget to pay for my household items..."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/towel.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Towel</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="After buying my groceries I am out of budget to pay for my household items..."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/broomanddustpan.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Broom & Dustpan</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="After buying my groceries I am out of budget to pay for my household items..."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+     <div class="row">
+      <h4 class="grey-text col s12 offset-s1 text-darken-2" id="clothing">Clothing<h4>
+            <div class="row">
+      <div class="col s12">
+          <div class="card-panel grey lighten-4">
+            
+            <div class="row">
+            <!--Row 1-->
+            <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/sock.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Sock</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="After buying my groceries I am out of budget to pay for any clothing..."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+               <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/underwear.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Unisex Underwear</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="After buying my groceries I am out of budget to pay for any clothing..."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+               
+               <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/coat.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Coat</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="After buying my groceries I am out of budget to pay for any clothing..."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12 m4 l3">
+                <div class="card">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="image/pants.jpeg">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Pant</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="comment" placeholder="After buying my groceries I am out of budget to pay for any clothing..."></textarea>
+                </div>
+                    <h6><a class="waves-effect waves-light light-green accent btn" href="#">Add</a></h6>
+                  </div>
+                </div>
+              </div>
+
+
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
     <div class="row">
        <h4 class="grey-text col s12 offset-s1 text-darken-2">Feel free to add any item of your choice below<h4>
       <div class="col s12">
         <div class="card-panel grey lighten-4">
        <div class="row">
-            <br><br>
+          <br>
 
             <div class="row">
               
               <form class="col s12">
                 <div class="row">
-                  <div class="input-field col s6">
-                    <i class="material-icons prefix">mode_edit</i>
-                    <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                    <label for="icon_prefix2">Item Name</label>
-                  </div>
+                    <div class="form-group">
+                  
+                  <textarea class="form-control" rows="5" id="comment" placeholder="Kosher Beef, Low Sodium Soup, Protein Powder..."></textarea>
+                </div>
                 </div>
               </form>
             </div>
 
-            <div class="row">
-              
-              <form class="col s12">
-                <div class="row">
-                  <div class="input-field col s6">
-                    <i class="material-icons prefix">mode_edit</i>
-                    <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                    <label for="icon_prefix2">Item Name</label>
-                  </div>
-                </div>
-              </form>
-            </div>
+        
 
-            <div class="row">
-              
-              <form class="col s12">
-                <div class="row">
-                  <div class="input-field col s6">
-                    <i class="material-icons prefix">mode_edit</i>
-                    <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                    <label for="icon_prefix2">Item Name</label>
-                  </div>
-                </div>
-              </form>
-            </div>
+          
+          
             <div class="col s12 offset-s10">
-             <button class="btn-large waves-effect waves-light" type="submit" name="action">Submit
+             <button class="btn-large waves-effect waves-light blue" type="submit" name="action">Submit
               <i class="material-icons right">send</i>
             </button>
+          </div>
           </div>
            
             </div>
@@ -309,6 +947,11 @@ img {
 
   
    
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
  
 
 
