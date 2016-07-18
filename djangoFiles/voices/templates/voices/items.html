@@ -63,8 +63,11 @@
 <nav>
     <div class="navbar-fixed-bottom">
         <div class="row center">
-        <form id="getArr" action="cart/" method="POST">
+        <form id="getArr" action="{% url 'voices:cart' %}" method="POST">
           {% csrf_token %}
+          {% if satisfactionData %}
+            <input type="hidden" name="faceChosen" value={{ satisfactionData}}>
+          {% endif %}
           <button type='submit' id="checkCart" 
           class="btn-large waves-effect waves-light orange">Check Added Items</button>
         </form>

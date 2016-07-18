@@ -30,6 +30,7 @@
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/style4.css' %}">
+    <script src="{% static 'js/submitCart.js' %}"></script>
 
   </head>
   <body>
@@ -44,7 +45,7 @@
           <ul class="right hide-on-med-and-down">
             
 
-            <form id="submitDem" action="thanks/" method="POST">
+            <form id="submitDem" action="{% url 'voices:thanks' %}" method="POST">
               {% csrf_token %}
               
               {% if prodChosen %}
@@ -53,9 +54,17 @@
                 {% endfor %}
               {% endif %}
 
+              {% if satisfactionData %}
+                <input type="hidden" name="faceChosen" value={{ satisfactionData}}>
+              {% endif %}
 
-              <a onclick="document.getElementById('submitDem').submit();">
+              <a id="subFin">
                 <i class="material-icons right">arrow_forward</i>Submit</a>
+             <!--
+              <a id="subFin" onclick="document.getElementById('submitDem').submit();">
+                <i class="material-icons right">arrow_forward</i>Submit</a>
+                -->
+                
             </form>
 
 
@@ -96,11 +105,14 @@
               <div class="card">
                 <div class="row">
                   <div class="card-content">
-                  <form class="col s12">
+                  <form class="col s12" class="confirmWhy">
+                  {% csrf_token %}
                     <div class="row">
                       <div class="input-field col s12">
                         <h6>Why was this item added?</h6>
-                        <textarea id="textarea-1" placeholder="I need it for..." id="first_name" type="text" class="materialize-textarea"></textarea><br><br><br><br><br><br><br>
+                        <textarea placeholder="I need it for..." id="why-{{ product.id }}" 
+                         type="text" class="materialize-textarea"></textarea>
+                         <br><br><br><br><br><br><br>
                       </div>
                     </div>
                   </form>
@@ -124,23 +136,24 @@
         <br><br>
 
           <div class="row">
-            <form class="col s12">
+            <form class="col s12" id="idInfo" method="POST">
+                {% csrf_token %}
                 <div class="input-field col s6">
                   <i class="material-icons prefix">person</i>
-                  <input id="icon_prefix" type="text" class="validate">
-                  <label for="icon_prefix">Nickname</label>
+                  <input id="nickname" type="text" class="validate" name="nickname">
+                  <label for="nickname">Nickname</label>
                 </div>
 
 
                 <div class="input-field col s12">
                   <i class="material-icons prefix">cake</i>
-                    <input value="Birthday" id="first_name2" type="date" class="datepicker">
-                    <label class="active" for="first_name2">Birthdate</label>
+                    <input value="Birthday" id="birthdate" type="date" class="datepicker" name="bday">
+                    <label class="active" for="birthdate">Birthdate</label>
                 </div>
 
                 <div class="input-field col s12">
                   <i class="material-icons prefix">email</i>
-                  <input id="email" type="email" class="validate">
+                  <input id="email" type="email" class="validate" name="email">
                   <label for="email" data-error="Invalid format">Email</label>
                 </div>
 
@@ -150,34 +163,35 @@
   
               <h5 class="grey-text darken-1n">Ethnicity</h5>
 
-            <form action="#">
+            <form method="POST" id="ethnicity">
+              {% csrf_token %}
               <p>
-                <input name="group1" type="radio" id="test1" />
-                <label for="test1">Black or African-American</label>
+                <input id="black" type="radio" name="group1" value="Black or African-American"/>
+                <label for="black">Black or African-American</label>
               </p>
               <p>
-                <input name="group1" type="radio" id="test2" />
-                <label for="test2">White</label>
+                <input id="white" type="radio" name="group1" value="White"/>
+                <label for="white">White</label>
               </p>
               <p>
-                <input class="group1" name="group1" type="radio" id="test3"  />
-                <label for="test3">Hispanic or Latino</label>
+                <input class="group1" id="hispanic" type="radio" name="group1" value="Hispanic or Latino"/>
+                <label for="hispanic">Hispanic or Latino</label>
               </p>
                 <p>
-                  <input name="group1" type="radio" id="test4"  />
-                  <label for="test4">Native Hawaiian or Pacific Islander</label>
+                  <input id="hawaiian" type="radio" name="group1" value="Native Hawaiian or Pacific Islander"/>
+                  <label for="hawaiian">Native Hawaiian or Pacific Islander</label>
               </p>
                 <p>
-                  <input name="group1" type="radio" id="test5"  />
-                  <label for="test5">Native American</label>
+                  <input id="nativeAmerican" type="radio" name="group1" value="Native American"/>
+                  <label for="nativeAmerican">Native American</label>
               </p>
               <p>
-                  <input name="group1" type="radio" id="test6"  />
-                  <label for="test6">Asian</label>
+                  <input id="asian" type="radio" name="group1" value="Asian"/>
+                  <label for="asian">Asian</label>
               </p>
                <p>
-                <input type="radio" name="group1" id="test7" />
-                <label for="test7">Other</label>
+                <input type="radio" id="other" name="group1" value="Other"/>
+                <label for="other">Other</label>
                 </div>
               </div>
               </p>         

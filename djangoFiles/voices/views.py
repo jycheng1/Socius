@@ -9,18 +9,32 @@ from formtools.wizard.views import SessionWizardView
 import logging
 import json
 import sys
+from datetime import datetime
 logr = logging.getLogger(__name__)
 
-
-TEMPLATES = { "voices" : "voices/index.html",
+'''
+TEMPLATES = { "voices" : "voices/items.html",
               "cart" : "voices/cart.html"
             }
+'''
 
-def index(request):
-    all_prod = Products.objects.all()
-    template = loader.get_template('voices/index.html')
-    context = {'all_prod': all_prod,}
-    return HttpResponse(template.render(context, request))
+def items(request):
+    if request.method == 'POST':
+        
+        all_prod = Products.objects.all()
+        satisfactionData = request.POST.getlist('faceChosen')
+        template = loader.get_template('voices/items.html')
+        context = {'all_prod': all_prod,
+                   'satisfactionData': satisfactionData,}
+
+        return HttpResponse(template.render(context, request))
+
+    else:
+        all_prod = Products.objects.all()
+        template = loader.get_template('voices/items.html')
+        context = {'all_prod': all_prod,}
+        return HttpResponse(template.render(context, request))
+
 
 class ContactWizard(SessionWizardView):
     # template_name = "voices/voices_form.html"
@@ -53,25 +67,20 @@ def process_form_data(form_list):
 
     return form_data
 
-'''
-def changeList(request, product_id):
-    elem = Request(request1 = product_id, request2="a", request3 = "b", why = "al")
-    elem.save() 
-    return render(request, 'voices/index.html')
-    # return JsonResponse({'success': True})
-'''
-
 def cart(request):
     if request.method == 'POST':
         chosen = request.POST.getlist('ab[]')
+        satisfactionData = request.POST.getlist('faceChosen')[0]
         print(chosen, file=sys.stderr)
+        print(satisfactionData, file=sys.stderr)
         chosenObj = []
 
         for i in range(len(chosen)):
             chosenObj.append(Products.objects.get(pk=chosen[i]))
 
         template = loader.get_template('voices/cart.html')
-        context = {'prodChosen': chosenObj,}
+        context = {'prodChosen': chosenObj,
+                   'satisfactionData': satisfactionData}
 
         return HttpResponse(template.render(context, request))
     else:
@@ -79,31 +88,54 @@ def cart(request):
         context = {}
         return HttpResponse(template.render(context, request))
 
-
 def thanks(request):
-    template = loader.get_template('voices/thanks.html')
+    if request.method == 'POST':
+        chosen = request.POST.getlist('selected[]')
+        satisfactionData = request.POST.get('faceChosen')
+        ethnicitySel = request.POST.get('ethnicitySel')
+        nickname = request.POST.get('nickname')
+        bday = request.POST.get('bday')
+        email = request.POST.get('email')
+
+        reqFin = Request()
+        reqFin.request1=Products.objects.get(pk=chosen[0]).prodName
+        reqFin.request2=Products.objects.get(pk=chosen[1]).prodName
+        reqFin.request3=Products.objects.get(pk=chosen[2]).prodName
+        reqFin.satisfaction=satisfactionData
+        reqFin.ethnicity=ethnicitySel
+        reqFin.name=nickname
+        reqFin.birthday=bday
+        reqFin.email=email
+        reqFin.save()
+
+        print(chosen, file=sys.stderr)
+        print(satisfactionData, file=sys.stderr)
+        print(nickname, file=sys.stderr)
+        chosenObj = []
+
+        for i in range(len(chosen)):
+            chosenObj.append(Products.objects.get(pk=chosen[i]))
+
+        template = loader.get_template('voices/thanks.html')
+        context = {'chosenObj': chosenObj,
+                   'satisfactionData': satisfactionData,
+                   'ethnicitySel': ethnicitySel,
+                   'nickname': nickname,
+                   'bday': bday,
+                   'email': email,
+                   }
+
+        return HttpResponse(template.render(context, request))
+    else:
+        template = loader.get_template('voices/thanks.html')
+        context = {}
+        return HttpResponse(template.render(context, request))
+
+def satisfaction(request):
+    template = loader.get_template('voices/satisfaction.html')
     context = {}
     return HttpResponse(template.render(context, request))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
 

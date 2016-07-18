@@ -5,8 +5,9 @@ app_name = 'voices'
 
 urlpatterns = [
 # /voices/
-    url(r'^$', views.index, name='index'),  
-    # url(r'^changeList/(?P<product_id>[0-9]+)/$', views.changeList, name='changeList'),
+    url(r'^$', views.items, name='items'),  
+    url(r'^items/$', views.items, name='items'),  
+    url(r'^satisfaction/$', views.satisfaction, name="satisfaction"),
     url(r'^cart/$', views.cart, name="cart"),
     url(r'^thanks/$', views.thanks, name="thanks"),
     

@@ -1,0 +1,27 @@
+body {
+        background: #42a5f5; 
+        padding-top: 100px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+/*
+.face input{
+        margin:0;padding:0;
+        -webkit-appearance:none;
+           -moz-appearance:none;
+                appearance:none;
+    }
+*/
+
+
+label > input{ /* HIDE RADIO */
+  display:none;
+}
+label > input + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+}
+label > input:checked + img{ /* (CHECKED) IMAGE STYLES */
+  border:2px solid #f00;
+}
+

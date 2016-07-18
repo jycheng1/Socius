@@ -83,8 +83,6 @@ $(document).ready(function(){
     for (i = 0; i < chosen.length; i++){
       $('#getArr').append('<input type="hidden" name="ab[]" value="' + chosen[i] + '"/>')
     }
-    
-
   });
 
 /*
