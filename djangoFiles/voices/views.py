@@ -22,7 +22,7 @@ def items(request):
     if request.method == 'POST':
         
         all_prod = Products.objects.all()
-        satisfactionData = request.POST.getlist('faceChosen')
+        satisfactionData = request.POST.get('faceChosen')
         template = loader.get_template('voices/items.html')
         context = {'all_prod': all_prod,
                    'satisfactionData': satisfactionData,}
@@ -70,7 +70,7 @@ def process_form_data(form_list):
 def cart(request):
     if request.method == 'POST':
         chosen = request.POST.getlist('ab[]')
-        satisfactionData = request.POST.getlist('faceChosen')[0]
+        satisfactionData = request.POST.get('faceChosen')
         print(chosen, file=sys.stderr)
         print(satisfactionData, file=sys.stderr)
         chosenObj = []
