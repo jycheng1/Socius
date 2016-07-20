@@ -24,6 +24,24 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def items(request):
+
+    produce = Products.objects.filter(prodType="produce")
+    canned = Products.objects.filter(prodType="canned")
+    boxed = Products.objects.filter(prodType="boxed")
+    grains = Products.objects.filter(prodType="grainsBeans")
+    household = Products.objects.filter(prodType="household")
+    clothing = Products.objects.filter(prodType="clothing")
+
+    template = loader.get_template('voices/items.html')
+    context = {'produce': produce,
+               'canned': canned,
+               'boxed': boxed,
+               'grains': grains,
+               'household': household,
+               'clothing': clothing}
+    return HttpResponse(template.render(context, request))
+
+    '''
     if request.method == 'POST':
         
         all_prod = Products.objects.all()
@@ -39,6 +57,7 @@ def items(request):
         template = loader.get_template('voices/items.html')
         context = {'all_prod': all_prod,}
         return HttpResponse(template.render(context, request))
+    '''
 
 def cart(request):
     if request.method == 'POST':
