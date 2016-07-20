@@ -18,6 +18,11 @@ TEMPLATES = { "voices" : "voices/items.html",
             }
 '''
 
+def index(request):
+    template = loader.get_template('voices/index.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
 def items(request):
     if request.method == 'POST':
         
@@ -34,38 +39,6 @@ def items(request):
         template = loader.get_template('voices/items.html')
         context = {'all_prod': all_prod,}
         return HttpResponse(template.render(context, request))
-
-
-class ContactWizard(SessionWizardView):
-    # template_name = "voices/voices_form.html"
-
-    def get_template_names(self):
-        return [TEMPLATES[self.steps.current]]
-    
-
-    def done(self, form_list, **kwargs):
-        form_data = process_form_data(form_list)
-        return render_to_response('voices/done.html', {'form_data':form_data}) 
-        # prints out data in the form
-
-def process_form_data(form_list):
-    # add to db
-    form_data = [form.cleaned_data for form in form_list]
-
-    # prints it onto shell
-    logr.debug(form_data[0]['request1'])
-    logr.debug(form_data[0]['request2'])
-    logr.debug(form_data[0]['request3'])
-    logr.debug(form_data[1]['why'])
-
-    # adds into db
-    elem = Request(request1 = form_data[0]['request1'], 
-                   request2 = form_data[0]['request2'], 
-                   request3 = form_data[0]['request3'], 
-                   why = form_data[1]['why'], )
-    elem.save()
-
-    return form_data
 
 def cart(request):
     if request.method == 'POST':
@@ -131,6 +104,7 @@ def thanks(request):
         context = {}
         return HttpResponse(template.render(context, request))
 
+
 def satisfaction(request):
     template = loader.get_template('voices/satisfaction.html')
     context = {}
@@ -139,62 +113,32 @@ def satisfaction(request):
 
 
 
+'''
+def process_form_data(form_list):
+    # add to db
+    form_data = [form.cleaned_data for form in form_list]
 
+    # adds into db
+    elem = Request(request1 = form_data[0]['request1'], 
+                   request2 = form_data[0]['request2'], 
+                   request3 = form_data[0]['request3'], 
+                   why = form_data[1]['why'], )
+    elem.save()
 
+    return form_data
 
-"""
-    e = "why"
-   
-    #print(request.POST.get('elems'), file=sys.stderr)
-    # if request.method == 'POST':
-    prodChosen = json.loads(request.POST.get('elems'))
-    print(json.loads(request.POST.get('elems')), file=sys.stderr)
+class ContactWizard(SessionWizardView):
+    # template_name = "voices/voices_form.html"
 
+    def get_template_names(self):
+        return [TEMPLATES[self.steps.current]]
     
 
-    template = loader.get_template('voices/cart.html')
-    context = {'prodChosen': prodChosen,
-                'e': e}
+    def done(self, form_list, **kwargs):
+        form_data = process_form_data(form_list)
+        return render_to_response('voices/done.html', {'form_data':form_data}) 
+        # prints out data in the form
 
-    # print(context, file=sys.stderr)
-    return HttpResponse(template.render(context, request))
-
-
-    else:
-        template = loader.get_template('voices/cart.html')
-        context = {}
-        print(context, file=sys.stderr)
-        return HttpResponse(template.render(context, request))
-"""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+'''
 
 

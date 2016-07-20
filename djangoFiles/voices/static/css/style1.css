@@ -1,0 +1,13 @@
+body {
+        background:  #42a5f5;
+        padding-top: -5px;
+        line-height: 2.0;
+        background-image: url("../image/background.png");
+        background-repeat: repeat-x;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+h6{
+    font-size: 1.5rem;
+    line-height: 1.5;
+}

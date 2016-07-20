@@ -3,6 +3,7 @@
 
 <head>
 
+    {% load staticfiles %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +19,7 @@
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-`
+
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -74,11 +75,11 @@
                              <div class="row center">
                             <div class="col s12">
                               
-                              <img src="northside.jpg" alt="northside" height="66" width="200">
+                              <img src="{% static 'image/northside.jpg' %}" alt="northside" height="66" width="200">
                               
                               <img hspace="40">
                            
-                              <img src="cmu.jpg" alt="cmu" height="66" width="101"><br><br><br>
+                              <img src="{% static 'image/cmu.jpg' %}" alt="cmu" height="66" width="101"><br><br><br>
 
                               </div>
 
@@ -105,7 +106,7 @@
     <!-- /.container -->
 
     <!-- jQuery Version 1.11.1 -->
-    <script src="js/jquery.js"></script>
+    <script src="{static 'js/jquery.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

@@ -16,13 +16,13 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from voices.forms import VoicesForm, WhyForm
-from voices.views import ContactWizard
+# from voices.views import ContactWizard
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^$', views.index),
     url(r'^voices/', include('voices.urls', namespace="voices")),
-    url(r'^contact/$', ContactWizard.as_view([VoicesForm, WhyForm])),
+    # url(r'^contact/$', ContactWizard.as_view([VoicesForm, WhyForm])),
 ]
 
 
