@@ -1,3 +1,4 @@
+# allProducts contains all the prodcuts that we initially wish to display
 from voices.models import *
 
 allProducts = [ # [product's name, image source, type]
@@ -49,7 +50,8 @@ allProducts = [ # [product's name, image source, type]
 ['Socks', '../../static/image/sock.jpeg', 'clothing'],
 ['Unisex Underwear', '../../static/image/underwear.jpeg', 'clothing'],
 ['Coat', '../../static/image/coat.jpeg', 'clothing'],
-['Pants', '../../static/image/pants.jpeg', 'clothing'],
+['Pants', '../../static/image/pants.jpeg', 'clothing']
+
 ]
 
 for prod in allProducts:

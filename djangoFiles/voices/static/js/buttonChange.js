@@ -33,7 +33,7 @@ $(document).ready(function(){
   // change the front end when item's selected
   var selected = 0;
   $(".add").click(function(){
-    if ($(this).text() == "Add"){
+    if ($(this).text() === "Add"){
       if (selected != 3){
         selected += 1;
         $(this).text("Added"); // change text
@@ -81,46 +81,11 @@ $(document).ready(function(){
 
   $("#checkCart").click(function(){
     for (i = 0; i < chosen.length; i++){
-      $('#getArr').append('<input type="hidden" name="ab[]" value="' + chosen[i] + '"/>')
+      $('#getArr').append('<input type="hidden" name="ab[]" value="' + chosen[i] + '"/>');
     }
+    var comments = $('#suggestions').val();
+    $('#getArr').append('<input type="hidden" name="suggestions" value="' + comments + '"/>');
   });
-
-/*
-  $("#getArr").submit(function(){
-    var data = {'ab[]' : chosen};
-    $.post('cart/', data, function(response){
-      
-      if(response == 'success'){ 
-        window.location.replace('cart');
-      }
-      else{ 
-        alert('Error! :('); 
-      }
-
-    });
-  });
-  */
-
-
-
-/*
-  $("#getArr").submit(function(){
-
-    //var ch = chosen.serializeArray();
-
-    $.ajax({
-      type: "POST",
-      data : {'ab[]' : chosen}, 
-      url : "cart/",
-      success:function(data){
-        console.log("go");
-        window.location.href ='cart.html'
-      }
-
-    });
-  });
-
-  */
 });
 
 

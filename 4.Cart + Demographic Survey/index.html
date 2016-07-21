@@ -1,6 +1,7 @@
 <html lang="en">
 
   <head>
+  {% load static files %}
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,65 +15,32 @@
      <!--Import Google Icon Font-->
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="{% static 'css/materialize4.min.css' %}"  media="screen,projection"/>
 
       
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+      <link rel="stylesheet" type="text/css" href="{% static 'css/style4.css' %}">
+
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+
+    <script src="{% static 'js/submitCart.js' %}"></script>
+
   </head>
-
-    <!-- Custom CSS -->
-  <style>
-
-    body {
-        background: #42a5f5;
-        line-height: 1;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    }
-
-    img {
-    padding: 30px 70px 10px 70px;
-    }
-
-    .container {
-      width: 60%;
-    }
-
-    #radio {
-      font-size: 1.3rem;
-    }
-
-
-
-
-  </style>
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
  
 <body>
 
-  <div class="navbar-fixed">
-  <nav>
-    <div class="nav-wrapper">
-      <ul class="left hide-on-med-and-down">
-        <li><a href="sass.html"><i class="material-icons left">arrow_back</i>Back</a></li>
-      </ul>
-      <ul class="right hide-on-med-and-down">
-        
-        <li><a href="badges.html"><i class="material-icons right">arrow_forward</i>Submit</a></li>
-      </ul>
-    </div>
-  </nav>
-</div>
   <br><br><br>
     <div class="container">
       <div class="row">
@@ -83,48 +51,20 @@
             <h6 class="white-text">Please remove any items you did not choose</h6>
           <p>
           </div>
-          <div class="col s4">
-              <div class="card small">
-                <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="image/multigraincereal.jpeg">
-                </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-3">Multigrain Cereal</span>
-                    <h6><a class="waves-effect waves-light red darken-1 btn" href="#">Remove</a></h6>
-                  </div>
-              </div>   
-            </div>
-              
-            
 
-           
-
+          {% if prodChosen %}
+            {% for product in prodChosen %}
             <div class="col s4">
-              <div class="card small">
-                <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="image/minuterice.jpeg">
-                </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-3">Minute White Rice</span>
-                    <h6><a class="waves-effect waves-light red darken-1 btn" href="#">Remove</a></h6>
+                <div class="card small">
+                  <div class="card-image waves-effect waves-block waves-light">
+                  <img class="activator" src="image/multigraincereal.jpeg">
                   </div>
-              </div>   
-            </div>
-
-             
-
-            <div class="col s4">
-              <div class="card small">
-                <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="image/broccoli.jpeg">
-                </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-3">Broccoli</span>
-                    <h6><a class="waves-effect waves-light red darken-1 btn" href="#">Remove</a></h6>
-
-                  </div>
-              </div>   
-            </div>
+                    <div class="card-content">
+                      <span class="card-title activator grey-text text-darken-3">Multigrain Cereal</span>
+                      <h6><a class="waves-effect waves-light red darken-1 btn" href="#">Remove</a></h6>
+                    </div>
+                </div>   
+              </div>
 
 
             <div class="col s4">
@@ -137,32 +77,6 @@
               </p>
               </div>
             </div>
-
-
-            <div class="col s4">
-            <div class="card-panel white">
-
-              <span class="card-title activator grey-text text-darken-3">Comment</span>
-              <p>
-              <span class="grey-text light">Our family does not have a rice cooker due to our budget and having minute white rice could really help put hot rice on the table for my family. 
-              </span>
-              </p>
-              </div>
-            </div>
-
-
-            <div class="col s4">
-            <div class="card-panel white">
-
-              <span class="card-title activator grey-text text-darken-3">Comment</span>
-              <p>
-              <span class="grey-text light">I suffer from high cholestrol and high blood pressure and my doctor has been recommending broccoli for my health, but I haven't been able to find this in the food pantry.
-              </span>
-              </p>
-              </div>
-            </div>
-            
-
 
           </div>
 
@@ -391,14 +305,7 @@
 
     <!-- /.container -->
 
-    <!-- jQuery Version 1.11.1 -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
         
 </body>
 

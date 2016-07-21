@@ -62,9 +62,9 @@ def items(request):
 def cart(request):
     if request.method == 'POST':
         chosen = request.POST.getlist('ab[]')
-        satisfactionData = request.POST.get('faceChosen')
-        print(chosen, file=sys.stderr)
-        print(satisfactionData, file=sys.stderr)
+        # satisfactionData = request.POST.get('faceChosen')
+        suggestedItems = request.POST.get('suggestions')
+       
         chosenObj = []
 
         for i in range(len(chosen)):
@@ -72,7 +72,9 @@ def cart(request):
 
         template = loader.get_template('voices/cart.html')
         context = {'prodChosen': chosenObj,
-                   'satisfactionData': satisfactionData}
+                   'suggestions': suggestedItems,
+                   }
+                   # 'satisfactionData': satisfactionData}
 
         return HttpResponse(template.render(context, request))
     else:
@@ -83,38 +85,37 @@ def cart(request):
 def thanks(request):
     if request.method == 'POST':
         chosen = request.POST.getlist('selected[]')
-        satisfactionData = request.POST.get('faceChosen')
-        ethnicitySel = request.POST.get('ethnicitySel')
-        nickname = request.POST.get('nickname')
+        suggestedItems = request.POST.get('suggestions')
+        # satisfactionData = request.POST.get('faceChosen')
+        zipcode = request.POST.get('zipcode')
         bday = request.POST.get('bday')
-        email = request.POST.get('email')
+        gender = request.POST.get('gender')
+        ethnicitySel = request.POST.get('ethnicitySel')
+        diet = request.POST.get('dietRest')
+        religiousDiet = request.POST.get('religiousDiet')
 
         reqFin = Request()
-        reqFin.request1=Products.objects.get(pk=chosen[0]).prodName
-        reqFin.request2=Products.objects.get(pk=chosen[1]).prodName
-        reqFin.request3=Products.objects.get(pk=chosen[2]).prodName
-        reqFin.satisfaction=satisfactionData
+        for i in range(len(chosen)):
+            if i == 0:
+                reqFin.request1 = Products.objects.get(pk=chosen[i]).prodName
+            elif i == 1:
+                reqFin.request2 = Products.objects.get(pk=chosen[i]).prodName
+            elif i == 2:
+                reqFin.request2 = Products.objects.get(pk=chosen[i]).prodName
+
+
+        reqFin.additionalItems=suggestedItems
+        # reqFin.satisfaction=satisfactionData
         reqFin.ethnicity=ethnicitySel
-        reqFin.name=nickname
+        reqFin.zipcode=zipcode
         reqFin.birthday=bday
-        reqFin.email=email
+        reqFin.gender=gender
+        reqFin.diet = diet
+        reqFin.religiousDiet = religiousDiet
         reqFin.save()
 
-        print(chosen, file=sys.stderr)
-        print(satisfactionData, file=sys.stderr)
-        print(nickname, file=sys.stderr)
-        chosenObj = []
-
-        for i in range(len(chosen)):
-            chosenObj.append(Products.objects.get(pk=chosen[i]))
-
         template = loader.get_template('voices/thanks.html')
-        context = {'chosenObj': chosenObj,
-                   'satisfactionData': satisfactionData,
-                   'ethnicitySel': ethnicitySel,
-                   'nickname': nickname,
-                   'bday': bday,
-                   'email': email,
+        context = {'thanks': 'Thank you for your time'
                    }
 
         return HttpResponse(template.render(context, request))

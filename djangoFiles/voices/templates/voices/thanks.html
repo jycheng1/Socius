@@ -2,30 +2,8 @@
 <body>
 {% load staticfiles %}
 
-  {% if chosenObj %}
-    {% for elem in chosenObj %}
-      <p> elems {{ elem.prodName }}</p>
-    {% endfor %}
-  {% endif %}
-
-  {% if satisfactionData%}
-    <p>sat {{ satisfactionData }}</p>
-  {% endif %}
-
-  {% if ethnicitySel%}
-    <p>eth {{ ethnicitySel }}</p>
-  {% endif %}
-
-  {% if nickname%}
-    <p>name {{ nickname }}</p>
-  {% endif %}
-
-  {% if bday%}
-    <p>bday {{ bday }}</p>
-  {% endif %}
-
-  {% if email%}
-    <p>email {{ email }}</p>
+  {% if thanks%}
+  <p>{{ thanks }}</p>
   {% endif %}
 
 </body>

@@ -308,6 +308,47 @@
   {% endif %}
 
 
+  <div class="row">
+     <h4 class="grey-text col s12 offset-s1 text-darken-2">Feel free to add any item of your choice below<h4>
+    <div class="col s12">
+      <div class="card-panel grey lighten-4">
+     <div class="row">
+        <br>
+          <div class="row">    
+            <form class="col s12">
+              <div class="row">
+                <div class="form-group">
+                
+                <textarea class="form-control" rows="5" id="suggestions" 
+                placeholder="Kosher Beef, Low Sodium Soup, Protein Powder..."></textarea>
+              </div>
+              </div>
+            </form>
+          </div>
+        
+        
+          <div class="col s12 offset-s10">
+            <form id="getArr" action="{% url 'voices:cart' %}" method="POST">
+              {% csrf_token %}
+              <!--
+              {% if satisfactionData %}
+                <input type="hidden" name="faceChosen" value={{ satisfactionData}}>
+              {% endif %}
+              -->
+              <button class="btn-large waves-effect waves-light blue" type="submit" id="checkCart">Submit
+                <i class="material-icons right">send</i>
+              </button>
+            </form>
+           
+        </div>
+
+
+        
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

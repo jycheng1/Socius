@@ -1,9 +1,7 @@
-body{
+body {
   background: #42a5f5;
   line-height: 1;
-  /* Required padding for .navbar-fixed-top. 
-  Remove if using .navbar-static-top. 
-  Change if height of navigation changes. */
+/* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 img {
@@ -11,5 +9,9 @@ img {
 }
 
 .container {
-  width: 50%;
+  width: 60%;
+}
+
+#radio {
+  font-size: 1.3rem;
 }
