@@ -109,7 +109,7 @@
                     <span class="card-title activator grey-text text-darken-4">{{ product.prodName }}</span>
                     <div class="form-group">
                     <label for="comment">Why do you need this particular item?</label>
-                  <textarea class="form-control" rows="5" id="comment" placeholder="I need to eat healthier due to my medical condition, but I can not afford to buy fresh produce...."></textarea>
+                  <textarea class="form-control" rows="5" id="why-{{ product.id }}" placeholder="I need to eat healthier due to my medical condition, but I can not afford to buy fresh produce...."></textarea>
                 </div>
                     <h6><button class="waves-effect waves-light light-green accent btn add" 
                           name="id-{{ product.id }}" id="{{ product.id }}">Add</button></h6>

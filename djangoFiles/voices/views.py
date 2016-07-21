@@ -62,6 +62,7 @@ def items(request):
 def cart(request):
     if request.method == 'POST':
         chosen = request.POST.getlist('ab[]')
+        why = request.POST.getlist('why[]')
         # satisfactionData = request.POST.get('faceChosen')
         suggestedItems = request.POST.get('suggestions')
        
@@ -72,6 +73,7 @@ def cart(request):
 
         template = loader.get_template('voices/cart.html')
         context = {'prodChosen': chosenObj,
+                   'why': why,
                    'suggestions': suggestedItems,
                    }
                    # 'satisfactionData': satisfactionData}
@@ -106,7 +108,7 @@ def thanks(request):
 
         reqFin.additionalItems=suggestedItems
         # reqFin.satisfaction=satisfactionData
-        reqFin.ethnicity=ethnicitySel
+        reqFin.ethnicitySel=ethnicitySel
         reqFin.zipcode=zipcode
         reqFin.birthday=bday
         reqFin.gender=gender

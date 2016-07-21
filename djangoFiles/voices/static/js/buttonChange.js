@@ -30,7 +30,7 @@ $(document).ready(function(){
       }
   });
 
-  // change the front end when item's selected
+  // change the front end when item's selected (highlight card, change add/added)
   var selected = 0;
   $(".add").click(function(){
     if ($(this).text() === "Add"){
@@ -79,11 +79,22 @@ $(document).ready(function(){
 
   // when user checks out products
 
-  $("#checkCart").click(function(){
+  $("#checkCart").click(function(){ 
+    // pass the items selected to cart
     for (i = 0; i < chosen.length; i++){
       $('#getArr').append('<input type="hidden" name="ab[]" value="' + chosen[i] + '"/>');
     }
-    var comments = $('#suggestions').val();
+
+    // pass they 'why' reason to the cart
+    for (i = 0; i < chosen.length; i++){
+      var whyId = "#why-".concat(chosen[i]);
+      var thisWhy = $(whyId).val();
+      $('#getArr').append('<input type="hidden" name="why[]" value="' + thisWhy + '"/>');
+    }
+
+
+    // pass the suggested items to the cart
+    var comments = $('#suggestions').val(); 
     $('#getArr').append('<input type="hidden" name="suggestions" value="' + comments + '"/>');
   });
 });

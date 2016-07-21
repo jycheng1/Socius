@@ -92,14 +92,16 @@
                 </div>   
               </div>
             {% endfor %}
+            {% endif %}
 
-            {% for product in prodChosen %}
+            {% if why %}
+            {% for reason in why %}
             <div class="col s4">
             <div class="card-panel white">
 
               <span class="card-title activator grey-text text-darken-3">Comment</span>
               <p>
-              <span class="grey-text light">I am overweight and have been looking for an alternative to my generic cornflakes, but I can not fit healthy cereal options to my budget as of now.
+              <span class="grey-text light">{{ reason }}
               </span>
               </p>
               </div>
@@ -323,6 +325,12 @@
               {% if prodChosen %}
                 {% for product in prodChosen %}
                 <input type="hidden" name="selected[]" value={{ product.id }}>
+                {% endfor %}
+              {% endif %}
+
+              {% if why %}
+                {% for reason in why %}
+                <input type="hidden" name="whyReason[]" value={{ reason}}>
                 {% endfor %}
               {% endif %}
 
