@@ -16,7 +16,7 @@
     <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" 
      media="screen,projection"/>
 
-
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <link rel="stylesheet" type="text/css" href="{% static 'css/style3.css' %}">
 
 
@@ -35,6 +35,8 @@
   </head>
 
   <body>
+
+
 
 
 <div class="navbar-fixed">
@@ -89,6 +91,26 @@
 
           <br><br>
 </div>
+
+<div class="row">
+     <h4 class="grey-text col s12 offset-s1 text-darken-2">Feel free to add any item of your choice below<h4>
+    <div class="col s12">
+      <div class="card-panel grey lighten-4">
+     <div class="row">
+        <br>
+          <div class="row">    
+            <form class="col s12">
+              <div class="row">
+                <div class="form-group">
+                
+                <textarea class="form-control" rows="5" id="suggestions" 
+                placeholder="Kosher Beef, Low Sodium Soup, Protein Powder..."></textarea>
+              </div>
+              </div>
+            </form>
+          </div>
+          </div>
+
 
 
   {% if produce %}
@@ -145,7 +167,7 @@
                     <span class="card-title activator grey-text text-darken-4">{{ product.prodName }}</span>
                     <div class="form-group">
                     <label for="comment">Why do you need this particular item?</label>
-                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                  <textarea class="form-control" rows="5" id="why-{{ product.id }}" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
                 </div>
                     <h6><button class="waves-effect waves-light light-green accent btn add" 
                           name="id-{{ product.id }}" id="{{ product.id }}">Add</button></h6>
@@ -181,7 +203,7 @@
                     <span class="card-title activator grey-text text-darken-4">{{ product.prodName }}</span>
                     <div class="form-group">
                     <label for="comment">Why do you need this particular item?</label>
-                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                  <textarea class="form-control" rows="5" id="why-{{ product.id }}" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
                 </div>
                     <h6><button class="waves-effect waves-light light-green accent btn add" 
                           name="id-{{ product.id }}" id="{{ product.id }}">Add</button></h6>
@@ -218,7 +240,7 @@
                     <span class="card-title activator grey-text text-darken-4">{{ product.prodName }}</span>
                     <div class="form-group">
                     <label for="comment">Why do you need this particular item?</label>
-                  <textarea class="form-control" rows="5" id="comment" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                  <textarea class="form-control" rows="5" id="why-{{ product.id }}" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
                 </div>
                     <h6><button class="waves-effect waves-light light-green accent btn add" 
                           name="id-{{ product.id }}" id="{{ product.id }}">Add</button></h6>
@@ -254,7 +276,7 @@
                   <span class="card-title activator grey-text text-darken-4">{{ product.prodName }}</span>
                   <div class="form-group">
                   <label for="comment">Why do you need this particular item?</label>
-                <textarea class="form-control" rows="5" id="comment" placeholder="After buying my groceries I am out of budget to pay for my household items..."></textarea>
+                <textarea class="form-control" rows="5" id="why-{{ product.id }}" placeholder="After buying my groceries I am out of budget to pay for my household items..."></textarea>
               </div>
                   <h6><button class="waves-effect waves-light light-green accent btn add" 
                         name="id-{{ product.id }}" id="{{ product.id }}">Add</button></h6>
@@ -290,7 +312,7 @@
                   <span class="card-title activator grey-text text-darken-4">{{ product.prodName }}</span>
                   <div class="form-group">
                   <label for="comment">Why do you need this particular item?</label>
-                <textarea class="form-control" rows="5" id="comment" placeholder="After buying my groceries I am out of budget to pay for any clothing..."></textarea>
+                <textarea class="form-control" rows="5" id="why-{{ product.id }}" placeholder="After buying my groceries I am out of budget to pay for any clothing..."></textarea>
               </div>
                  <h6><button class="waves-effect waves-light light-green accent btn add" 
                       name="id-{{ product.id }}" id="{{ product.id }}">Add</button></h6>
@@ -307,27 +329,9 @@
   <p> You have no clothing items </p>
   {% endif %}
 
-
-  <div class="row">
-     <h4 class="grey-text col s12 offset-s1 text-darken-2">Feel free to add any item of your choice below<h4>
-    <div class="col s12">
-      <div class="card-panel grey lighten-4">
-     <div class="row">
-        <br>
-          <div class="row">    
-            <form class="col s12">
-              <div class="row">
-                <div class="form-group">
-                
-                <textarea class="form-control" rows="5" id="suggestions" 
-                placeholder="Kosher Beef, Low Sodium Soup, Protein Powder..."></textarea>
-              </div>
-              </div>
-            </form>
-          </div>
         
-        
-          <div class="col s12 offset-s10">
+        <div class="row center">
+          <div class="col s12">
             <form id="getArr" action="{% url 'voices:cart' %}" method="POST">
               {% csrf_token %}
               <!--

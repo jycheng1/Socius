@@ -3,7 +3,7 @@ $(document).ready(function(){
         $('#idInfo').submit(); // submits identificatin form 
     //$("#subFin").click(function(){
       
-      var zipcode = $('#zipcode').val(); // *************
+      var zipcode = $('#zipcode').val(); 
       var birthdate = $('#birthdate').val();
       var b = birthdate.toString();
 

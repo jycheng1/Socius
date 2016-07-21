@@ -87,6 +87,7 @@ def cart(request):
 def thanks(request):
     if request.method == 'POST':
         chosen = request.POST.getlist('selected[]')
+        why = request.POST.getlist('whyReason[]')
         suggestedItems = request.POST.get('suggestions')
         # satisfactionData = request.POST.get('faceChosen')
         zipcode = request.POST.get('zipcode')
@@ -103,7 +104,16 @@ def thanks(request):
             elif i == 1:
                 reqFin.request2 = Products.objects.get(pk=chosen[i]).prodName
             elif i == 2:
-                reqFin.request2 = Products.objects.get(pk=chosen[i]).prodName
+                reqFin.request3 = Products.objects.get(pk=chosen[i]).prodName
+
+        for i in range(len(why)):
+            if i == 0:
+                reqFin.why1 = why[i]
+            elif i == 1:
+                reqFin.why2 = why[i]
+            elif i == 2:
+                reqFin.why3 = why[i]
+
 
 
         reqFin.additionalItems=suggestedItems

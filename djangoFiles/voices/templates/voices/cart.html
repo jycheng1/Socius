@@ -330,7 +330,7 @@
 
               {% if why %}
                 {% for reason in why %}
-                <input type="hidden" name="whyReason[]" value={{ reason}}>
+                <input type="hidden" name="whyReason[]" value={{ reason }}>
                 {% endfor %}
               {% endif %}
 
@@ -356,130 +356,6 @@
 
     </div>  
   </div>
-
-
-<!--
-
-  <br><br><br>
-    <div class="container">
-      <div class="row">
-          <div class="col s12">
-          <p>
-           <h4 class="white-text">Items You Chose</h4>
-            <h6 class="white-text">Please remove any items you did not choose</h6>
-          <p>
-          </div>
-
-          {% if prodChosen %}
-            {% for product in prodChosen %}
-
-          <div class="col s4">
-              <div class="card small">
-                <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src={{ product.prodImg }}>
-                </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-3">{{ product.prodName }}</span>
-                    <h6><a class="waves-effect waves-light red darken-1 btn" href="#">Remove</a></h6>
-                  </div>
-              </div>   
-            </div>
-
-            <div class="col s4">
-            <div class="card-panel white">
-
-              <span class="card-title activator grey-text text-darken-3">Comment</span>
-              <p>
-              <span class="grey-text light">I am overweight and have been looking for an alternative to my generic cornflakes, but I can not fit healthy cereal options to my budget as of now.
-              </span>
-              </p>
-              </div>
-            </div>
-            {% endfor %}
-          {% endif %}
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <br><br><br>
-
-   <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <div class="card-panel">
-        <br><br>
-
-          <div class="row">
-            <form class="col s12" id="idInfo" method="POST">
-                {% csrf_token %}
-                <div class="input-field col s6">
-                  <i class="material-icons prefix">person</i>
-                  <input id="nickname" type="text" class="validate" name="nickname">
-                  <label for="nickname">Nickname</label>
-                </div>
-
-
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">cake</i>
-                    <input value="Birthday" id="birthdate" type="date" class="datepicker" name="bday">
-                    <label class="active" for="birthdate">Birthdate</label>
-                </div>
-
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">email</i>
-                  <input id="email" type="email" class="validate" name="email">
-                  <label for="email" data-error="Invalid format">Email</label>
-                </div>
-
-            </form>
-
-          <div class="col s12 offset-s1">
-  
-              <h5 class="grey-text darken-1n">Ethnicity</h5>
-
-            <form method="POST" id="ethnicity">
-              {% csrf_token %}
-              <p>
-                <input id="black" type="radio" name="group1" value="Black or African-American"/>
-                <label for="black">Black or African-American</label>
-              </p>
-              <p>
-                <input id="white" type="radio" name="group1" value="White"/>
-                <label for="white">White</label>
-              </p>
-              <p>
-                <input class="group1" id="hispanic" type="radio" name="group1" value="Hispanic or Latino"/>
-                <label for="hispanic">Hispanic or Latino</label>
-              </p>
-                <p>
-                  <input id="hawaiian" type="radio" name="group1" value="Native Hawaiian or Pacific Islander"/>
-                  <label for="hawaiian">Native Hawaiian or Pacific Islander</label>
-              </p>
-                <p>
-                  <input id="nativeAmerican" type="radio" name="group1" value="Native American"/>
-                  <label for="nativeAmerican">Native American</label>
-              </p>
-              <p>
-                  <input id="asian" type="radio" name="group1" value="Asian"/>
-                  <label for="asian">Asian</label>
-              </p>
-               <p>
-                <input type="radio" id="other" name="group1" value="Other"/>
-                <label for="other">Other</label>
-                </div>
-              </div>
-              </p>         
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </div>  
-  </div>
-
-  -->
 
 </body>
 </html>
