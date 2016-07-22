@@ -22,6 +22,6 @@ label > input + img{ /* IMAGE STYLES */
   border:2px solid transparent;
 }
 label > input:checked + img{ /* (CHECKED) IMAGE STYLES */
-  border:2px solid #f00;
+  border:2px solid #a19a9a;
 }
 

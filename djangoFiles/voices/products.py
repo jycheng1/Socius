@@ -13,7 +13,7 @@ allProducts = [ # [product's name, image source, type]
 ['Strawberries', '../../static/image/strawberry.jpeg', 'produce'],
 ['Oranges', '../../static/image/orange.jpeg', 'produce'],
 ['Watermelon', '../../static/image/watermelon.jpeg', 'produce'],
-['Onions', '../../static/image/onion.jpeg', 'produce'],
+['Apples', '../../static/image/apple.jpeg', 'produce'],
 
 ['Corn', '../../static/image/cancorn.jpeg', 'canned'],
 ['Green Beans', '../../static/image/cangreenbean.jpeg', 'canned'],

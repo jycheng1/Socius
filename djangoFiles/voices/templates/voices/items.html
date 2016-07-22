@@ -103,7 +103,7 @@
               <div class="row">
                 <div class="form-group">
                 
-                <textarea class="form-control" rows="5" id="suggestions" 
+                <textarea class="form-control" rows="5" id="suggestions" type="text"
                 placeholder="Kosher Beef, Low Sodium Soup, Protein Powder..."></textarea>
               </div>
               </div>
@@ -334,18 +334,17 @@
           <div class="col s12">
             <form id="getArr" action="{% url 'voices:cart' %}" method="POST">
               {% csrf_token %}
-              <!--
+              
               {% if satisfactionData %}
                 <input type="hidden" name="faceChosen" value={{ satisfactionData}}>
               {% endif %}
-              -->
+              
               <button class="btn-large waves-effect waves-light blue" type="submit" id="checkCart">Submit
                 <i class="material-icons right">send</i>
               </button>
             </form>
            
         </div>
-
 
         
 

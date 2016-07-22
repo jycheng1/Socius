@@ -8,7 +8,7 @@ class Request(models.Model):
     why1 = models.CharField(max_length=200, default="", null=True, blank=True)
     why2 = models.CharField(max_length=200, default="", null=True, blank=True)
     why3 = models.CharField(max_length=200, default="", null=True, blank=True)
-    # satisfaction = models.CharField(max_length=20, default=None, blank=True, null=True)
+    satisfaction = models.CharField(max_length=50, default="", null=True, blank=True)
     additionalItems = models.CharField(max_length=400, default="", null=True, blank=True)
     ethnicity = models.CharField(max_length=50, default="", null=True, blank=True)
     zipcode = models.CharField(max_length=6, default="", null=True, blank=True)
@@ -19,12 +19,12 @@ class Request(models.Model):
 
 
 
-    def __str__(self):
-        return (str(self.requestDate.strftime('%Y-%m-%d %H:%M:%S')) + ' - ' + self.request1 + ' - ' + 
-            self.request2 + ' - ' + self.request3 + ' - ' + self.why1 + ' - ' + self.why2 + ' - ' + 
-            self.why3 + ' - ' + self.additionalItems + ' - ' + 
-            self.ethnicity + ' - ' + self.zipcode + ' - ' + self.birthday + ' - ' + self.gender + ' - ' + 
-            self.diet + ' - ' + self.religiousDiet)
+    # def __str__(self):
+    #     return (str(self.requestDate.strftime('%Y-%m-%d %H:%M:%S')) + ' - ' + self.request1 + ' - ' + 
+    #         self.request2 + ' - ' + self.request3 + ' - ' + self.why1 + ' - ' + self.why2 + ' - ' + 
+    #         self.why3 + ' - ' + self.satisfaction + ' - ' + self.additionalItems + ' - ' + 
+    #         self.ethnicity + ' - ' + self.zipcode + ' - ' + self.birthday + ' - ' + self.gender + ' - ' + 
+    #         self.diet + ' - ' + self.religiousDiet)
 
 
 

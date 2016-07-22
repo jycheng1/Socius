@@ -24,46 +24,52 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def items(request):
-
-    produce = Products.objects.filter(prodType="produce")
-    canned = Products.objects.filter(prodType="canned")
-    boxed = Products.objects.filter(prodType="boxed")
-    grains = Products.objects.filter(prodType="grainsBeans")
-    household = Products.objects.filter(prodType="household")
-    clothing = Products.objects.filter(prodType="clothing")
-
-    template = loader.get_template('voices/items.html')
-    context = {'produce': produce,
-               'canned': canned,
-               'boxed': boxed,
-               'grains': grains,
-               'household': household,
-               'clothing': clothing}
-    return HttpResponse(template.render(context, request))
-
-    '''
+    
     if request.method == 'POST':
         
-        all_prod = Products.objects.all()
+        produce = Products.objects.filter(prodType="produce")
+        canned = Products.objects.filter(prodType="canned")
+        boxed = Products.objects.filter(prodType="boxed")
+        grains = Products.objects.filter(prodType="grainsBeans")
+        household = Products.objects.filter(prodType="household")
+        clothing = Products.objects.filter(prodType="clothing")
         satisfactionData = request.POST.get('faceChosen')
         template = loader.get_template('voices/items.html')
-        context = {'all_prod': all_prod,
-                   'satisfactionData': satisfactionData,}
+        context = {'satisfactionData': satisfactionData,
+                   'produce': produce,
+                   'canned': canned,
+                   'boxed': boxed,
+                   'grains': grains,
+                   'household': household,
+                   'clothing': clothing
+               }
 
         return HttpResponse(template.render(context, request))
 
     else:
-        all_prod = Products.objects.all()
+        produce = Products.objects.filter(prodType="produce")
+        canned = Products.objects.filter(prodType="canned")
+        boxed = Products.objects.filter(prodType="boxed")
+        grains = Products.objects.filter(prodType="grainsBeans")
+        household = Products.objects.filter(prodType="household")
+        clothing = Products.objects.filter(prodType="clothing")
+
         template = loader.get_template('voices/items.html')
-        context = {'all_prod': all_prod,}
+        context = {'produce': produce,
+                   'canned': canned,
+                   'boxed': boxed,
+                   'grains': grains,
+                   'household': household,
+                   'clothing': clothing}
+
         return HttpResponse(template.render(context, request))
-    '''
+
 
 def cart(request):
     if request.method == 'POST':
         chosen = request.POST.getlist('ab[]')
         why = request.POST.getlist('why[]')
-        # satisfactionData = request.POST.get('faceChosen')
+        satisfactionData = request.POST.get('faceChosen')
         suggestedItems = request.POST.get('suggestions')
        
         chosenObj = []
@@ -75,8 +81,8 @@ def cart(request):
         context = {'prodChosen': chosenObj,
                    'why': why,
                    'suggestions': suggestedItems,
+                   'satisfactionData': satisfactionData,
                    }
-                   # 'satisfactionData': satisfactionData}
 
         return HttpResponse(template.render(context, request))
     else:
@@ -89,7 +95,8 @@ def thanks(request):
         chosen = request.POST.getlist('selected[]')
         why = request.POST.getlist('whyReason[]')
         suggestedItems = request.POST.get('suggestions')
-        # satisfactionData = request.POST.get('faceChosen')
+        satisfactionData = request.POST.get('faceChosen')
+
         zipcode = request.POST.get('zipcode')
         bday = request.POST.get('bday')
         gender = request.POST.get('gender')
@@ -117,7 +124,7 @@ def thanks(request):
 
 
         reqFin.additionalItems=suggestedItems
-        # reqFin.satisfaction=satisfactionData
+        reqFin.satisfaction=satisfactionData
         reqFin.ethnicitySel=ethnicitySel
         reqFin.zipcode=zipcode
         reqFin.birthday=bday
@@ -125,6 +132,15 @@ def thanks(request):
         reqFin.diet = diet
         reqFin.religiousDiet = religiousDiet
         reqFin.save()
+
+        print(reqFin.zipcode, file=sys.stderr)
+        print(reqFin.additionalItems, file=sys.stderr)
+        print(reqFin.satisfaction, file=sys.stderr)
+        print(reqFin.ethnicitySel, file=sys.stderr)
+        print(reqFin.birthday, file=sys.stderr)
+        print(reqFin.gender, file=sys.stderr)
+        print(reqFin.diet, file=sys.stderr)
+        print(reqFin.religiousDiet, file=sys.stderr)
 
         template = loader.get_template('voices/thanks.html')
         context = {'thanks': 'Thank you for your time'

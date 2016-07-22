@@ -94,7 +94,7 @@ $(document).ready(function(){
 
 
     // pass the suggested items to the cart
-    var comments = $('#suggestions').val(); 
+    var comments = $('textarea#suggestions').val(); 
     $('#getArr').append('<input type="hidden" name="suggestions" value="' + comments + '"/>');
   });
 });
