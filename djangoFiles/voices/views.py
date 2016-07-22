@@ -18,23 +18,162 @@ TEMPLATES = { "voices" : "voices/items.html",
             }
 '''
 
+def index(request):
+    template = loader.get_template('voices/index.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
 def items(request):
+    
     if request.method == 'POST':
         
-        all_prod = Products.objects.all()
+        produce = Products.objects.filter(prodType="produce")
+        canned = Products.objects.filter(prodType="canned")
+        boxed = Products.objects.filter(prodType="boxed")
+        grains = Products.objects.filter(prodType="grainsBeans")
+        household = Products.objects.filter(prodType="household")
+        clothing = Products.objects.filter(prodType="clothing")
         satisfactionData = request.POST.get('faceChosen')
         template = loader.get_template('voices/items.html')
-        context = {'all_prod': all_prod,
-                   'satisfactionData': satisfactionData,}
+        context = {'satisfactionData': satisfactionData,
+                   'produce': produce,
+                   'canned': canned,
+                   'boxed': boxed,
+                   'grains': grains,
+                   'household': household,
+                   'clothing': clothing
+               }
 
         return HttpResponse(template.render(context, request))
 
     else:
-        all_prod = Products.objects.all()
+        produce = Products.objects.filter(prodType="produce")
+        canned = Products.objects.filter(prodType="canned")
+        boxed = Products.objects.filter(prodType="boxed")
+        grains = Products.objects.filter(prodType="grainsBeans")
+        household = Products.objects.filter(prodType="household")
+        clothing = Products.objects.filter(prodType="clothing")
+
         template = loader.get_template('voices/items.html')
-        context = {'all_prod': all_prod,}
+        context = {'produce': produce,
+                   'canned': canned,
+                   'boxed': boxed,
+                   'grains': grains,
+                   'household': household,
+                   'clothing': clothing}
+
         return HttpResponse(template.render(context, request))
 
+
+def cart(request):
+    if request.method == 'POST':
+        chosen = request.POST.getlist('ab[]')
+        why = request.POST.getlist('why[]')
+        satisfactionData = request.POST.get('faceChosen')
+        suggestedItems = request.POST.get('suggestions')
+       
+        chosenObj = []
+
+        for i in range(len(chosen)):
+            chosenObj.append(Products.objects.get(pk=chosen[i]))
+
+        template = loader.get_template('voices/cart.html')
+        context = {'prodChosen': chosenObj,
+                   'why': why,
+                   'suggestions': suggestedItems,
+                   'satisfactionData': satisfactionData,
+                   }
+
+        return HttpResponse(template.render(context, request))
+    else:
+        template = loader.get_template('voices/cart.html')
+        context = {}
+        return HttpResponse(template.render(context, request))
+
+def thanks(request):
+    if request.method == 'POST':
+        chosen = request.POST.getlist('selected[]')
+        why = request.POST.getlist('whyReason[]')
+        suggestedItems = request.POST.get('suggestions')
+        satisfactionData = request.POST.get('faceChosen')
+
+        zipcode = request.POST.get('zipcode')
+        bday = request.POST.get('bday')
+        gender = request.POST.get('gender')
+        ethnicitySel = request.POST.get('ethnicitySel')
+        diet = request.POST.get('dietRest')
+        religiousDiet = request.POST.get('religiousDiet')
+
+        reqFin = Request()
+        for i in range(len(chosen)):
+            if i == 0:
+                reqFin.request1 = Products.objects.get(pk=chosen[i]).prodName
+            elif i == 1:
+                reqFin.request2 = Products.objects.get(pk=chosen[i]).prodName
+            elif i == 2:
+                reqFin.request3 = Products.objects.get(pk=chosen[i]).prodName
+
+        for i in range(len(why)):
+            if i == 0:
+                reqFin.why1 = why[i]
+            elif i == 1:
+                reqFin.why2 = why[i]
+            elif i == 2:
+                reqFin.why3 = why[i]
+
+
+
+        reqFin.additionalItems=suggestedItems
+        reqFin.satisfaction=satisfactionData
+        reqFin.ethnicitySel=ethnicitySel
+        reqFin.zipcode=zipcode
+        reqFin.birthday=bday
+        reqFin.gender=gender
+        reqFin.diet = diet
+        reqFin.religiousDiet = religiousDiet
+        reqFin.save()
+
+        print(reqFin.zipcode, file=sys.stderr)
+        print(reqFin.additionalItems, file=sys.stderr)
+        print(reqFin.satisfaction, file=sys.stderr)
+        print(reqFin.ethnicitySel, file=sys.stderr)
+        print(reqFin.birthday, file=sys.stderr)
+        print(reqFin.gender, file=sys.stderr)
+        print(reqFin.diet, file=sys.stderr)
+        print(reqFin.religiousDiet, file=sys.stderr)
+
+        template = loader.get_template('voices/thanks.html')
+        context = {'thanks': 'Thank you for your time'
+                   }
+
+        return HttpResponse(template.render(context, request))
+    else:
+        template = loader.get_template('voices/thanks.html')
+        context = {}
+        return HttpResponse(template.render(context, request))
+
+
+def satisfaction(request):
+    template = loader.get_template('voices/satisfaction.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+    
+
+
+
+'''
+def process_form_data(form_list):
+    # add to db
+    form_data = [form.cleaned_data for form in form_list]
+
+    # adds into db
+    elem = Request(request1 = form_data[0]['request1'], 
+                   request2 = form_data[0]['request2'], 
+                   request3 = form_data[0]['request3'], 
+                   why = form_data[1]['why'], )
+    elem.save()
+
+    return form_data
 
 class ContactWizard(SessionWizardView):
     # template_name = "voices/voices_form.html"
@@ -48,153 +187,6 @@ class ContactWizard(SessionWizardView):
         return render_to_response('voices/done.html', {'form_data':form_data}) 
         # prints out data in the form
 
-def process_form_data(form_list):
-    # add to db
-    form_data = [form.cleaned_data for form in form_list]
-
-    # prints it onto shell
-    logr.debug(form_data[0]['request1'])
-    logr.debug(form_data[0]['request2'])
-    logr.debug(form_data[0]['request3'])
-    logr.debug(form_data[1]['why'])
-
-    # adds into db
-    elem = Request(request1 = form_data[0]['request1'], 
-                   request2 = form_data[0]['request2'], 
-                   request3 = form_data[0]['request3'], 
-                   why = form_data[1]['why'], )
-    elem.save()
-
-    return form_data
-
-def cart(request):
-    if request.method == 'POST':
-        chosen = request.POST.getlist('ab[]')
-        satisfactionData = request.POST.get('faceChosen')
-        print(chosen, file=sys.stderr)
-        print(satisfactionData, file=sys.stderr)
-        chosenObj = []
-
-        for i in range(len(chosen)):
-            chosenObj.append(Products.objects.get(pk=chosen[i]))
-
-        template = loader.get_template('voices/cart.html')
-        context = {'prodChosen': chosenObj,
-                   'satisfactionData': satisfactionData}
-
-        return HttpResponse(template.render(context, request))
-    else:
-        template = loader.get_template('voices/cart.html')
-        context = {}
-        return HttpResponse(template.render(context, request))
-
-def thanks(request):
-    if request.method == 'POST':
-        chosen = request.POST.getlist('selected[]')
-        satisfactionData = request.POST.get('faceChosen')
-        ethnicitySel = request.POST.get('ethnicitySel')
-        nickname = request.POST.get('nickname')
-        bday = request.POST.get('bday')
-        email = request.POST.get('email')
-
-        reqFin = Request()
-        reqFin.request1=Products.objects.get(pk=chosen[0]).prodName
-        reqFin.request2=Products.objects.get(pk=chosen[1]).prodName
-        reqFin.request3=Products.objects.get(pk=chosen[2]).prodName
-        reqFin.satisfaction=satisfactionData
-        reqFin.ethnicity=ethnicitySel
-        reqFin.name=nickname
-        reqFin.birthday=bday
-        reqFin.email=email
-        reqFin.save()
-
-        print(chosen, file=sys.stderr)
-        print(satisfactionData, file=sys.stderr)
-        print(nickname, file=sys.stderr)
-        chosenObj = []
-
-        for i in range(len(chosen)):
-            chosenObj.append(Products.objects.get(pk=chosen[i]))
-
-        template = loader.get_template('voices/thanks.html')
-        context = {'chosenObj': chosenObj,
-                   'satisfactionData': satisfactionData,
-                   'ethnicitySel': ethnicitySel,
-                   'nickname': nickname,
-                   'bday': bday,
-                   'email': email,
-                   }
-
-        return HttpResponse(template.render(context, request))
-    else:
-        template = loader.get_template('voices/thanks.html')
-        context = {}
-        return HttpResponse(template.render(context, request))
-
-def satisfaction(request):
-    template = loader.get_template('voices/satisfaction.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
-    
-
-
-
-
-
-
-"""
-    e = "why"
-   
-    #print(request.POST.get('elems'), file=sys.stderr)
-    # if request.method == 'POST':
-    prodChosen = json.loads(request.POST.get('elems'))
-    print(json.loads(request.POST.get('elems')), file=sys.stderr)
-
-    
-
-    template = loader.get_template('voices/cart.html')
-    context = {'prodChosen': prodChosen,
-                'e': e}
-
-    # print(context, file=sys.stderr)
-    return HttpResponse(template.render(context, request))
-
-
-    else:
-        template = loader.get_template('voices/cart.html')
-        context = {}
-        print(context, file=sys.stderr)
-        return HttpResponse(template.render(context, request))
-"""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+'''
 
 

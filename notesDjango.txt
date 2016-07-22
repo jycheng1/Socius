@@ -15,3 +15,5 @@
                     --> 
 
 ***** for index.html, adding the products to the cart
+
+- landing page bottom button is weird

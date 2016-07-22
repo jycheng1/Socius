@@ -1,6 +1,7 @@
-<html lang="en">
-  <head>
-    {% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  {% load staticfiles %}
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,14 +12,18 @@
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" 
-    href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
-    
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="{% static 'css/materialize4.min.css' %}"  media="screen,projection"/>
+
+      
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <link rel="stylesheet" type="text/css" href="{% static 'css/style4.css' %}">
+
 
     <!-- jQuery Version 1.11.1 -->
     <script src="{% static 'js/jquery.js' %}"></script>
@@ -29,21 +34,14 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style4.css' %}">
     <script src="{% static 'js/submitCart.js' %}"></script>
 
   </head>
+
   <body>
 
 <!--- nav bar -->
-    <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper">
-          <ul class="left hide-on-med-and-down">
-            <li><a href="sass.html"><i class="material-icons left">arrow_back</i>Back</a></li>
-          </ul>
-          <ul class="right hide-on-med-and-down">
-            
+    <!--
 
             <form id="submitDem" action="{% url 'voices:thanks' %}" method="POST">
               {% csrf_token %}
@@ -54,155 +52,310 @@
                 {% endfor %}
               {% endif %}
 
+              {% if suggestions %}
+                <input type="hidden" name="suggestions" value={{ suggestions }}>
+              {% endif %}
+
               {% if satisfactionData %}
                 <input type="hidden" name="faceChosen" value={{ satisfactionData}}>
               {% endif %}
 
               <a id="subFin">
                 <i class="material-icons right">arrow_forward</i>Submit</a>
-             <!--
-              <a id="subFin" onclick="document.getElementById('submitDem').submit();">
-                <i class="material-icons right">arrow_forward</i>Submit</a>
-                -->
-                
+            
             </form>
+-->
 
 
-            <li><a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-
-
-  <br><br><br>
+<br><br><br>
     <div class="container">
       <div class="row">
-        <div class="col s12">
+   
           <div class="col s12">
           <p>
-           <h4 class="white-text">Items You Added<h4>
-            <h6 class="white-text">Please let us know why you added each item<h6>
+           <h4 class="white-text">Items You Chose</h4>
+            <!-- <h6 class="white-text">Please remove any items you did not choose</h6> -->
           <p>
           </div>
 
           {% if prodChosen %}
             {% for product in prodChosen %}
-
-          <div class="col s5">
-              <div class="card small">
-                <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src={{ product.prodImg }}>
-                </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-3">{{ product.prodName }}</span>
-                    <h6><a class="waves-effect waves-light red darken-1 btn" href="#">Remove</a></h6>
+            <div class="col s4">
+                <div class="card small">
+                  <div class="card-image waves-effect waves-block waves-light">
+                  <img class="activator" src="{{ product.prodImg }}">
                   </div>
-              </div>   
-            </div>
-              
-              <div class="col s7">
-              <div class="card">
-                <div class="row">
-                  <div class="card-content">
-                  <form class="col s12" class="confirmWhy">
-                  {% csrf_token %}
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <h6>Why was this item added?</h6>
-                        <textarea placeholder="I need it for..." id="why-{{ product.id }}" 
-                         type="text" class="materialize-textarea"></textarea>
-                         <br><br><br><br><br><br><br>
-                      </div>
+                    <div class="card-content">
+                      <span class="card-title activator grey-text text-darken-3">{{ product.prodName }}</span>
+                      <!-- <h6><a class="waves-effect waves-light red darken-1 btn" href="#">Remove</a></h6> -->
                     </div>
-                  </form>
-                  </div>
-                </div>
+                </div>   
+              </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if why %}
+            {% for reason in why %}
+            <div class="col s4">
+            <div class="card-panel white">
+
+              <span class="card-title activator grey-text text-darken-3">Comment</span>
+              <p>
+              <span class="grey-text light">{{ reason }}
+              </span>
+              </p>
               </div>
             </div>
             {% endfor %}
-          {% endif %}
-
+            {% endif %}
 
           </div>
-        </div>
+
+          </div>
       </div>
     </div>
   </div>
+  <br><br><br>
+
 
    <div class="section no-pad-bot" id="index-banner">
         <div class="container">
             <div class="card-panel">
+          
+     
         <br><br>
 
           <div class="row">
-            <form class="col s12" id="idInfo" method="POST">
-                {% csrf_token %}
-                <div class="input-field col s6">
-                  <i class="material-icons prefix">person</i>
-                  <input id="nickname" type="text" class="validate" name="nickname">
-                  <label for="nickname">Nickname</label>
+            <form class="col s12 offset-s1">
+              {% csrf_token %}
+
+                <div class="input-field col s5">
+                  <i class="material-icons prefix">place</i>
+                  <input id="zipcode" type="text" class="validate">
+                  <label for="zipcode">Zip Code</label>
                 </div>
 
+           </div>
+           </form>
 
-                <div class="input-field col s12">
+
+         <div class="row">
+            <form class="col s12 offset-s1">
+            {% csrf_token %}
+                <div class="input-field col s5">
                   <i class="material-icons prefix">cake</i>
                     <input value="Birthday" id="birthdate" type="date" class="datepicker" name="bday">
                     <label class="active" for="birthdate">Birthdate</label>
                 </div>
+            </form>
 
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">email</i>
-                  <input id="email" type="email" class="validate" name="email">
-                  <label for="email" data-error="Invalid format">Email</label>
+        </div>
+
+        <div class="row">
+
+          <div class="col s11 offset-s1">
+            <h5 class="grey-text text-darken-4">Gender</h5>
+            
+            <form method="POST" id="gender">
+              {% csrf_token %}
+                <p>
+                  <input name="Gender" type="radio" id="Male" value="Male" />
+                  <label for="Male">Male</label>
+                </p>
+
+                <p>
+                  <input name="Gender" type="radio" id="Female" value="Female" />
+                  <label for="Female">Female</label>
+                </p>
+
+                <p>
+                  <input name="Gender" type="radio" id="otherGender" value="Other" />
+                  <label for="otherGender">Other</label>
+                </p>
+
+                 <div class="input-field col s6">
+                    <input placeholder="Gender" id="otherGenderExp" type="text" class="validate">
+                    <label for="otherGenderExp">If Other: Please Specify</label>
                 </div>
 
             </form>
+          </div>
+         
 
-          <div class="col s12 offset-s1">
+          <div class="col s11 offset-s1">
   
-              <h5 class="grey-text darken-1n">Ethnicity</h5>
+              <h5 class="grey-text text-darken-4">Ethnicity</h5>
 
             <form method="POST" id="ethnicity">
               {% csrf_token %}
               <p>
-                <input id="black" type="radio" name="group1" value="Black or African-American"/>
-                <label for="black">Black or African-American</label>
+                <input name="Ethnicity" type="radio" id="Black" value="Black or African-American" />
+                <label for="Black">Black or African-American</label>
               </p>
               <p>
-                <input id="white" type="radio" name="group1" value="White"/>
-                <label for="white">White</label>
+                <input name="Ethnicity" type="radio" id="White" value="White or Caucasian" />
+                <label for="White">White or Caucasian</label>
               </p>
+
               <p>
-                <input class="group1" id="hispanic" type="radio" name="group1" value="Hispanic or Latino"/>
-                <label for="hispanic">Hispanic or Latino</label>
+                <input name="Ethnicity" type="radio" id="Hispanic" value="Hispanic or Latino" />
+                <label for="Hispanic">Hispanic or Latino</label>
               </p>
                 <p>
-                  <input id="hawaiian" type="radio" name="group1" value="Native Hawaiian or Pacific Islander"/>
-                  <label for="hawaiian">Native Hawaiian or Pacific Islander</label>
+                  <input name="Ethnicity" type="radio" id="Island" value="Native Hawaiian or Pacific Islander" />
+                  <label for="Island">Native Hawaiian or Pacific Islander</label>
               </p>
-                <p>
-                  <input id="nativeAmerican" type="radio" name="group1" value="Native American"/>
-                  <label for="nativeAmerican">Native American</label>
+
+              <p>
+                <input name="Ethnicity" type="radio" id="Native" value="Native American" />
+                <label for="Native">Native American</label>
+              </p>
+
+              <p>
+                <input name="Ethnicity" type="radio" id="Asian" value="Asian" />
+                <label for="Asian">Asian</label>
+              </p>
+
+              <p>
+                <input name="Ethnicity" type="radio" id="otherEthnicity" value="Other" />
+                <label for="otherEthnicity">Other</label>
+              </p>
+              
+              <div class="input-field col s6">
+                  <input placeholder="Ethnicity" id="otherEthExp" type="text" class="validate">
+                  <label for="otherEthExp">If Other: Please Specify</label>
+              </div>   
+          </form>
+        </div>
+
+
+            <div class="col s11 offset-s1">
+  
+              <h5 class="grey-text text-darken-4">If you have a health related dietary restriction, please specify below</h5>
+
+            <form method="POST" id="dietaryRest">
+              {% csrf_token %}
+              <p>
+                <input name="Diet" type="radio" id="Allergy" value="Food Allergy"/>
+                <label for="Allergy">Food Allergy</label>
               </p>
               <p>
-                  <input id="asian" type="radio" name="group1" value="Asian"/>
-                  <label for="asian">Asian</label>
+                <input name="Diet" type="radio" id="Diabetic" value="Diabetic Diet"/>
+                <label for="Diabetic">Diabetic Diet</label>
               </p>
-               <p>
-                <input type="radio" id="other" name="group1" value="Other"/>
-                <label for="other">Other</label>
-                </div>
+              <p>
+                <input name="Diet" type="radio" id="Gluten" value="Gluten-free Diet" />
+                <label for="Gluten">Gluten-free Diet</label>
+              </p>
+              <p>
+                <input name="Diet" type="radio" id="Veg" value="Vegetarian Diet" />
+                <label for="Veg">Vegetarian Diet</label>
+              </p>
+              <p>
+                <input name="Diet" type="radio" id="Blood" value="High Blood Pressure Diet" />
+                <label for="Blood">High Blood Pressure Diet</label>
+              </p>
+              <p>
+                <input name="Diet" type="radio" id="Liquid" value="Liquid Only Diet" />
+                <label for="Liquid">Liquid Only Diet</label>
+              </p>
+              <p>
+                <input name="Diet" type="radio" id="Low" value="Low Calorie/Carbohydrate Diet" />
+                <label for="Low">Low Calorie/Carbohydrate Diet</label>
+              </p>
+                <p>
+                  <input name="Diet" type="radio" id="otherDiet" value="Other" />
+                  <label for="otherDiet">Other</label>
+              </p>
+
+               <div class="input-field col s6">
+                  <input placeholder="Dietary Restriction" id="otherDietExp" 
+                                    type="text" class="validate">
+                  <label for="otherDietExp">If Other: Please Specify</label>
               </div>
-              </p>         
+
+              </div>
             </form>
-          </div>
+
+            <div class="col s11 offset-s1">
+  
+              <h5 class="grey-text text-darken-4">If you have a religion related dietary restriction, please specify below</h5>
+
+             <form method="POST" id="religion">
+              {% csrf_token %}
+              <p>
+                <input name="Religion" type="radio" id="Islam" value="Islam(Halal)"/>
+                <label for="Islam">Islam(Halal)</label>
+              </p>
+              <p>
+                <input name="Religion" type="radio" id="Judaism" value="Judaism(Kosher)" />
+                <label for="Judaism">Judaism(Kosher)</label>
+              </p>
+              <p>
+                <input name="Religion" type="radio" id="Hinduism" value="Hinduism(Lacto-vegetarian)"/>
+                <label for="Hinduism">Hinduism(Lacto-vegetarian)</label>
+              </p>
+              <p>
+                <input name="Religion" type="radio" id="Buddhism" value="Buddhism(Lacto-vegetarian)" />
+                <label for="Buddhism">Buddhism(Lacto-vegetarian)</label>
+              </p>
+              <p>
+                <input name="Religion" type="radio" id="Christianity" value="Christianity" />
+                <label for="Christianity">Christianity</label>
+              </p>
+                <p>
+                  <input name="Religion" type="radio" id="otherReligion" value="Other" />
+                  <label for="otherReligion">Other</label>
+              </p>
+
+               <div class="input-field col s6">
+                  <input placeholder="Religious Diet" id="otherReligionExp" type="text" class="validate">
+                  <label for="otherReligionExp">If Other: Please Specify</label>
+              </div>
+
+              </div>
+            </form>
 
         </div>
+
+
+            <form id="submitDem" action="{% url 'voices:thanks' %}" method="POST">
+              {% csrf_token %}
+              
+              {% if prodChosen %}
+                {% for product in prodChosen %}
+                <input type="hidden" name="selected[]" value={{ product.id }}>
+                {% endfor %}
+              {% endif %}
+
+              {% if why %}
+                {% for reason in why %}
+                <input type="hidden" name="whyReason[]" value={{ reason }}>
+                {% endfor %}
+              {% endif %}
+
+              {% if suggestions %}
+                <input type="hidden" name="suggestions" value={{ suggestions }}>
+              {% endif %}
+
+               
+              {% if satisfactionData %}
+                <input type="hidden" name="faceChosen" value={{ satisfactionData }}>
+              {% endif %}
+
+             
+
+              <div class="row">
+              <div class="col s12 offset-s9">
+               <button id="subFin" class="waves-effect waves-light btn-large blue lighten-1">Submit</button>
+              </div>
+            </div>
+            </form>
+
       </div>
+
     </div>  
   </div>
-
 
 </body>
 </html>

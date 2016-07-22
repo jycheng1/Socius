@@ -30,10 +30,10 @@ $(document).ready(function(){
       }
   });
 
-  // change the front end when item's selected
+  // change the front end when item's selected (highlight card, change add/added)
   var selected = 0;
   $(".add").click(function(){
-    if ($(this).text() == "Add"){
+    if ($(this).text() === "Add"){
       if (selected != 3){
         selected += 1;
         $(this).text("Added"); // change text
@@ -79,48 +79,24 @@ $(document).ready(function(){
 
   // when user checks out products
 
-  $("#checkCart").click(function(){
+  $("#checkCart").click(function(){ 
+    // pass the items selected to cart
     for (i = 0; i < chosen.length; i++){
-      $('#getArr').append('<input type="hidden" name="ab[]" value="' + chosen[i] + '"/>')
+      $('#getArr').append('<input type="hidden" name="ab[]" value="' + chosen[i] + '"/>');
     }
+
+    // pass they 'why' reason to the cart
+    for (i = 0; i < chosen.length; i++){
+      var whyId = "#why-".concat(chosen[i]);
+      var thisWhy = $(whyId).val();
+      $('#getArr').append('<input type="hidden" name="why[]" value="' + thisWhy + '"/>');
+    }
+
+
+    // pass the suggested items to the cart
+    var comments = $('textarea#suggestions').val(); 
+    $('#getArr').append('<input type="hidden" name="suggestions" value="' + comments + '"/>');
   });
-
-/*
-  $("#getArr").submit(function(){
-    var data = {'ab[]' : chosen};
-    $.post('cart/', data, function(response){
-      
-      if(response == 'success'){ 
-        window.location.replace('cart');
-      }
-      else{ 
-        alert('Error! :('); 
-      }
-
-    });
-  });
-  */
-
-
-
-/*
-  $("#getArr").submit(function(){
-
-    //var ch = chosen.serializeArray();
-
-    $.ajax({
-      type: "POST",
-      data : {'ab[]' : chosen}, 
-      url : "cart/",
-      success:function(data){
-        console.log("go");
-        window.location.href ='cart.html'
-      }
-
-    });
-  });
-
-  */
 });
 
 

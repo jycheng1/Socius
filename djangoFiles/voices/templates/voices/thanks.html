@@ -1,32 +1,22 @@
 <html>
+<head>
+  {% load staticfiles %}
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <!--
+  <script src="{% static 'js/redirectFromThanks.js' %}"></script>
+  -->
+  <meta http-equiv="refresh" content="2;{% url 'voices:index' %}"> 
+</head>
 <body>
-{% load staticfiles %}
 
-  {% if chosenObj %}
-    {% for elem in chosenObj %}
-      <p> elems {{ elem.prodName }}</p>
-    {% endfor %}
+
+
+  {% if thanks%}
+  <p>{{ thanks }}</p>
+  {% else %}
+  <p> thanks page </p>
   {% endif %}
 
-  {% if satisfactionData%}
-    <p>sat {{ satisfactionData }}</p>
-  {% endif %}
-
-  {% if ethnicitySel%}
-    <p>eth {{ ethnicitySel }}</p>
-  {% endif %}
-
-  {% if nickname%}
-    <p>name {{ nickname }}</p>
-  {% endif %}
-
-  {% if bday%}
-    <p>bday {{ bday }}</p>
-  {% endif %}
-
-  {% if email%}
-    <p>email {{ email }}</p>
-  {% endif %}
 
 </body>
 </html>
