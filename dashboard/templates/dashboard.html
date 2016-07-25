@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+	<!-- Map Display -->
+	<div id="map-display">
+
+	</div>
+	<!-- /Map Display -->
+
+	<!-- Side Display -->
+	<div id = 'side-display'>
+		<!-- <input id='address-input' type='text' value='gangnam'> -->
+	</div>
+	<!-- /Side Display -->
+
+	<!-- Org modal -->
+	<div id="org-modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<!-- Modal close button -->
+				<button type="button" class="close modal-close-button" data-dismiss="modal">
+					<span aria-hidden="true">&#10006;</span>
+					<span class="sr-only">Close</span>
+				</button>
+				<!-- /Modal close button -->
+
+				<!-- Modal header -->
+				<div class="modal-header">
+					<div class='row'>
+						<div class = 'col-xs-2'>
+							<img class='modal-img'>
+						</div>
+						<!-- <div class = 'col-xs-2'> -->
+						<div class = 'col-xs-10 modal-title'>
+						</div>
+					</div>
+
+					<!-- Org explanation -->
+					<div class='row'>
+						<div class = 'col-xs-2'>
+						</div>
+						<div class='col-xs-10 modal-explanation'>
+						</div>
+					</div>
+
+					<!-- /Org explanation -->
+				</div>
+				<!-- /Modal header -->
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div class='row modal-requested-items'>
+			        	<div class='col-xs-2'>
+			        		<img class='modal-requested-item-img'>
+			        	</div>
+			        	<div class='col-xs-10'>
+			        		<div class='modal-requested-item-name'>
+			        		</div>
+			        		<div class='modal-request-item-count'>
+			        		</div>
+			        	</div>
+					</div>
+					<div class='row modal-requested-item-reasons'>
+					</div>
+
+					<div class='row modal-button'>
+						<button type="button" href='#' class="btn btn-default">Donate Now</button>
+					</div>
+				</div> 
+				<!-- /Modal body -->
+
+			</div> 
+			<!-- /Modal content -->
+		</div>
+	</div>
+	<!-- /Org modal -->
+
+	<!-- Product modal -->
+	<div id="product-modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+		<!-- Modal content-->
+			<div class="modal-content">
+				<!-- Modal close button -->
+				<button type="button" class="close modal-close-button" data-dismiss="modal">
+					<span aria-hidden="true">&#10006;</span>
+					<span class="sr-only">Close</span>
+				</button>
+				<!-- /Modal close button -->
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div class='row'>
+						<div class = 'col-xs-2'>
+							<img class='modal-img'>
+						</div>
+						<!-- <div class = 'col-xs-2'> -->
+						<div class = 'col-xs-10 '>
+							<div class='modal-title'> </div>
+							<div class='modal-subtitle'></div>
+						</div>
+					</div>
+
+					<!--  -->
+					<div class='row'>
+						<div class = 'col-xs-2'>
+						</div>
+						<div class='col-xs-10 modal-explanation'>
+						</div>
+					</div>
+
+					<!-- / -->
+				</div>
+				<!-- /Modal body -->
+				<div class='row modal-button'>
+						<button type="button" href='#' class="btn btn-default">Donate Now</button>
+				</div>
+
+			</div> 
+			<!-- /Modal content -->
+		</div>
+	</div>
+	<!-- /Product modal -->
+
+
+	<!-- Donate modal -->
+	<div id="dona-modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+		<!-- Modal content-->
+			<div class="modal-content">
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div class='row'>
+						<div class = 'col-xs-2'>
+							<img class='modal-img'>
+						</div>
+						<!-- <div class = 'col-xs-2'> -->
+						<div class = 'col-xs-10 '>
+							<div class='modal-title'> </div>
+							<div class='modal-subtitle'></div>
+						</div>
+					</div>
+
+					<!--  -->
+					<div class='row'>
+						<div class = 'col-xs-2'>
+						</div>
+						<div class='col-xs-10 modal-explanation'>
+						</div>
+					</div>
+
+					<!-- / -->
+				</div>
+				<!-- /Modal body -->
+				<div class='row modal-button'>
+						<button type="button" href='#' class="btn btn-default">Donate Now</button>
+				</div>
+
+			</div> 
+			<!-- /Modal content -->
+		</div>
+	</div>
+	<!-- /Donate modal -->
+
+
+{% endblock %}
+
+<!-- JS -->
+{% block js %}
+	{{block.super}}
+ 	<!-- Google Map API -->	
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVvMEZC9f6v9E_Q6jzqXgo_gg06cuxclM&callback=initialize" async defer></script>
+
+    <script src="{% static 'js/map2.js' %}"></script>
+ 	<script>
+
+ 		// list of Orgs (JSON) 
+ 		var orgs = {{org_data|safe}};
+
+ 		// console.log(Object.keys(orgs[0]));
+ 		// options: fields, model, pk 
+ 		// phone_number,picture,site_url,name,address
+
+
+ 		var products = {{product_data|safe}};
+
+ 		// console.log(orgs[0]);
+
+
+
+ 		// console.log(products);
+
+		// product_dic = {};
+
+		// for(var i = 0; i < organization.length; i++) {
+		// 	if(organization[i].pk == products[i].fields.organization)
+
+		// }
+
+
+ 		// var d = eval(product_data);
+
+ 		// $.each(product_data, function(key, value){
+
+ 		// }
+
+
+ 	</script>
+
+
+{% endblock %}   
+

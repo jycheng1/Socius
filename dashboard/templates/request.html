@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div>
+
+	{% for error in form.non_field_errors %}
+	<p style = "color:red">
+		{{ error }}
+	</p>
+	{% endfor %}
+
+	<form enctype = "multipart/form-data" method = "POST" action = "{% url 'request' %}">
+	<table>
+	{% for field in form.visible_fields %}
+	<tr>
+		<td class = "title-text">{{field.label_tag}}</td>
+		<td>{{field}}</td>
+		<td style = "color:red">{{field.errors}}</td>
+	</tr>
+	{% endfor %}
+	</table>
+	<input type = "submit" value = "Request" class = "btn btn-sm btn-primary"/>
+	{% csrf_token %}
+	</form>
+</div>
+
+---------------------------------------------------------------------
+
+<div style= 'margin-top:20px'>
+	{% if requests %}
+	{% for request in requests reversed %}
+		<h4>Request {{request.id}}</h4>
+		<p>
+		{{request.requester_firstname}}
+		{{request.requester_lastname}}
+		</p>
+		<p style = 'color:blue'>
+		{{request.date}}
+		</p>
+		<p> Requested items: 
+		{{request.item1}}
+		{{request.item2}}
+		{{request.item3}}
+		</p>
+		<p> Reason: 
+		{{request.reason}}
+		</p>	
+		================================
+	{% endfor %}
+	{% endif %}
+</div>
+
+{% endblock %}
+

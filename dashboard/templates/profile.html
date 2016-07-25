@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class = "panel" id = "profile_panel">
+<div class = "panel-heading gray-background" style="padding-top:30px"> 
+	<div class="row"> 
+		<div class="col-sm-2">
+		{% if userProfile.picture %}
+			<img src = "socius/dashboard/media/{{userProfile.picture}}" width = "150px" height = "150px">
+		{% endif %}
+		</div>
+		<div class="col-sm-8">	
+			<h3><b>{{ userProfile.firstname }} {{ userProfile.lastname }} </b></h3>
+			<h5> Username: {{userProfile.username}} </h5>
+		</div>
+		<div class="col-sm-2">
+			<div>
+				<a href = "#"> Update Info </a>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

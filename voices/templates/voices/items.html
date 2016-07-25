@@ -1,0 +1,361 @@
+<html lang="en">
+  <head>
+    {% load staticfiles %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" 
+     media="screen,projection"/>
+
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" type="text/css" href="{% static 'css/style3.css' %}">
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+     <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+
+    <script src="{% static 'js/buttonChange.js' %}"></script>
+  </head>
+
+  <body>
+
+
+
+
+<div class="navbar-fixed">
+  <ul id="dropdown1" class="dropdown-content">
+  <li><a href="#fresh-produce">Fresh Produce</a></li>
+  <li class="divider"></li>
+  <li><a href="#canned-goods&soup">Canned Goods & Soup</a></li>
+  <li class="divider"></li>
+  <li><a href="#boxed-meals">Boxed Meals</a></li>
+  <li class="divider"></li>
+  <li><a href="#grains-rice-beans">Grains,Rice & Beans</a></li>
+  <li class="divider"></li>
+  <li><a href="#household-essentials">Household Essentials</a></li>
+  <li class="divider"></li>
+  <li><a href="#clothing">Clothing</a></li>
+  </ul>
+  <nav>
+    <div class="nav-wrapper blue">
+      <ul class="left hide-on-med-and-down blue">
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+     </ul>
+    </div>
+  </nav>
+</div>
+
+
+<!--
+<nav>
+    <div class="navbar-fixed-bottom">
+        <div class="row center">
+        <form id="getArr" action="{% url 'voices:cart' %}" method="POST">
+          {% csrf_token %}
+          {% if satisfactionData %}
+            <input type="hidden" name="faceChosen" value={{ satisfactionData}}>
+          {% endif %}
+          <button type='submit' id="checkCart" 
+          class="btn-large waves-effect waves-light orange">Check Added Items</button>
+        </form>
+        </div>
+    </div>
+</nav>
+-->
+
+
+<div class="section no-pad-bot" id="index-banner">
+          <br><br>
+          <h4 class="header center blue-text">Pick up to 3 items you would like to see in the food pantry on your next visit</h4>
+          <div class="row center">
+            <h5 class="header col s12 light">Your input will help the food pantry to better cater to your needs and donors to better understand what to donate</h5>
+          </div>
+
+          <br><br>
+</div>
+
+<div class="row">
+     <h4 class="grey-text col s12 offset-s1 text-darken-2">Feel free to add any item of your choice below<h4>
+    <div class="col s12">
+      <div class="card-panel grey lighten-4">
+     <div class="row">
+        <br>
+          <div class="row">    
+            <form class="col s12">
+              <div class="row">
+                <div class="form-group">
+                
+                <textarea class="form-control" rows="5" id="suggestions" type="text"
+                placeholder="Kosher Beef, Low Sodium Soup, Protein Powder..."></textarea>
+              </div>
+              </div>
+            </form>
+          </div>
+          </div>
+
+
+
+  {% if produce %}
+  <div class="row">
+    <div class="row">
+      <h4 class="grey-text col s12 offset-s1 text-darken-2" id="fresh-produce">Fresh Produce<h4>
+        <div class="col s12">
+          <div class="card-panel grey lighten-4">
+            <div class="row">
+            {% for product in produce %}
+
+              <div class="col s12 m4 l3">
+                <div class="card" id="id-{{ product.id }}">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="{{ product.prodImg }}">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">{{ product.prodName }}</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="why-{{ product.id }}" placeholder="I need to eat healthier due to my medical condition, but I can not afford to buy fresh produce...."></textarea>
+                </div>
+                    <h6><button class="waves-effect waves-light light-green accent btn add" 
+                          name="id-{{ product.id }}" id="{{ product.id }}">Add</button></h6>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>  
+  {% else %}
+  <p> You have no produce items </p>
+  {% endif %}
+
+
+  {% if canned %}
+  <div class="row">
+      <h4 class="grey-text col s12 offset-s1 text-darken-2" id="canned-goods&soup">Canned Goods & Soup<h4>
+            <div class="row">
+      <div class="col s12">
+          <div class="card-panel grey lighten-4">
+            
+            <div class="row">
+            {% for product in canned %}
+            <div class="col s12 m4 l3">
+                <div class="card" id="id-{{ product.id }}">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="{{ product.prodImg }}">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">{{ product.prodName }}</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="why-{{ product.id }}" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><button class="waves-effect waves-light light-green accent btn add" 
+                          name="id-{{ product.id }}" id="{{ product.id }}">Add</button></h6>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% else %}
+  <p> You have no canned items </p>
+  {% endif %}
+
+
+  {% if boxed %}
+  <div class="row">
+      <h4 class="grey-text col s12 offset-s1 text-darken-2" id="boxed-meals">Boxed Meals<h4>
+            <div class="row">
+      <div class="col s12">
+          <div class="card-panel grey lighten-4">
+            
+            <div class="row">
+            {% for product in boxed %}
+            <div class="col s12 m4 l3">
+                <div class="card" id="id-{{ product.id }}">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="{{ product.prodImg }}">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">{{ product.prodName }}</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="why-{{ product.id }}" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><button class="waves-effect waves-light light-green accent btn add" 
+                          name="id-{{ product.id }}" id="{{ product.id }}">Add</button></h6>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% else %}
+  <p> You have no boxed items </p>
+  {% endif %}
+
+
+
+  {% if grains %}
+  <div class="row">
+      <h4 class="grey-text col s12 offset-s1 text-darken-2" id="grains-rice-beans">Grains, Rice & Beans<h4>
+            <div class="row">
+      <div class="col s12">
+          <div class="card-panel grey lighten-4">
+            
+            <div class="row">
+            {% for product in grains %}
+            <div class="col s12 m4 l3">
+                <div class="card" id="id-{{ product.id }}">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="{{ product.prodImg }}">
+                  </div>
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">{{ product.prodName }}</span>
+                    <div class="form-group">
+                    <label for="comment">Why do you need this particular item?</label>
+                  <textarea class="form-control" rows="5" id="why-{{ product.id }}" placeholder="I recently was diagnosed with diabetes,but all I can afford currently are high sodium canned soups. It would mean the world to me to eat healthier."></textarea>
+                </div>
+                    <h6><button class="waves-effect waves-light light-green accent btn add" 
+                          name="id-{{ product.id }}" id="{{ product.id }}">Add</button></h6>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% else %}
+  <p> You have no grains and beans items </p>
+  {% endif %}
+
+
+  {% if household %}
+  <div class="row">
+    <h4 class="grey-text col s12 offset-s1 text-darken-2" id="household-essentials">Household Essentials<h4>
+          <div class="row">
+    <div class="col s12">
+        <div class="card-panel grey lighten-4">
+          
+          <div class="row">
+          {% for product in household %}
+          <div class="col s12 m4 l3">
+              <div class="card" id="id-{{ product.id }}">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class="activator" src="{{ product.prodImg }}">
+                </div>
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4">{{ product.prodName }}</span>
+                  <div class="form-group">
+                  <label for="comment">Why do you need this particular item?</label>
+                <textarea class="form-control" rows="5" id="why-{{ product.id }}" placeholder="After buying my groceries I am out of budget to pay for my household items..."></textarea>
+              </div>
+                  <h6><button class="waves-effect waves-light light-green accent btn add" 
+                        name="id-{{ product.id }}" id="{{ product.id }}">Add</button></h6>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <p> You have no household items </p>
+  {% endif %}
+
+
+  {% if clothing %}
+  <div class="row">
+    <h4 class="grey-text col s12 offset-s1 text-darken-2" id="clothing">Clothing<h4>
+          <div class="row">
+    <div class="col s12">
+        <div class="card-panel grey lighten-4">
+          
+          <div class="row">
+          {% for product in clothing %}
+          <div class="col s12 m4 l3">
+              <div class="card" id="id-{{ product.id }}">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class="activator" src="{{ product.prodImg }}">
+                </div>
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4">{{ product.prodName }}</span>
+                  <div class="form-group">
+                  <label for="comment">Why do you need this particular item?</label>
+                <textarea class="form-control" rows="5" id="why-{{ product.id }}" placeholder="After buying my groceries I am out of budget to pay for any clothing..."></textarea>
+              </div>
+                 <h6><button class="waves-effect waves-light light-green accent btn add" 
+                      name="id-{{ product.id }}" id="{{ product.id }}">Add</button></h6>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <p> You have no clothing items </p>
+  {% endif %}
+
+        
+        <div class="row center">
+          <div class="col s12">
+            <form id="getArr" action="{% url 'voices:cart' %}" method="POST">
+              {% csrf_token %}
+              
+              {% if satisfactionData %}
+                <input type="hidden" name="faceChosen" value={{ satisfactionData}}>
+              {% endif %}
+              
+              <button class="btn-large waves-effect waves-light blue" type="submit" id="checkCart">Submit
+                <i class="material-icons right">send</i>
+              </button>
+            </form>
+           
+        </div>
+
+        
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  </body>
+</html>

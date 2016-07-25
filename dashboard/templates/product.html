@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div>
+
+	Register product. 
+
+	{% for error in form.non_field_errors %}
+	<p style = "color:red">
+		{{ error }}
+	</p>
+	{% endfor %}
+
+	<form enctype = "multipart/form-data" method = "POST" action = "{% url 'product_register' %}">
+	<table>
+	{% for field in form.visible_fields %}
+	<tr>
+		<td class = "title-text">{{field.label_tag}}</td>
+		<td>{{field}}</td>
+		<td style = "color:red">{{field.errors}}</td>
+	</tr>
+	{% endfor %}
+	</table>
+	<input type = "submit" value = "Submit" class = "btn btn-sm btn-primary"/>
+	{% csrf_token %}
+	</form>
+</div>
+
+---------------------------------------------------------------------
+
+<div style= 'margin-top:20px'>
+	{% if products %}
+	{% for product in products reversed %}
+		<h3>Product {{product.id}}</h3>
+		<h4 style='color:blue'> {{product.organization}} </h4>
+		<p>
+		{{product.name}}
+		
+		<img src = "/socius/dashboard/media/{{product.picture}}" width = "80px" height = "80px">
+		
+		</p>
+
+		================================
+	{% endfor %}
+	{% endif %}
+</div>
+
+{% endblock %}

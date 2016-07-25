@@ -1,0 +1,22 @@
+<html>
+<head>
+  {% load staticfiles %}
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <!--
+  <script src="{% static 'js/redirectFromThanks.js' %}"></script>
+  -->
+  <meta http-equiv="refresh" content="2;{% url 'voices:index' %}"> 
+</head>
+<body>
+
+
+
+  {% if thanks%}
+  <p>{{ thanks }}</p>
+  {% else %}
+  <p> thanks page </p>
+  {% endif %}
+
+
+</body>
+</html>
