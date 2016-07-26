@@ -336,7 +336,7 @@
               {% csrf_token %}
               
               {% if satisfactionData %}
-                <input type="hidden" name="faceChosen" value={{ satisfactionData}}>
+                <input type="hidden" name="faceChosen" value="{{ satisfactionData}}">
               {% endif %}
               
               <button class="btn-large waves-effect waves-light blue" type="submit" id="checkCart">Submit

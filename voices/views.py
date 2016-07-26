@@ -121,11 +121,20 @@ def thanks(request):
             elif i == 2:
                 reqFin.why3 = why[i]
 
+        if suggestedItems is None:
+            reqFin.additionalItems = "undefined"
+        else:
+            reqFin.additionalItems=suggestedItems
+            
+        if satisfactionData is None:
+            reqFin.satisfaction = "undefined"
+        else:
+            reqFin.satisfaction=satisfactionData
 
 
-        reqFin.additionalItems=suggestedItems
-        reqFin.satisfaction=satisfactionData
-        reqFin.ethnicitySel=ethnicitySel
+        # reqFin.additionalItems=suggestedItems
+        # reqFin.satisfaction=satisfactionData
+        reqFin.ethnicity=ethnicitySel
         reqFin.zipcode=zipcode
         reqFin.birthday=bday
         reqFin.gender=gender
@@ -133,14 +142,7 @@ def thanks(request):
         reqFin.religiousDiet = religiousDiet
         reqFin.save()
 
-        print(reqFin.zipcode, file=sys.stderr)
-        print(reqFin.additionalItems, file=sys.stderr)
-        print(reqFin.satisfaction, file=sys.stderr)
-        print(reqFin.ethnicitySel, file=sys.stderr)
-        print(reqFin.birthday, file=sys.stderr)
-        print(reqFin.gender, file=sys.stderr)
-        print(reqFin.diet, file=sys.stderr)
-        print(reqFin.religiousDiet, file=sys.stderr)
+        # print(reqFin.zipcode, file=sys.stderr)
 
         template = loader.get_template('voices/thanks.html')
         context = {'thanks': 'Thank you for your time'
