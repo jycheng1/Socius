@@ -103,6 +103,10 @@ function initialize() {
 	var map;
 	var markers = []; 
 
+	// load script for infobox 
+	$.getScript("/static/js/infobox.js", function(){
+	});
+
 	// map initialize (centered at pittsburgh)
 	map = new google.maps.Map(document.getElementById('map-display'), {
 		center: new google.maps.LatLng(40.4406,-79.9959),
@@ -170,6 +174,7 @@ function initialize() {
 						// org_title.style.color = 'white';
 						div.appendChild(org_title);
 
+
 						// Option 1 : have img as background
 						div.style.backgroundImage = "url("+ 'media/' + org_obj[0].fields.picture +")";
 
@@ -216,6 +221,11 @@ function initialize() {
 						// org_title.style.color = 'white';
 						div.appendChild(product_title);
 
+						var product_quantity = document.createElement('p');
+						product_quantity.innerHTML = product_obj[0].fields.quantity;
+						div.appendChild(product_quantity);
+
+
 						// console.log('hi ' + product_obj[0].fields.organization)
 
 						var product_org = document.createElement('h6');
@@ -250,6 +260,8 @@ function initialize() {
 	});
 }
 	
+
+
 // Create markers for organizations and products ('callback' ensures this gets called first)
 function createMarkers(map, markers, callback) {
 
@@ -286,62 +298,103 @@ function createMarkers(map, markers, callback) {
 
 					markers.push(marker);
 
-					// create info window for each marker
-					var infowindow = new google.maps.InfoWindow({
-						content: orgs[i].fields.name
-				  	});
+					var iwContent = "<div class='iw-container'><div class='iw-title'>" + orgs[i].fields.name + "</div></div>";
+
+					// style infowindow as infobox
+					var infowindow = new InfoBox({
+					    content: iwContent, 
+					    disableAutoPan: false,
+					    maxWidth: 150,
+					    pixelOffset: new google.maps.Size(-75, -70),
+					    zIndex: null,
+					    boxStyle: {
+					                // background: "url('http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/examples/tipbox.gif') no-repeat",
+					                opacity: 0.75,
+					                width: "150px",
+					        },
+					    closeBoxMargin: "12px 4px 2px 2px",
+					    closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+					    infoBoxClearance: new google.maps.Size(1, 1)
+					});
 
 					// add org id (o1, o2, ...) and infowindow to its marker  
 					marker.metadata = {id: 'o' + orgs[i].pk, infowindow: infowindow};
 
 
-					for(var j = 0; j < products.length; j++) {
-						if(orgs[i].pk == products[j].fields.organization) {
-							var product_pos = new google.maps.LatLng(product_positions_x[j], product_positions_y[j]);
+					// products of the current org 
+					var curr_products = org_products_dic[orgs[i].pk];
+					// console.log('111111' + curr_products)
+
+					for(var j = 0; j < curr_products.length; j++) {
+						var product_pos = new google.maps.LatLng(product_positions_x[j], product_positions_y[j]);
 
 
-			 				var product_marker_img = {
-			 					url : 'media/' + products[j].fields.picture, 
-			 					// url : '/static/images/pink-balloon.png',
+		 				var product_marker_img = {
+		 					url : 'media/' + curr_products[j].fields.picture, 
+		 					// url : '/static/images/pink-balloon.png',
 // 
-			 					scaledSize : new google.maps.Size(40,40)
-			 				}
+		 					scaledSize : new google.maps.Size(40,40)
+		 				}
 
-							var product_marker = new google.maps.Marker({
-								map: map,
-								icon: product_marker_img,
-								position: product_pos
-							});
-						
-							markers.push(product_marker);
-							
-							// create info window for each marker
-							var product_infowindow = new google.maps.InfoWindow({
-								content: products[j].fields.name
-						  	});
+						var product_marker = new google.maps.Marker({
+							map: map,
+							icon: product_marker_img,
+							position: product_pos
+						});
+					
+						markers.push(product_marker);
+					
+						var iwContent = "<div class='iw-container'><div class='iw-title'>" + curr_products[j].fields.name + "</div></div>";
 
-							// add product id (p1, p2, ...) and infowindow to its marker 
-							product_marker.metadata = {id: 'p' + products[j].pk, infowindow: product_infowindow};
+						// style infowindow as infobox
+						var product_infowindow = new InfoBox({
+						    content: iwContent, 
+						    disableAutoPan: false,
+						    maxWidth: 150,
+						    pixelOffset: new google.maps.Size(-75, -80),
+						    zIndex: null,
+						    boxStyle: {
+						                // background: "url('http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/examples/tipbox.gif') no-repeat",
+						                opacity: 0.75,
+						                width: "150px"
+						        },
+						    closeBoxMargin: "12px 4px 2px 2px",
+						    closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+						    infoBoxClearance: new google.maps.Size(1, 1)
+						});
 
-							// When mouse-over a marker
-							google.maps.event.addListener(product_marker, 'mouseover', function(product_marker, product_infowindow) {
-								return function() {
-									product_infowindow.open(map,product_marker);
-									var matching_sidebox = $('#side-display').find('#' + product_marker.metadata.id);
-									matching_sidebox[0].style.opacity = 1;	
-								}
-							}(product_marker, product_infowindow));
 
-							// When mouse-out a marker
-							google.maps.event.addListener(product_marker, 'mouseout', function(product_marker, product_infowindow) {
-								return function() {
-									product_infowindow.close();
-									var matching_sidebox = $('#side-display').find('#' + product_marker.metadata.id);
-									matching_sidebox[0].style.opacity = 0.5;	
-								}
-							}(product_marker, product_infowindow));
-						}
+
+						// // create info window for each marker
+						// var product_infowindow = new google.maps.InfoWindow({
+						// 	content: products[j].fields.name
+					 //  	});
+
+						// add product id (p1, p2, ...) and infowindow to its marker 
+						product_marker.metadata = {id: 'p' + curr_products[j].pk, infowindow: product_infowindow};
+
+						// When mouse-over a marker
+						google.maps.event.addListener(product_marker, 'mouseover', function(product_marker, product_infowindow) {
+							return function() {
+								product_infowindow.open(map,product_marker);
+								var matching_sidebox = $('#side-display').find('#' + product_marker.metadata.id);
+								matching_sidebox[0].style.opacity = 1;	
+							}
+						}(product_marker, product_infowindow));
+
+						// When mouse-out a marker
+						google.maps.event.addListener(product_marker, 'mouseout', function(product_marker, product_infowindow) {
+							return function() {
+								product_infowindow.close();
+								var matching_sidebox = $('#side-display').find('#' + product_marker.metadata.id);
+								matching_sidebox[0].style.opacity = 0.5;	
+							}
+						}(product_marker, product_infowindow));
+			
 					}
+
+
+						
 
 
 					// When mouse-over a marker

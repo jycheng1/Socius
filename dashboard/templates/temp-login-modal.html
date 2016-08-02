@@ -1,0 +1,62 @@
+
+<div id="login-modal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+
+	        <!-- Modal header -->
+	        <div class="modal-header">
+	            <h1 class="modal-title"><b>Welcome to Socius</b></h1>
+	        </div> <!-- end modal-header -->
+
+	        <!-- Explanation of our website -->
+	        <div class="modal-body">
+	            <p><h3> body text <h3></p>
+	        </div> <!-- end explanation -->
+
+	        <!-- Login and register dialog -->
+	        <div class="modal-body">
+	          <div class="row">
+
+	            <!-- Registration form -->
+	            <div class="col-xs-6">
+	                <h3 class="form-signup-heading">Sign up</h3>
+	                <form method="post" enctype="multipart/form-data" action="{% url 'register' %}">
+	                    <!-- User info fields -->
+	                    <table class="table">
+	                    <tbody>
+	                    {% for field in userProfileForm.visible_fields %}
+	                        <tr class="col-md-3">{{field.label}} {{field}}</tr>
+	                        <div class="text-danger">{{field.errors}}</div>
+	                    {% endfor %}
+	                    {% csrf_token %}
+	                    </tbody>
+	                    </table>
+	                    <!-- Submit button -->
+	                    <button type="submit" class="btn btn-success">Register</button>
+	                </form>
+	            </div> <!-- end registration form -->
+
+	            <!-- Login form -->
+	            <div class="col-xs-6">
+	                <h3 class="form-signin-heading">Already a member?</h3>
+	                <form method="post" enctype="multipart/form-data" action="{% url 'login' %}">
+	                    <!-- Login info fields -->
+	                    <div> Username: {{form.username}} </div>
+	                    <div> Password: {{form.password}} </div>
+	                    {% csrf_token %}
+	                    <!-- Submit button -->
+	                    <button type="submit" class="btn btn-primary">Login</button>
+	                </form>
+	            </div> <!-- end login form -->
+
+	          </div> <!-- end row -->
+	        </div> <!-- end login and register dialog -->
+
+	        <!--  modal footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">	Close</button>
+			</div> <!-- end modal footer -->
+	 </div> <!-- end modal-content -->
+	  </div> <!-- end modal-dialog -->
+	</div> <!-- end modal -->

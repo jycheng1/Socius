@@ -124,6 +124,16 @@
 	</div>
 	<!-- /Product modal -->
 
+<!-- 	<div class='org-iw-content'>
+		<div class='row iw-title'>
+
+		</div>
+
+		<div class='row iw-content'>
+
+		</div>
+	</div> -->
+
 
 	<!-- Donate modal -->
 	<div id="dona-modal" class="modal fade" role="dialog">
@@ -164,6 +174,10 @@
 	</div>
 	<!-- /Donate modal -->
 
+	
+
+
+
 
 {% endblock %}
 
@@ -171,40 +185,24 @@
 {% block js %}
 	{{block.super}}
  	<!-- Google Map API -->	
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVvMEZC9f6v9E_Q6jzqXgo_gg06cuxclM&callback=initialize" async defer></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDVvMEZC9f6v9E_Q6jzqXgo_gg06cuxclM&callback=initialize" async defer></script>
+
+	<!-- // <script src="{% static 'js/infobox.js' %}"></script> -->
 
     <script src="{% static 'js/map2.js' %}"></script>
  	<script>
 
  		// list of Orgs (JSON) 
- 		var orgs = {{org_data|safe}};
+ 		var orgs = {{orgs_json|safe}};
+ 		console.log(orgs);  // Object {orgs: Array[2]}
+ 		// console.log(a.orgs);  // [Object, Object]
+ 		// console.log(a.orgs[0]); // Object {model: "dashboard.organization", pk: 1, fields: Object}
 
- 		// console.log(Object.keys(orgs[0]));
- 		// options: fields, model, pk 
- 		// phone_number,picture,site_url,name,address
-
-
- 		var products = {{product_data|safe}};
-
- 		// console.log(orgs[0]);
-
-
-
- 		// console.log(products);
-
-		// product_dic = {};
-
-		// for(var i = 0; i < organization.length; i++) {
-		// 	if(organization[i].pk == products[i].fields.organization)
-
-		// }
-
-
- 		// var d = eval(product_data);
-
- 		// $.each(product_data, function(key, value){
-
- 		// }
+ 		// console.log(a.orgs[0].fields.name);
+ 		var org_products_dic = {{org_product_json|safe}};
+ 		console.log(org_products_dic[0])
+ 		// console.log(org_products_dic[1][0].fields);
+ 		var products = {{products_json|safe}};
 
 
  	</script>

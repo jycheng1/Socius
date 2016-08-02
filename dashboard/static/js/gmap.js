@@ -1,337 +1,319 @@
-var org_data = {};
-org_data['org_name'] = 'Northside Pantry';
-org_data['org_address'] = '1601 Brighton Rd, Pittsburgh, PA 15212';
-org_data['org_phone'] = '412-323-1170';
-org_data['org_site'] = 'http://www.northsidefoodpantry.org';
 
-var org_data2 = {};
-org_data2['org_name'] = 'OSN';
-org_data2['org_address'] = '903 Watson St, Pittsburgh, PA 15219';
-org_data2['org_phone'] = '412-232-5739';
-org_data2['org_site'] = 'https://www.pittsburghmercy.org/operation-safety-net/';
-
-var orgList = [org_data, org_data2];
-
-// Google Map API 
-// initialize the map centered at Pittsburgh
-var map;
 function initialize() {
-    map = new google.maps.Map(document.getElementById('map-display'), {
+	var map;
+	var markers = []; 
+
+	// load script for infobox 
+	$.getScript("/static/js/infobox.js", function(){
+	});
+
+	// map initialize (centered at pittsburgh)
+	map = new google.maps.Map(document.getElementById('map-display'), {
 		center: new google.maps.LatLng(40.4406,-79.9959),
 		zoom: 13,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-   // Northside Pantry Marker
-	var northsideMarker = new google.maps.Marker({
-		map: map,
-		position: new google.maps.LatLng(40.4580513, -80.01634849999999),
-		title: "Northside Food Pantry"
 	});
 
-	var infowindow = new google.maps.InfoWindow({
-		content:"Northside Food Pantry"
-  	});
-	infowindow.open(map,northsideMarker);
+	// After createMarkers fx is done, 
+	createMarkers(map, markers, function() {
 
-	google.maps.event.addListener(northsideMarker, 'click', function(){
-		$('#org-modal').modal();
-		$('.modal-title').html('Northside Food Pantry');
-		$('.modal-org-img').attr('src', '/static/images/NSFP-logo.jpg');
-		$('.modal-explanation').html('The Northside Food Pantry, Pittsburgh’s largest with about 1,000 people served each month, is a progressive, nonsectarian nonprofit founded in 1982 over a Thanksgiving meal shared by three pastors of local churches.');
+		// when the map loads
+		google.maps.event.addListenerOnce(map, 'idle', function() {
+
+			// $('#org-modal').modal();
+			// $('.modal-title').html('Name');
+			// $('.modal-org-img').attr('src', 'media/img');
+
+			// $('.modal-requested-item-img').html('req item img');
+			// $('.modal-requested-item-name').html('Banana');
+			// $('.modal-request-item-count').html('3');
+
+			// $('.modal-requested-item-reasons').html('req item reasons');
+			
+
+			// $('.modal-explanation').html('Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.');
+
+
+			google.maps.event.trigger(map, 'bounds_changed');
+		});
+
+		// detect if the map screen changes 
+		google.maps.event.addListener(map, 'bounds_changed', function() {
+	 		var count = 0;
+
+			$('#side-display').empty();
+	 		var org_side_divs = document.createElement('div');
+	 		org_side_divs.id = 'org_side_divs';
+	 		var product_side_divs = document.createElement('div');
+	 		product_side_divs.id = 'product_side_divs'
+
+	 		console.log('total markers = ' + markers.length);
+
+	 		// create div for each marker 
+	  		for (var i = 0; i < markers.length; i++) {
+		  		if(map.getBounds().contains(markers[i].getPosition())) {
+		  			count++;
+
+		  			// for org markers 
+		  			if(markers[i].metadata.id.substring(0,1) == 'o') {
+
+		  				// get each marker's corresponding info-window
+		  				org_infowindow = markers[i].metadata.infowindow;
+
+		  				var org_id = markers[i].metadata.id.substring(1);
+		  				var org_obj = findObjectById(orgs, org_id);
+		  				// console.log(org_obj[0].fields);
+
+		  				var div = document.createElement('div');
+						div.id = markers[i].metadata.id;
+		  				div.className = 'side-box';
+
+		  				// Org box title
+						var org_title = document.createElement('h4');
+						org_title.innerHTML = org_obj[0].fields.name;
+						// org_title.style.color = 'white';
+						div.appendChild(org_title);
+
+						// Option 1 : have img as background
+						div.style.backgroundImage = "url("+ 'media/' + org_obj[0].fields.picture +")";
+
+						console.log('media/' + org_obj[0].fields.picture);
+
+						// Option 2 : have img box 
+						// var org_img = document.createElement('img');
+						// org_img.setAttribute('src', 'media/' + org_obj[0].fields.picture);
+						// org_img.setAttribute('width', '80');
+						// org_img.setAttribute('height', '80');
+
+						// div.appendChild(org_img);
+
+						// var learn_more = document.createElement('p');
+						// learn_more.innerHTML = 'Learn More'
+						// div.appendChild(learn_more);
+
+						sideboxEffect(map, markers[i], org_infowindow, div);
+						showOrgModal(div, org_obj);
+
+						// orgDivEffect(map, markers[i], org_infowindow, div, org_obj);
+						orgMarkerClickEffect(markers[i]);
+
+						org_side_divs.appendChild(div);
+		  			}
+
+		  			// for product markers 
+		  			else {
+
+		  				// get each marker's corresponding info-window
+		  				product_infowindow = markers[i].metadata.infowindow;
+
+		  				// get product object from the list using its id 
+		  				var product_id = markers[i].metadata.id.substring(1);
+		  				var product_obj = findObjectById(products, product_id);
+
+	  					var div = document.createElement('div');
+						div.id = markers[i].metadata.id;
+		  				div.className = 'side-box';
+
+		  				// Product box title
+						var product_title = document.createElement('h4');
+						product_title.innerHTML = product_obj[0].fields.name;
+						// org_title.style.color = 'white';
+						div.appendChild(product_title);
+
+						// console.log('hi ' + product_obj[0].fields.organization)
+
+						var product_org = document.createElement('h6');
+						// get the corresponding org object of the product
+		  				var org_obj = findObjectById(orgs, product_obj[0].fields.organization);
+
+		  				product_org.innerHTML = org_obj[0].fields.name;
+		  				div.appendChild(product_org);
+
+
+						// Option 1 : have img as background
+						div.style.backgroundImage = "url("+ 'media/' + product_obj[0].fields.picture +")";
+
+						sideboxEffect(map, markers[i], product_infowindow, div);
+						showProductModal(div, product_obj, org_obj);
+
+
+						// productDivEffect(map, markers[i], product_infowindow, div, product_obj)
+						productMarkerClickEffect(markers[i]);
+
+
+						product_side_divs.appendChild(div);
+		  			}
+	  			}  			
+	  		}
+	  		// org side boxes are always at the top
+			document.getElementById('side-display').appendChild(org_side_divs); 
+			document.getElementById('side-display').appendChild(product_side_divs); 
+
+			console.log('marker inbound count = ' + count);
+ 		});
 	});
-
-	// OSN Marker
-	var osnMarker = new google.maps.Marker({
-		map: map,
-		position: new google.maps.LatLng(40.43858400000001, -79.99146059999998),
-		title: "OSN"
-	});
-
-	var infowindow = new google.maps.InfoWindow({
-	  content:"OSN"
-  	});
-	infowindow.open(map,osnMarker);
-
-	google.maps.event.addListener(osnMarker, 'click', function(){
-		$('#org-modal').modal();
-		$('.modal-title').html('Operation Safety Net');
-		$('.modal-org-img').attr('src', '/static/images/OSN.jpg');
-		$('.modal-explanation').html('Operation Safety Net, part of the Pittsburgh Mercy Health System and Trinity Health, sponsored by the Sisters of Mercy, touches the lives of hundreds of men and women living on the streets in Pittsburgh annually by providing them with access to health care, hope, and dignity.');
-	});
-
-	// put org-boxes when map is loaded
-	google.maps.event.addListenerOnce(map, 'idle', function(){
-		// Northside pantry
-		// <div class = 'org-box'>
-		var div = document.createElement('div');
-		div.className = 'side-box';
-
-		// <h4> Northside Food Pantry</h4>
-		var org_title = document.createElement('h4');
-		org_title.innerHTML = 'Northside Food Pantry';
-		div.appendChild(org_title);
-
-		// <img src="{% static 'images/NorthsideFoodPantry.jpg'%}" />
-		var org_img = document.createElement('img');
-		// org_img.setAttribute('src', 'static/images/NorthsideFoodPantry.jpg');
-		// org_img.setAttribute('width', '300');
-		div.appendChild(org_img);
-
-		// org info 
-		// var org_info = document.createElement('p');
-		// org_info.innerHTML = '<p>Address: 1601 Brighton Rd, Pittsburgh, PA 15212</p><p>Phone: 412-323-1170</p>'; 
-		// div.appendChild(org_info);
-
-		div.style.backgroundImage="url('/static/images/NorthsideFoodPantry.jpg')";
-		// div.style.backgroundColor="transparent";
-
-		div.onmouseover=function(){
-			div.style.opacity = 1;
-		};
-
-		div.onmouseout=function() {
-			div.style.opacity = 0.5;
-		};
-
-		div.onclick=function(){
-			$('#org-modal').modal();
-			$('.modal-title').html('Northside Food Pantry');
-			$('.modal-org-img').attr('src', '/static/images/NSFP-logo.jpg');
-			$('.modal-explanation').html('The Northside Food Pantry, Pittsburgh’s largest with about 1,000 people served each month, is a progressive, nonsectarian nonprofit founded in 1982 over a Thanksgiving meal shared by three pastors of local churches.');
-		};
-
-		document.getElementById('side-display').appendChild(div); 
-
-
-		// OSN
-		// <div class = 'org-box'>
-		var div2 = document.createElement('div');
-		div2.className = 'side-box';
-
-		// <h4> OSN</h4>
-		var org_title = document.createElement('h4');
-		org_title.innerHTML = 'Operation Safety Net';
-		div2.appendChild(org_title);
-
-		// <img src="{% static 'images/NorthsideFoodPantry.jpg'%}" />
-		var org_img = document.createElement('img');
-		// org_img.setAttribute('src', 'static/images/NorthsideFoodPantry.jpg');
-		// org_img.setAttribute('width', '300');
-		div2.appendChild(org_img);
-
-		// org info 
-		// var org_info = document.createElement('p');
-		// org_info.innerHTML = '<p>Address: 903 Watson St, Pittsburgh, PA 15219</p><p>Phone: 412-232-5739</p>'; 
-		// div.appendChild(org_info);
-
-		div2.style.backgroundImage="url('/static/images/OSN.jpg')";
-
-
-		// var bgDiv = document.createElement('div');
-		// bgDiv.className = 'side-box bg';
-		// bgDiv.style.backgroundImage="url('/static/images/OSN.jpg')";
-
-		// div.appendChild(bgDiv); 
-
-		div2.onmouseover=function(){
-			div2.style.opacity = 1;
-		};
-
-		div2.onmouseout=function() {
-			div2.style.opacity = 0.5;
-		};
-
-
-		div2.onclick=function(){
-			$('#org-modal').modal();
-			$('.modal-title').html('Operation Safety Net');
-			$('.modal-org-img').attr('src', '/static/images/OSN.jpg');
-			$('.modal-explanation').html('Operation Safety Net, part of the Pittsburgh Mercy Health System and Trinity Health, sponsored by the Sisters of Mercy, touches the lives of hundreds of men and women living on the streets in Pittsburgh annually by providing them with access to health care, hope, and dignity.');
-		};
-
-		document.getElementById('side-display').appendChild(div2); 
-
-
-
-		// Banana ex
-		// <div class = 'org-box'>
-		var div3 = document.createElement('div');
-		div3.className = 'side-box';
-
-		// <h4> Banana </h4>
-		var org_title = document.createElement('h4');
-		org_title.innerHTML = 'Banana x3';
-
-		var item_from = document.createElement('p');
-		item_from.innerHTML = 'Northside Food Pantry';
-		item_from.style.fontSize='12px';
-		div3.appendChild(org_title);
-		div3.appendChild(item_from);
-
-		var org_img = document.createElement('img');
-		// org_img.setAttribute('src', 'static/images/NorthsideFoodPantry.jpg');
-		// org_img.setAttribute('width', '300');
-		div3.appendChild(org_img);
-
-		// org info 
-		// var org_info = document.createElement('p');
-		// org_info.innerHTML = '<p>Address: 1601 Brighton Rd, Pittsburgh, PA 15212</p><p>Phone: 412-323-1170</p>'; 
-		// div.appendChild(org_info);
-
-		div3.style.backgroundImage="url('/static/images/banana.jpg')";
-		// div.style.backgroundColor="transparent";
-
-		div3.onmouseover=function(){
-			div3.style.opacity = 1;
-		};
-
-		div3.onmouseout=function() {
-			div3.style.opacity = 0.5;
-		};
-
-		div3.onclick=function(){
-			$('#product-modal').modal();
-			$('.modal-title').html('Banana x3');
-			$('.modal-product-from').html('Northside Food Pantry');
-			$('.modal-org-img').attr('src', '/static/images/banana.jpg');
-			// $('.modal-explanation').html();		
-		};
-
-		document.getElementById('side-display').appendChild(div3); 
-
-
-		// Banana 2
-		// <div class = 'org-box'>
-		var div4 = document.createElement('div');
-		div4.className = 'side-box';
-
-		// <h4> Banana </h4>
-		var org_title = document.createElement('h4');
-		org_title.innerHTML = 'Banana x5';
-
-		var item_from = document.createElement('p');
-		item_from.innerHTML = 'Operation Safety Net';
-		item_from.style.fontSize='12px';
-		div4.appendChild(org_title);
-		div4.appendChild(item_from);
-
-		var org_img = document.createElement('img');
-		// org_img.setAttribute('src', 'static/images/NorthsideFoodPantry.jpg');
-		// org_img.setAttribute('width', '300');
-		div4.appendChild(org_img);
-
-		// org info 
-		// var org_info = document.createElement('p');
-		// org_info.innerHTML = '<p>Address: 1601 Brighton Rd, Pittsburgh, PA 15212</p><p>Phone: 412-323-1170</p>'; 
-		// div.appendChild(org_info);
-
-		div4.style.backgroundImage="url('/static/images/banana.jpg')";
-		// div.style.backgroundColor="transparent";
-
-		div4.onmouseover=function(){
-			div4.style.opacity = 1;
-		};
-
-		div4.onmouseout=function() {
-			div4.style.opacity = 0.5;
-		};
-
-		div4.onclick=function(){
-			$('#product-modal').modal();
-			$('.modal-title').html('Banana x3');
-			$('.modal-product-from').html('Northside Food Pantry');
-			$('.modal-org-img').attr('src', '/static/images/banana.jpg');
-			// $('.modal-explanation').html();		
-		};
-
-		document.getElementById('side-display').appendChild(div4); 
-
-
-	});
-
-
-
-
-
-
-
-
-	// // on click, move the thing up to the top 
-	// google.maps.event.addListener(northsideMarker, 'click', function() {
-
-	
-	// });
-
-
 }
-
-
-
-// function create_org_box() {
-// 	// <div class = 'org-box'>
-// 	var div = document.createElement('div');
-// 	div.className = 'org-box';
-
-// 	// <h4> Northside Food Pantry</h4>
-// 	var org_title = document.createElement('h4');
-// 	org_title.innerHTML = 'Northside Pantry';
-// 	div.appendChild(org_title);
-
-// 	// <img src="{% static 'images/NorthsideFoodPantry.jpg'%}" />
-// 	var org_img = document.createElement('img');
-// 	// org_img.setAttribute('src', 'static/images/NorthsideFoodPantry.jpg');
-// 	// org_img.setAttribute('width', '300');
-// 	div.appendChild(org_img);
-
-// 	// org info 
-// 	var org_info = document.createElement('p');
-// 	org_info.innerHTML = 'Address: 1601 Brighton Rd, Pittsburgh, PA 15212,Phone: 412-323-1170'; 
-// 	div.appendChild(org_info);	
-
-// }
-
-
-
- 
-
-
-
-// Geocoder example
- // var geocoder = new google.maps.Geocoder();
- //    // Northside Pantry
- //    geocoder.geocode({'address': '1601 Brighton Rd, Pittsburgh, PA 15212'}, function(results, status) {
-	// 	if (status == google.maps.GeocoderStatus.OK) {
-	// 		npMarker = new google.maps.Marker({
-	// 			map: map,
-	// 			position: results[0].geometry.location,
-	// 			title: 'Northside Pantry'
-	// 		});
-	// 	}
-	// 	else {
-	// 		alert("Geocode was not successful for the following reason: " + status);
-	// 	}
-	// });
-
-
- //    var allMarkers = [];
- //    var places = [];
-	// // Adding a LatLng object for each location
-	// for(i = 0; i < orgList.length; i++) {
-	// 	var geocoder = new google.maps.Geocoder();
-	// 	orgName = orgList[i].org_name;
-	// 	geocoder.geocode({'address': orgList[i].org_address}, function(results, status) {
-	// 		if (status == google.maps.GeocoderStatus.OK) {
-	// 			allMarkers[i] = new google.maps.Marker({
-	// 				map: map,
-	// 				position: results[0].geometry.location,
-	// 				title: orgName
-	// 			});
 	
-	// 			places.push(results[0].geometry.location);
-	// 		} 
-	// 		else {
-	// 			alert("Geocode was not successful for the following reason: " + status);
-	// 		}
-	// 	});
-	// }
 
+
+
+
+// Create markers for organizations and products ('callback' ensures this gets called first)
+function createMarkers(map, markers, callback) {
+
+	var product_positions_x = [40.459682814784514, 40.45524190247083, 40.444660899319274, 40.452172, 40.467193, 40.457462, 40.44146];
+	var product_positions_y = [-80.00989392399788, -80.02259686589241, -79.99564602971077, -80.000811, -80.007849, -79.995232, -79.997377];
+
+	console.log('create markers fx entered');
+
+
+	// Geocoder 
+	var geocoder = new google.maps.Geocoder();
+
+	// console.log(orgs[i].fields);
+	// options: fields, model, pk 
+	// phone_number,picture,site_url,name,address
+
+	// loop through organizations 
+	for(var i = 0; i < orgs.length; i++) {
+		(function(i) {
+	 		geocoder.geocode({'address':  orgs[i].fields.address}, function(results, status) {
+	 			if (status == google.maps.GeocoderStatus.OK) {
+
+	 				var marker_img = {
+	 					url : '/static/images/house.png',
+	 					scaledSize : new google.maps.Size(30,30)
+	 				}
+
+	 				// create marker for each org 
+					var marker = new google.maps.Marker({
+						map: map,
+						icon: marker_img,
+						position: results[0].geometry.location	
+					});
+
+					markers.push(marker);
+
+					var iwContent = "<div class='iw-container'><div class='iw-title'>" + orgs[i].fields.name + "</div></div>";
+
+					// style infowindow as infobox
+					var infowindow = new InfoBox({
+					    content: iwContent, 
+					    disableAutoPan: false,
+					    maxWidth: 150,
+					    pixelOffset: new google.maps.Size(-75, -70),
+					    zIndex: null,
+					    boxStyle: {
+					                // background: "url('http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/examples/tipbox.gif') no-repeat",
+					                opacity: 0.75,
+					                width: "150px",
+					        },
+					    closeBoxMargin: "12px 4px 2px 2px",
+					    closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+					    infoBoxClearance: new google.maps.Size(1, 1)
+					});
+
+
+					// add org id (o1, o2, ...) and infowindow to its marker  
+					marker.metadata = {id: 'o' + orgs[i].pk, infowindow: infowindow};
+
+
+					for(var j = 0; j < products.length; j++) {
+						if(orgs[i].pk == products[j].fields.organization) {
+							var product_pos = new google.maps.LatLng(product_positions_x[j], product_positions_y[j]);
+
+
+			 				var product_marker_img = {
+			 					url : 'media/' + products[j].fields.picture, 
+			 					// url : '/static/images/pink-balloon.png',
+// 
+			 					scaledSize : new google.maps.Size(40,40)
+			 				}
+
+							var product_marker = new google.maps.Marker({
+								map: map,
+								icon: product_marker_img,
+								position: product_pos
+							});
+						
+							markers.push(product_marker);
+						
+							var iwContent = "<div class='iw-container'><div class='iw-title'>" + products[j].fields.name + "</div></div>";
+
+							// style infowindow as infobox
+							var product_infowindow = new InfoBox({
+							    content: iwContent, 
+							    disableAutoPan: false,
+							    maxWidth: 150,
+							    pixelOffset: new google.maps.Size(-75, -80),
+							    zIndex: null,
+							    boxStyle: {
+							                // background: "url('http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/examples/tipbox.gif') no-repeat",
+							                opacity: 0.75,
+							                width: "150px"
+							        },
+							    closeBoxMargin: "12px 4px 2px 2px",
+							    closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+							    infoBoxClearance: new google.maps.Size(1, 1)
+							});
+
+
+
+							// // create info window for each marker
+							// var product_infowindow = new google.maps.InfoWindow({
+							// 	content: products[j].fields.name
+						 //  	});
+
+							// add product id (p1, p2, ...) and infowindow to its marker 
+							product_marker.metadata = {id: 'p' + products[j].pk, infowindow: product_infowindow};
+
+							// When mouse-over a marker
+							google.maps.event.addListener(product_marker, 'mouseover', function(product_marker, product_infowindow) {
+								return function() {
+									product_infowindow.open(map,product_marker);
+									var matching_sidebox = $('#side-display').find('#' + product_marker.metadata.id);
+									matching_sidebox[0].style.opacity = 1;	
+								}
+							}(product_marker, product_infowindow));
+
+							// When mouse-out a marker
+							google.maps.event.addListener(product_marker, 'mouseout', function(product_marker, product_infowindow) {
+								return function() {
+									product_infowindow.close();
+									var matching_sidebox = $('#side-display').find('#' + product_marker.metadata.id);
+									matching_sidebox[0].style.opacity = 0.5;	
+								}
+							}(product_marker, product_infowindow));
+						}
+					}
+
+
+					// When mouse-over a marker
+					google.maps.event.addListener(marker, 'mouseover', function(marker, infowindow) {
+						return function() {
+							infowindow.open(map,marker);
+							var matching_sidebox = $('#side-display').find('#' + marker.metadata.id);
+							matching_sidebox[0].style.opacity = 1;	
+						}
+					}(marker, infowindow));
+
+					// When mouse-out a marker
+					google.maps.event.addListener(marker, 'mouseout', function(marker, infowindow) {
+						return function() {
+							infowindow.close();
+							var matching_sidebox = $('#side-display').find('#' + marker.metadata.id);
+							matching_sidebox[0].style.opacity = 0.5;	
+						}
+					}(marker, infowindow));
+	 			}
+
+	 			else {
+					alert("Geocode was not successful for the following reason: " + status);
+	 			}
+	 		});
+		})(i);
+
+	}
+
+	callback();
+}

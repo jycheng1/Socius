@@ -1,12 +1,17 @@
 from django import forms
 from dashboard.models import *
+from voices.models import Product
+
+
 
 # basic user information form for login
 class UserProfileForm(forms.ModelForm):
+	prefix = 'reg'
 	class Meta: 
 		model = UserProfile
-		exclude = ('user',)
+		exclude = ('user','user_type')
 		widgets = {'picture' : forms.FileInput()}
+		
 	password1 = forms.CharField(max_length = 30, 
 								label = 'Password',
 								widget = forms.PasswordInput())
@@ -31,26 +36,25 @@ class UserProfileForm(forms.ModelForm):
 		return password2
 
 
-# basic request form 
-class RequestForm(forms.ModelForm):
-	class Meta:
-		model = Request
-		exclude = ()
+# # basic request form 
+# class RequestForm(forms.ModelForm):
+# 	class Meta:
+# 		model = Request
+# 		exclude = ()
 
 
 # organization form 
 class OrganizationForm(forms.ModelForm):
+	prefix = 'org'
 	class Meta: 
 		model = Organization
-		exclude = ()
+		exclude = ('userProfile',)
 		widgets = {'picture' : forms.FileInput()}
 
-		# phone_number = forms.RegexField(regex=r'^\+?1?\d{9,15}$', 
-  #                               error_message = ("Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."))
 
 
 class ProductForm(forms.ModelForm):
 	class Meta:
 		model = Product
-		exclude = ()
+		exclude = ('quantity','organization',)
 		widgets = {'picture' : forms.FileInput()}
