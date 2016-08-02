@@ -1,3 +1,6 @@
 option_settings:
-	aws:elasticbeanstalk:container:python:
-		WSGIPath: 
+  "aws:elasticbeanstalk:application:environment":
+    DJANGO_SETTINGS_MODULE: "webapps.settings"
+    PYTHONPATH: "$PYTHONPATH"
+  "aws:elasticbeanstalk:container:python":
+    WSGIPath: "webapps/wsgi.py" 
