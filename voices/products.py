@@ -1,5 +1,6 @@
 # allProducts contains all the prodcuts that we initially wish to display
 from voices.models import *
+from dashboard.models import * 
 
 allProducts = [ # [product's name, image source, type]
 ['Onions', '../../../static/image/onion.jpeg', 'produce'],
@@ -54,6 +55,19 @@ allProducts = [ # [product's name, image source, type]
 
 ]
 
+
+# class Organization(models.Model):
+# 	name = models.CharField(max_length = 100)
+# 	address = models.CharField(max_length = 100)
+# 	phone_number = models.IntegerField()
+# 	site_url = models.URLField()
+# 	picture = models.ImageField(upload_to = "photos/org", blank = True, null = True)
+
+
+
+org = Organization.objects.get(pk=1)
+org.save()
+
 for prod in allProducts:
-    temp = Products(prodName=prod[0], prodImg=prod[1], prodType=prod[2])
+    temp = Product(name=prod[0], picture=prod[1], prodType=prod[2], organization = org)
     temp.save()

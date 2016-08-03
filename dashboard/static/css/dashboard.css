@@ -151,6 +151,73 @@ button.modal-close-button {
 }
 
 
+.auth-content {
+	/*padding: 0 250px;*/
+	width: 560px;
+	position: relative;
+	margin: auto;
+	/*background-color: yellow;*/
+}
+
+.auth-welcome {
+	font-size: 30px;
+	font-weight:900;
+	text-align: center;
+	padding: 20px 0;
+}
+.auth-explanation {
+	color: gray;
+	font-size: 20px;
+	padding: 0 0 15px;
+}
+
+
+
+.gm-style-iw {
+   width: 250px !important;
+   top: 0 !important;
+   left: 0 !important;
+   background-color: #fff;
+   box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+   border: 1px solid rgba(72, 181, 233, 0.6);
+   border-radius: 2px;
+}
+
+
+.iw-container  .iw-title {
+   font-family: 'Open Sans Condensed', sans-serif;
+   width: 100%;
+   font-size: 12px;
+   font-weight: 400;
+   padding: 10px;
+   background-color: #48b5e9;
+   color: white;
+   margin: 1px;
+   border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
+}
+
+/*#iw-container  .iw-title {
+   font-family: 'Open Sans Condensed', sans-serif;
+   font-size: 22px;
+   font-weight: 400;
+   padding: 10px;
+   background-color: #48b5e9;
+   color: white;
+   margin: 1px;
+   border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
+/*}*/
+
+
+/*
+.gm-style-iw {
+   width: 350px !important;
+   top: 0 !important;
+   left: 0 !important;
+   border-radius: 2px 2px 0 0;
+}*/
+
+
+
 /*.bg { 
 	position: absolute;
 	z-index: -1;

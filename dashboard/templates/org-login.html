@@ -7,25 +7,35 @@
 <div class='auth-content'>
 
 	<div class='auth-welcome'>
-		Welcome to Socius
+		Organization
 	</div>
 	<div class='auth-explanation'>
-		Sign up to help people around your neighborhood.
+		Register or login to view your organization page. 
 	</div>
-	<h4> If you are organization staff, <a href= "{% url 'org-login' %}">click here</a> to register your organization.</h4>
 
 	<div class="row">
 		<!-- Registration form -->
 		<div class="col-xs-6">
-		    <h3 class="form-signup-heading">Sign up</h3>
-		    <form method="post" enctype="multipart/form-data" action="{% url 'register' %}">
+		    <h3 class="form-signup-heading">Register Organization</h3>
+		    <form method="post" enctype="multipart/form-data" action="{% url 'org_user_register' %}">
 		        <!-- User info fields -->
 		        <table class="table">
+		        <div style='color:blue'> User Information</div> 
 		        <tbody>
-		        {% for field in userProfileForm.visible_fields %}
-		            <tr class="col-md-3">{{field.label}} {{field}}</tr>
-		            <div class="text-danger">{{field.errors}}</div>
+		        {% for u_field in userProfileForm.visible_fields %}
+		            <tr class="col-md-3">{{u_field.label}} {{u_field}}</tr>
+		            <div class="text-danger">{{u_field.errors}}</div>
 		        {% endfor %}
+ 				</tbody>
+		        </table>
+ 	            <table class="table">
+ 	           	<div style='color:blue'> Organization Information </div>
+		        <tbody>
+		        {% for o_field in orgForm.visible_fields %}
+		            <tr class="col-md-3">{{o_field.label}} {{o_field}}</tr>
+		            <div class="text-danger">{{o_field.errors}}</div>
+		        {% endfor %}
+
 		        {% csrf_token %}
 		        </tbody>
 		        </table>
@@ -42,9 +52,7 @@
 		    	<table>
 				<tr>
 				    <td>Username</td>
-				    <td>
-				    	{{form.username}}
-    				</td>
+				    <td>{{form.username }}</td>
 				</tr>
 				<tr>
 				    <td>Password</td>
@@ -78,4 +86,3 @@
 	</script>
  -->
 {% endblock %}   
-

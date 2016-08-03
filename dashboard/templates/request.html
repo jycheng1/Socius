@@ -31,20 +31,33 @@
 	{% if requests %}
 	{% for request in requests reversed %}
 		<h4>Request {{request.id}}</h4>
-		<p>
-		{{request.requester_firstname}}
-		{{request.requester_lastname}}
-		</p>
 		<p style = 'color:blue'>
-		{{request.date}}
+		{{request.requestDate}}
+
+<!-- requestDate = models.DateTimeField(auto_now_add=True)
+    request1 = models.CharField(max_length=100)
+    request2 = models.CharField(max_length=100, default="", null=True, blank=True)
+    request3 = models.CharField(max_length=100, default="", null=True, blank=True)
+    why1 = models.CharField(max_length=200, default="", null=True, blank=True)
+    why2 = models.CharField(max_length=200, default="", null=True, blank=True)
+    why3 = models.CharField(max_length=200, default="", null=True, blank=True)
+    satisfaction = models.CharField(max_length=50, default="", null=True, blank=True)
+    additionalItems = models.CharField(max_length=400, default="", null=True, blank=True)
+    ethnicity = models.CharField(max_length=50, default="", null=True, blank=True)
+    zipcode = models.CharField(max_length=6, default="", null=True, blank=True)
+    birthday = models.CharField(max_length=50, default="", null=True, blank=True)
+    gender = models.CharField(max_length=20, default="", null=True, blank=True)
+    diet = models.CharField(max_length=100, default="", null=True, blank=True)
+    religiousDiet = models.CharField(max_length=100, default="", null=True, blank=True)
+ -->
+
+
 		</p>
 		<p> Requested items: 
-		{{request.item1}}
-		{{request.item2}}
-		{{request.item3}}
+		{{request.request1}} / {{request.request2}} / {{request.request3}}
 		</p>
-		<p> Reason: 
-		{{request.reason}}
+		<p> Reasons: 
+		{{request.why1}} / 	{{request.why2}} / {{request.why3}}
 		</p>	
 		================================
 	{% endfor %}

@@ -106,8 +106,8 @@ USE_L10N = True
 USE_TZ = True
 
 
-# LOGIN_URL = '/socius/login'
-# LOGIN_REDIRECT_URL = '/socius/'
+LOGIN_URL = '/socius/dashboard/login'
+LOGIN_REDIRECT_URL = '/socius/dashboard'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/

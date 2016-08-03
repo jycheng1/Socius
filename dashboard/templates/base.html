@@ -30,19 +30,29 @@
 			    </div>
 				<div class = 'collapse navbar-collapse' id = 'right-bar'> 	  	
 		 			<ul class="nav navbar-nav navbar-right">
+
+		 				<!-- If user is logged in -->
 						{% if request.user.is_authenticated %}
 		 				<li><a href="{% url 'profile' request.user.username %}"> Profile </a></li>
+
+		      			<!-- Checking user type. Display Org button iff user type is 'O' -->
+		 				{% if userProfile.user_type == 'O' %}
+					      	<li><a href="{% url 'org_page' %}">Org</a></li>
+    	  					<li><a href="{% url 'product_register' %}">Product Register</a></li>
+					      	<li><a href="{% url 'voices:index' %}">Voices</a></li>
+
+    	  				{% endif %}
+
 		      			<li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-
+				    
+    	  				<!-- If user is not logged in -->
 						{% else %}
-				      	<li><a href="{% url 'login' %}">Login</a></li>
+				      	<li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      					<!-- <li><a href="{% url 'org-login' %}">for org users</a></li> -->
 						{% endif %}
-	      				<li><a href="{% url 'request' %}">Request</a></li>
 
-      					<li><a href="{% url 'org_register' %}">Org Register</a></li>
-      					<li><a href="{% url 'product_register' %}">Product Register</a></li>
-
-						<!-- glyphicon glyphicon-heart -->
+	      				<!-- <li><a href="{% url 'request' %}">Request</a></li> -->
+      					
 					</ul>
 				</div>
 				<!-- /Top Menu Items -->

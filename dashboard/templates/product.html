@@ -33,7 +33,9 @@
 	{% if products %}
 	{% for product in products reversed %}
 		<h3>Product {{product.id}}</h3>
-		<h4 style='color:blue'> {{product.organization}} </h4>
+		<h4 style='color:blue'> {{product.organization.name}} </h4>
+		<p>Type: {{product.get_product_type_display}}</p>
+		<p>Quantity: {{product.quantity}}</p>
 		<p>
 		{{product.name}}
 		

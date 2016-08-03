@@ -1,4 +1,5 @@
 from django.db import models
+from dashboard.models import Organization
 
 class Request(models.Model):
     requestDate = models.DateTimeField(auto_now_add=True)
@@ -28,13 +29,34 @@ class Request(models.Model):
 
 
 
-class Products(models.Model):
-    prodName = models.CharField(max_length=100, default=None, blank=True, null=True)
-    prodImg = models.CharField(max_length=400, default=None, blank=True, null=True)
-    prodType = models.CharField(max_length=400, default=None, blank=True, null=True)    
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    prod_type_choices = (
+        ('FP', 'Fresh Produce'),
+        ('CS', 'Canned Goods & Soup'),
+        ('BM', 'Boxed Meals'),
+        ('GR', 'Grains, Rice, Beans'),
+        ('HE', 'Household Essentials'),
+        ('CL', 'Clothing'),
+        ('O', 'Others')
+    )
+    product_type = models.CharField(max_length=2, choices = prod_type_choices)
+    picture = models.ImageField(upload_to='photos/product', blank=True, null=True)
+    organization = models.ForeignKey(Organization, related_name = 'products')
+    quantity = models.IntegerField(default = 0)
 
-    def __str__(self):
-        return self.prodName + ' - ' + str(self.prodType)
+    def __unicode__(self):
+        return self.name + ' - ' + self.prodType + ' - org: ' + self.organization.name
+
+
+
+# class Products(models.Model):
+#     prodName = models.CharField(max_length=100, default=None, blank=True, null=True)
+#     prodImg = models.CharField(max_length=400, default=None, blank=True, null=True)
+#     prodType = models.CharField(max_length=400, default=None, blank=True, null=True)    
+
+#     def __str__(self):
+#         return self.prodName + ' - ' + str(self.prodType)
 
 class Donations(models.Model):
     donationDate = models.DateTimeField(auto_now_add=True)

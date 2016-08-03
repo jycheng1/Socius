@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
 
 {% block content %}
-<div class = "panel" id = "profile_panel">
-<div class = "panel-heading gray-background" style="padding-top:30px"> 
-	<div class="row"> 
+<link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}"/>
+
+<div class = 'profile-content'> 
+	<div class="row userProfile-row"> 
 		<div class="col-sm-2">
 		{% if userProfile.picture %}
-			<img src = "socius/dashboard/media/{{userProfile.picture}}" width = "150px" height = "150px">
+			<img src = "/socius/dashboard/media/{{userProfile.picture}}" width = "150px" height = "150px">
 		{% endif %}
 		</div>
 		<div class="col-sm-8">	
@@ -20,7 +22,29 @@
 			</div>
 
 		</div>
-	</div>
+	</div> 
+	{% if org %}
+	<div class="row org-row"> 
+		<h4 style='padding-left:15px;color:green;'>Your Organization</h4>
+		<div class="col-sm-2">
+		{% if org.picture %}
+			<img src = "/socius/dashboard/media/{{org.picture}}" width = "150px" height = "150px" style='border: 1px solid black'>
+		{% endif %}
+		</div>
+		<div class="col-sm-8">	
+			<h3><b>{{ org.name }} </b></h3>
+			<h5> Address: {{org.address}} </h5>
+			<h5> Phone number: {{org.phone_number}}</h5>
+			<h5> Site URL: <a href='{{org.site_url}}'>{{org.site_url}}</a></h5>
+		</div>
+		<div class="col-sm-2">
+			<div>
+				<a href = "#"> Update Info </a>
+			</div>
+
+		</div>
+	</div> 
+	{% endif %}
 </div>
 
 {% endblock %}

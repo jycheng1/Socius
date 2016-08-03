@@ -2,10 +2,16 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.template import loader
+
+from dashboard.models import *
 from voices.models import *
 from voices.forms import * 
 from django.shortcuts import render_to_response
 from formtools.wizard.views import SessionWizardView
+from django.db.models import F
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+
 import logging
 import json
 import sys
@@ -13,22 +19,47 @@ from datetime import datetime
 logr = logging.getLogger(__name__)
 
 
+
+# check if the current user type is Org User
+def org_check(user):
+    userProfile = UserProfile.objects.get(username = user.username)
+
+    return userProfile.user_type == "O"
+
+
+@login_required
+@user_passes_test(org_check)
 def index(request):
     template = loader.get_template('voices/index.html')
     context = {}
     return render(request, 'voices/index.html', context)
 
+
+@login_required
+@user_passes_test(org_check)
 def items(request):
+
+    userProfile = UserProfile.objects.get(username = request.user.username)
+    org = userProfile.org
     
+    produce = Product.objects.filter(organization = org, product_type="FP")
+    canned = Product.objects.filter(organization = org, product_type="CS")
+    boxed = Product.objects.filter(organization = org, product_type="BM")
+    grains = Product.objects.filter(organization = org, product_type="GR")
+    household = Product.objects.filter(organization = org, product_type="HE")
+    clothing = Product.objects.filter(organization = org, product_type="CL")
+
+    context = {'produce': produce,
+                'canned': canned,
+                'boxed': boxed,
+                'grains': grains,
+                'household': household,
+                'clothing': clothing}
+
+
     if request.method == 'POST':
-        
-        produce = Products.objects.filter(prodType="produce")
-        canned = Products.objects.filter(prodType="canned")
-        boxed = Products.objects.filter(prodType="boxed")
-        grains = Products.objects.filter(prodType="grainsBeans")
-        household = Products.objects.filter(prodType="household")
-        clothing = Products.objects.filter(prodType="clothing")
         satisfactionData = request.POST.get('faceChosen')
+<<<<<<< HEAD
         context = {'satisfactionData': satisfactionData,
                    'produce': produce,
                    'canned': canned,
@@ -56,8 +87,54 @@ def items(request):
                    'clothing': clothing}
 
         return render(request, 'voices/items.html', context)
+=======
+        context['satisfactionData'] = satisfactionData
 
 
+    template = loader.get_template('voices/items.html')
+>>>>>>> bf70dac06538f4b179443bda3adbd2b7bfd068e7
+
+    return HttpResponse(template.render(context, request))
+
+    #     produce = Product.objects.filter(product_type="FP")
+    #     canned = Product.objects.filter(product_type="CS")
+    #     boxed = Product.objects.filter(product_type="BM")
+    #     grains = Product.objects.filter(product_type="GR")
+    #     household = Product.objects.filter(product_type="HE")
+    #     clothing = Product.objects.filter(product_type="CL")
+    #     satisfactionData = request.POST.get('faceChosen')
+    #     template = loader.get_template('voices/items.html')
+    #     context = {'satisfactionData': satisfactionData,
+    #                'produce': produce,
+    #                'canned': canned,
+    #                'boxed': boxed,
+    #                'grains': grains,
+    #                'household': household,
+    #                'clothing': clothing
+    #            }
+
+    #     return HttpResponse(template.render(context, request))
+
+    # else:
+    #     produce = Product.objects.filter(product_type="FP")
+    #     canned = Product.objects.filter(product_type="CS")
+    #     boxed = Product.objects.filter(product_type="BM")
+    #     grains = Product.objects.filter(product_type="GR")
+    #     household = Product.objects.filter(product_type="HE")
+    #     clothing = Product.objects.filter(product_type="CL")
+
+    #     template = loader.get_template('voices/items.html')
+    #     context = {'produce': produce,
+    #                'canned': canned,
+    #                'boxed': boxed,
+    #                'grains': grains,
+    #                'household': household,
+    #                'clothing': clothing}
+
+    #     return HttpResponse(template.render(context, request))
+
+@login_required
+@user_passes_test(org_check)
 def cart(request):
     if request.method == 'POST':
         chosen = request.POST.getlist('ab[]')
@@ -69,7 +146,7 @@ def cart(request):
         itemsDict = dict()
 
         for i in range(len(chosen)):
-            chosenObj.append(Products.objects.get(pk=chosen[i]))
+            chosenObj.append(Product.objects.get(pk=chosen[i]))
 
         for i in range(len(chosen)):
             itemsDict[Products.objects.get(pk=chosen[i])] = why[i]
@@ -87,6 +164,8 @@ def cart(request):
         context = {}
         return render(request, 'voices/cart.html', context)
 
+@login_required
+@user_passes_test(org_check)
 def thanks(request):
     if request.method == 'POST':
         chosen = request.POST.getlist('selected[]')
@@ -103,12 +182,14 @@ def thanks(request):
 
         reqFin = Request()
         for i in range(len(chosen)):
+            Product.objects.filter(pk=chosen[i]).update(quantity=F('quantity') + 1)
+            product = Product.objects.get(pk=chosen[i])
             if i == 0:
-                reqFin.request1 = Products.objects.get(pk=chosen[i]).prodName
+                reqFin.request1 = product.name
             elif i == 1:
-                reqFin.request2 = Products.objects.get(pk=chosen[i]).prodName
+                reqFin.request2 = product.name
             elif i == 2:
-                reqFin.request3 = Products.objects.get(pk=chosen[i]).prodName
+                reqFin.request3 = product.name
 
         for i in range(len(why)):
             if i == 0:
@@ -150,7 +231,8 @@ def thanks(request):
         context = {}
         return render(request, 'voices/thanks.html', context)
 
-
+@login_required
+@user_passes_test(org_check)
 def satisfaction(request):
     template = loader.get_template('voices/satisfaction.html')
     context = {}
