@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^socius/dashboard/', include('dashboard.urls')),
     url(r'^socius/voices/', include('voices.urls')),
     url(r'^socius/requestList/', include('requestList.urls')),
+    url(r'^socius/review/', include('review.urls')),
 ]

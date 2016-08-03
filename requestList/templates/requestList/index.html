@@ -1,9 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  {% load staticfiles %}
+  <script src="{% static 'js/jquery.js' %}"></script>
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+</head>
 <body>
 
+<input class="search" placeholder="Search" />
+<button class="sort" data-sort="name">
+  Sort by Item 1
+</button>
+
+<!--
+  <form>
+    {% csrf_token %}
+    <select name="sort" id="sortRequest" onchange="sortR(this.value)">
+      <option value="requestDate">Date (oldest to newest)</option>
+      -->
+      <!-- <option value="requestDate DESC">Date (newest to oldest)</option> 
+      <option value="request1">Item 1</option>
+    <option value="request2">Item 2</option> -->
+    <!--
+    </select>
+    <br>
+  </form>
+  -->
+
+<table align="left"
+cellspacing="5" cellpadding="8">
+<tr><td align="left"><b>Request Date</b></td>
+<td align="left"><b>Item 1</b></td>
+<td align="left"><b>Item 2</b></td>
+<td align="left"><b>Item 3</b></td>
+<td align="left"><b>Reason for choosing Item 1</b></td>
+<td align="left"><b>Reason for choosing Item 2</b></td>
+<td align="left"><b>Reason for choosing Item 3</b></td>
+<td align="left"><b>Satisfaction</b></td>
+<td align="left"><b>Additional Requests</b></td>
+<td align="left"><b>Ethnicity</b></td>
+<td align="left"><b>Zipcode</b></td>
+<td align="left"><b>Birthday</b></td>
+<td align="left"><b>Gender</b></td>
+<td align="left"><b>Dietary Restrictions</b></td>
+<td align="left"><b>Religious Restrictions</b></td>
+
+<div id="users">
+<tbody class="list">
 {% if allRequests %}
+  {% for elem in allRequests %}
+  <tr>
+    <td class="date" align="left"> {{ elem.requestDate }} </td>
+    <td class="request1" align="left"> {{ elem.request1 }} </td>
+    <td class="request2" align="left"> {{ elem.request2 }} </td>
+    <td class="request3" align="left"> {{ elem.request3 }} </td>
+    <td align="left"> {{ elem.why1 }} </td>
+    <td align="left"> {{ elem.why2 }} </td>
+    <td align="left"> {{ elem.why3 }} </td>
+    <td align="left"> {{ elem.satisfaction }} </td>
+    <td align="left"> {{ elem.additionalItems }} </td>
+    <td align="left"> {{ elem.ethnicity }} </td>
+    <td align="left"> {{ elem.zipcode }} </td>
+    <td align="left"> {{ elem.birthday }} </td>
+    <td align="left"> {{ elem.gender }} </td>
+    <td align="left"> {{ elem.diet }} </td>
+    <td align="left"> {{ elem.religiousDiet }} </td>
+
+  </tr>
+  {% endfor %}
 {% endif %}
+</tbody>
+</table>
+</div>
+
+
+ 
+  <script src="{% static 'js/list.js' %}"></script>
+  <script src="{% static 'js/sortRequests.js' %}"></script>
 
 </body>
 </html>

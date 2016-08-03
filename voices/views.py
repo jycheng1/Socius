@@ -12,16 +12,11 @@ import sys
 from datetime import datetime
 logr = logging.getLogger(__name__)
 
-'''
-TEMPLATES = { "voices" : "voices/items.html",
-              "cart" : "voices/cart.html"
-            }
-'''
 
 def index(request):
     template = loader.get_template('voices/index.html')
     context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'voices/index.html', context)
 
 def items(request):
     
@@ -34,7 +29,6 @@ def items(request):
         household = Products.objects.filter(prodType="household")
         clothing = Products.objects.filter(prodType="clothing")
         satisfactionData = request.POST.get('faceChosen')
-        template = loader.get_template('voices/items.html')
         context = {'satisfactionData': satisfactionData,
                    'produce': produce,
                    'canned': canned,
@@ -44,7 +38,7 @@ def items(request):
                    'clothing': clothing
                }
 
-        return HttpResponse(template.render(context, request))
+        return render(request, 'voices/items.html', context)
 
     else:
         produce = Products.objects.filter(prodType="produce")
@@ -54,7 +48,6 @@ def items(request):
         household = Products.objects.filter(prodType="household")
         clothing = Products.objects.filter(prodType="clothing")
 
-        template = loader.get_template('voices/items.html')
         context = {'produce': produce,
                    'canned': canned,
                    'boxed': boxed,
@@ -62,7 +55,7 @@ def items(request):
                    'household': household,
                    'clothing': clothing}
 
-        return HttpResponse(template.render(context, request))
+        return render(request, 'voices/items.html', context)
 
 
 def cart(request):
@@ -73,22 +66,26 @@ def cart(request):
         suggestedItems = request.POST.get('suggestions')
        
         chosenObj = []
+        itemsDict = dict()
 
         for i in range(len(chosen)):
             chosenObj.append(Products.objects.get(pk=chosen[i]))
 
-        template = loader.get_template('voices/cart.html')
-        context = {'prodChosen': chosenObj,
+        for i in range(len(chosen)):
+            itemsDict[Products.objects.get(pk=chosen[i])] = why[i]
+
+
+        context = {'itemsDict' : itemsDict,
+                   'prodChosen': chosenObj,
                    'why': why,
                    'suggestions': suggestedItems,
                    'satisfactionData': satisfactionData,
                    }
 
-        return HttpResponse(template.render(context, request))
+        return render(request, 'voices/cart.html', context)
     else:
-        template = loader.get_template('voices/cart.html')
         context = {}
-        return HttpResponse(template.render(context, request))
+        return render(request, 'voices/cart.html', context)
 
 def thanks(request):
     if request.method == 'POST':
@@ -144,21 +141,20 @@ def thanks(request):
 
         # print(reqFin.zipcode, file=sys.stderr)
 
-        template = loader.get_template('voices/thanks.html')
         context = {'thanks': 'Thank you for your time'
                    }
 
-        return HttpResponse(template.render(context, request))
+        return render(request, 'voices/thanks.html', context)
     else:
         template = loader.get_template('voices/thanks.html')
         context = {}
-        return HttpResponse(template.render(context, request))
+        return render(request, 'voices/thanks.html', context)
 
 
 def satisfaction(request):
     template = loader.get_template('voices/satisfaction.html')
     context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'voices/satisfaction.html', context)
     
 
 

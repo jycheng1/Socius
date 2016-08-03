@@ -8,6 +8,7 @@ from django.conf import settings
 from dashboard import views
 from dashboard import forms
 
+
 urlpatterns = [
 	# url(r'^admin/', admin.site.urls),
 	url(r'^$', views.dashboard, name = 'dashboard'),

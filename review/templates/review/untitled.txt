@@ -1,0 +1,20 @@
+<!--
+                        <li>
+                            <a href="{% url 'review:tables' %}"><i class="fa fa-table fa-fw"></i> Tables<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{% url 'review:requestTable' %}">Request Table</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'review:donationTable' %}">Donation Table</a>
+                                </li>
+                            </ul>
+                            
+                            <!-- /.nav-second-level -->
+                        
+                        </li>
+                        
+
+                        <li>
+                            <a href="{% url 'review:tables' %}"><i class="fa fa-table fa-fw"></i> Tables</a>
+                        </li>

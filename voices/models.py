@@ -36,3 +36,13 @@ class Products(models.Model):
     def __str__(self):
         return self.prodName + ' - ' + str(self.prodType)
 
+class Donations(models.Model):
+    donationDate = models.DateTimeField(auto_now_add=True)
+    orderNum = models.CharField(max_length=30, default=None, blank=True, null=True)
+    quantity = models.IntegerField()
+    donorID = models.IntegerField()
+
+    def __str__(self):
+        return (str(self.donationDate.strftime('%Y-%m-%d %H:%M:%S'))  + ' - ' + self.orderNum + ' - ' + 
+                str(self.quantity) + ' - ' + str(self.donorID))
+

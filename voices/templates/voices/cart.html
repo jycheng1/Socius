@@ -15,7 +15,7 @@
      <!--Import Google Icon Font-->
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="{% static 'css/materialize4.min.css' %}"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
 
       
 
@@ -24,8 +24,7 @@
 
       <link rel="stylesheet" type="text/css" href="{% static 'css/style4.css' %}">
 
-
-    <!-- jQuery Version 1.11.1 -->
+      <!-- jQuery Version 1.11.1 -->
     <script src="{% static 'js/jquery.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -33,6 +32,8 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+
+
 
     <script src="{% static 'js/submitCart.js' %}"></script>
 
@@ -67,11 +68,8 @@
 -->
 
 
-
-
-<br><br><br>
     <div class="container">
-      <div class="row">
+      <br><br>
    
           <div class="col s12 offset-s2">
           <p>
@@ -79,46 +77,43 @@
             <!-- <h6 class="white-text">Please remove any items you did not choose</h6> -->
           <p>
           </div>
-      </div>
+    </div>
 
-      <div class="row">
-          {% if prodChosen %}
-            {% for product in prodChosen %}
-            <div class="col s4 offset-s2">
-                <div class="card small">
-                  <div class="card-image waves-effect waves-block waves-light">
-                  <img class="activator" src="{{ product.prodImg }}">
+ 
+
+    {% if itemsDict %}
+      {% for key, value in itemsDict.items %}
+
+    <div class="container">
+      <div class="card-panel">
+         <div class="row">
+             <div class="col s4">
+                <div class="row center">
+
+                  <div class="image-wrapper">
+                     <img class="image" src="{{ key.prodImg }}" />
                   </div>
-                    <div class="card-content">
-                    <div class="row center">
-                      <span class="card-title activator grey-text text-darken-3">{{ product.prodName }}</span>
-                      <!-- <h6><a class="waves-effect waves-light red darken-1 btn" href="#">Remove</a></h6> -->
-                    </div>
-                    </div>
-                </div>   
-              </div>
-       
-            <div class="col s4">
-            <div class="card-panel white">
 
-              <span class="card-title activator grey-text text-darken-3">Comment</span>
-              <p>
-              <h6><span class="grey-text light">lskdflk
-              </span></h6>
-              </p>
-              </div>
+            <br><br><br>
+
+              <h6 class="title grey-text text-darken-3">{{ key.prodName }}</h6>
+
             </div>
-            {% endfor %}
-            {% endif %}
-
           </div>
 
+          <br><br>
+
+          <div class="col s6">
+              <h6 class="comment grey-text text-darken-3">Comment</h6>
+              <h6><span class="grey-text light">{{ value }}
+                </span></h6>
           </div>
+        </div>
       </div>
     </div>
-  </div>
-  <br><br><br>
 
+    {% endfor %}
+    {% endif %}
 
    <div class="section no-pad-bot" id="index-banner">
         <div class="container">
@@ -155,7 +150,7 @@
 
         <div class="row">
 
-          <div class="col s11 offset-s1">
+          <div class="col s12 offset-s1">
             <h5 class="grey-text text-darken-4">Gender</h5>
             
             <form method="POST" id="gender">
@@ -184,7 +179,7 @@
           </div>
          
 
-          <div class="col s11 offset-s1">
+          <div class="col s12 offset-s1">
   
               <h5 class="grey-text text-darken-4">Ethnicity</h5>
 
@@ -231,7 +226,7 @@
         </div>
 
 
-            <div class="col s11 offset-s1">
+            <div class="col s12 offset-s1">
   
               <h5 class="grey-text text-darken-4">If you have a health related dietary restriction, please specify below</h5>
 
@@ -279,7 +274,7 @@
               </div>
             </form>
 
-            <div class="col s11 offset-s1">
+            <div class="col s12 offset-s1">
   
               <h5 class="grey-text text-darken-4">If you have a religion related dietary restriction, please specify below</h5>
 
@@ -318,6 +313,12 @@
               </div>
             </form>
 
+              <div class="row center">
+              <div class="col s12">
+               <button id="subFin" class="waves-effect waves-light btn-large blue lighten-1">Submit</button>
+              </div>
+              </div>
+
         </div>
 
 
@@ -345,20 +346,15 @@
                 <input type="hidden" name="faceChosen" value="{{ satisfactionData }}">
               {% endif %}
 
-             
 
-              <div class="row">
-              <div class="col s12 offset-s9">
-               <button id="subFin" class="waves-effect waves-light btn-large blue lighten-1">Submit</button>
-              </div>
-            </div>
+
             </form>
 
       </div>
 
     </div>  
   </div>
-
+      
 </body>
 </html>
 
