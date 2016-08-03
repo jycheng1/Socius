@@ -91,7 +91,7 @@ $(document).ready(function(){
       var thisWhy = $(whyId).val();
       $('#getArr').append('<input type="hidden" name="why[]" value="' + thisWhy + '"/>');
     }
-
+ 
 
     // pass the suggested items to the cart
     var comments = $('textarea#suggestions').val(); 
