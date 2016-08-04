@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.http import JsonResponse
 from django.template import loader
 
@@ -59,7 +58,6 @@ def items(request):
 
     if request.method == 'POST':
         satisfactionData = request.POST.get('faceChosen')
-<<<<<<< HEAD
         context = {'satisfactionData': satisfactionData,
                    'produce': produce,
                    'canned': canned,
@@ -72,12 +70,12 @@ def items(request):
         return render(request, 'voices/items.html', context)
 
     else:
-        produce = Products.objects.filter(prodType="produce")
-        canned = Products.objects.filter(prodType="canned")
-        boxed = Products.objects.filter(prodType="boxed")
-        grains = Products.objects.filter(prodType="grainsBeans")
-        household = Products.objects.filter(prodType="household")
-        clothing = Products.objects.filter(prodType="clothing")
+        produce = Product.objects.filter(prodType="produce")
+        canned = Product.objects.filter(prodType="canned")
+        boxed = Product.objects.filter(prodType="boxed")
+        grains = Product.objects.filter(prodType="grainsBeans")
+        household = Product.objects.filter(prodType="household")
+        clothing = Product.objects.filter(prodType="clothing")
 
         context = {'produce': produce,
                    'canned': canned,
@@ -87,51 +85,6 @@ def items(request):
                    'clothing': clothing}
 
         return render(request, 'voices/items.html', context)
-=======
-        context['satisfactionData'] = satisfactionData
-
-
-    template = loader.get_template('voices/items.html')
->>>>>>> bf70dac06538f4b179443bda3adbd2b7bfd068e7
-
-    return HttpResponse(template.render(context, request))
-
-    #     produce = Product.objects.filter(product_type="FP")
-    #     canned = Product.objects.filter(product_type="CS")
-    #     boxed = Product.objects.filter(product_type="BM")
-    #     grains = Product.objects.filter(product_type="GR")
-    #     household = Product.objects.filter(product_type="HE")
-    #     clothing = Product.objects.filter(product_type="CL")
-    #     satisfactionData = request.POST.get('faceChosen')
-    #     template = loader.get_template('voices/items.html')
-    #     context = {'satisfactionData': satisfactionData,
-    #                'produce': produce,
-    #                'canned': canned,
-    #                'boxed': boxed,
-    #                'grains': grains,
-    #                'household': household,
-    #                'clothing': clothing
-    #            }
-
-    #     return HttpResponse(template.render(context, request))
-
-    # else:
-    #     produce = Product.objects.filter(product_type="FP")
-    #     canned = Product.objects.filter(product_type="CS")
-    #     boxed = Product.objects.filter(product_type="BM")
-    #     grains = Product.objects.filter(product_type="GR")
-    #     household = Product.objects.filter(product_type="HE")
-    #     clothing = Product.objects.filter(product_type="CL")
-
-    #     template = loader.get_template('voices/items.html')
-    #     context = {'produce': produce,
-    #                'canned': canned,
-    #                'boxed': boxed,
-    #                'grains': grains,
-    #                'household': household,
-    #                'clothing': clothing}
-
-    #     return HttpResponse(template.render(context, request))
 
 @login_required
 @user_passes_test(org_check)
@@ -149,7 +102,7 @@ def cart(request):
             chosenObj.append(Product.objects.get(pk=chosen[i]))
 
         for i in range(len(chosen)):
-            itemsDict[Products.objects.get(pk=chosen[i])] = why[i]
+            itemsDict[Product.objects.get(pk=chosen[i])] = why[i]
 
 
         context = {'itemsDict' : itemsDict,

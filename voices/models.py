@@ -46,7 +46,14 @@ class Product(models.Model):
     quantity = models.IntegerField(default = 0)
 
     def __unicode__(self):
-        return self.name + ' - ' + self.prodType + ' - org: ' + self.organization.name
+        return (self.name + ' - ' + self.product_type + ' - org: ' + 
+            self.organization.name + ' - ' + self.quantity)
+
+    def __str__(self):
+        return (self.name + ' - ' + self.product_type + ' - org: ' + 
+            self.organization.name + ' - ' + str(self.quantity))
+
+
 
 
 
@@ -58,13 +65,16 @@ class Product(models.Model):
 #     def __str__(self):
 #         return self.prodName + ' - ' + str(self.prodType)
 
-class Donations(models.Model):
+class Donation(models.Model):
     donationDate = models.DateTimeField(auto_now_add=True)
+    donationName = models.CharField(max_length=50, default=None, blank=True, null=True)
     orderNum = models.CharField(max_length=30, default=None, blank=True, null=True)
     quantity = models.IntegerField()
     donorID = models.IntegerField()
 
+
     def __str__(self):
-        return (str(self.donationDate.strftime('%Y-%m-%d %H:%M:%S'))  + ' - ' + self.orderNum + ' - ' + 
+        return (str(self.donationDate.strftime('%Y-%m-%d %H:%M:%S'))  + ' - ' + 
+                self.donationName + ' - ' + self.orderNum + ' - ' + 
                 str(self.quantity) + ' - ' + str(self.donorID))
 

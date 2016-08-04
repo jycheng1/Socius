@@ -69,5 +69,5 @@ org = Organization.objects.get(pk=1)
 org.save()
 
 for prod in allProducts:
-    temp = Product(name=prod[0], picture=prod[1], prodType=prod[2], organization = org)
+    temp = Product(name=prod[0], picture=prod[1], product_type=prod[2], organization = org)
     temp.save()

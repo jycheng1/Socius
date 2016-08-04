@@ -1,1 +1,7 @@
-.hid {padding: 0 !important;}
+div.slider {
+    display: none;
+}
+ 
+table.dataTable tbody td.no-padding {
+    padding: 0;
+}

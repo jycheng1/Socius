@@ -1,5 +1,15 @@
 {% extends 'review/base.html' %}
-{% block title %}Request Table{% endblock %}
+{% load staticfiles %}
+{% block title %} Request Table{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'js/hideElems.js' %}"></script>
+
+{% endblock %}
 {% block body %}
 
 <div id="page-wrapper">
@@ -19,7 +29,7 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
-                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="reqTable">
                             <thead>
                                 <tr>
                                     <th>Request Date</th>
@@ -31,12 +41,13 @@
                             <tbody>
                               {% if allRequests %}
                                 {% for req in allRequests %}
-                                <tr class="odd gradeX">
-                                    <td>{{ req.requestDate }}</td>
-                                    <td>{{ req.request1 }}</td>
-                                    <td>{{ req.request2 }}</td>
-                                    <td>{{ req.request3 }}</td>
+                                <tr class="odd gradeX" data-child-value="hidden 1">
+                                    <td class="expand">{{ req.requestDate }}</td>
+                                    <td class="expand">{{ req.request1 }}</td>
+                                    <td class="expand">{{ req.request2 }}</td>
+                                    <td class="expand">{{ req.request3 }}</td>
                                 </tr>
+                                <!--
                                     <tr>
                                       <td colspan="3" class="hid">
                                         <p>Reason for choosing {{ req.request1 }}: {{ req.why1 }}<br>
@@ -52,6 +63,7 @@
                                            Religious restrictions: {{ req.religiousDiet }}
                                         </p></td>
                                     </tr>
+                                    -->
                                 <!-- </tr> -->
                                 {% endfor %}
                               {% endif %}
