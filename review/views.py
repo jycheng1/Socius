@@ -7,8 +7,7 @@ import sys
 from datetime import datetime
 
 def index(request):
-    context={}
-    return render(request, 'review/index.html', context)
+    return requestTable(request)
 
 def requestTable(request):
     allRequests = Request.objects.all()

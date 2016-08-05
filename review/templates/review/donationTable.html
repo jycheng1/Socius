@@ -23,6 +23,7 @@
                             <thead>
                                 <tr>
                                     <th>Donation Date</th>
+                                    <th>Donation</th>
                                     <th>Order Number</th>
                                     <th>Quantity</th>
                                     <th>Donor ID</th>
@@ -33,6 +34,7 @@
                                 {% for don in allDonation %}
                                 <tr class="odd gradeX">
                                     <td>{{ don.donationDate }}</td>
+                                    <td>{{ don.donationName }}</td>
                                     <td>{{ don.orderNum }}</td>
                                     <td>{{ don.quantity }}</td>
                                     <td>{{ don.donorID }}</td>
