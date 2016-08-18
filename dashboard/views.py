@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from dashboard.models import *
 from dashboard.forms import * 
-from voices.models import Request, Product
+from voices.models import Request, Product, Donation
 from voices.forms import RequestForm
 
 
@@ -20,6 +20,8 @@ from django.http import HttpResponse, Http404
 
 import json
 from django.core.serializers.json import DjangoJSONEncoder
+
+import sys
 
 
 # Main view
@@ -233,3 +235,53 @@ def org_user_register(request):
     login(request,newUser)
     # Redirect to home.
     return redirect(reverse('dashboard'))
+
+# Donate page
+@login_required
+def donate(request):
+    if request.method == 'POST':
+        itemName = request.POST.get('itemName')
+        orgRecipient = request.POST.get('orgRecipient')
+        context = {'itemName': itemName,
+                   'orgRecipient': orgRecipient,
+                  }
+        # print(itemName, file=sys.stderr)
+        return render(request, 'donate.html', context)
+    else:
+        context = {}
+        return render(request, 'donate.html', context)
+
+def saveDon(request):
+    if request.method == 'POST':
+        orderNum = request.POST.get('order_number')
+        donationName = request.POST.get('itemName')
+        orgRecipient = request.POST.get('orgRecipient')
+        org = Organization.objects.get(name = orgRecipient)
+        donObj = Product.objects.get(organization = org, name=donationName)
+        quantity = donObj.quantity
+        donor = UserProfile.objects.get(username = request.user.username)
+
+        currDonation = Donation()
+        currDonation.donationName = donationName
+        currDonation.organization = org
+        currDonation.orderNum = orderNum
+        currDonation.quantity = quantity
+        currDonation.donor = donor
+        currDonation.save()
+
+        setattr(donObj, 'quantity', 0)
+        donObj.save()
+
+        context = {}
+
+        return redirect(reverse('dashboard'))
+    else:
+        context = {}
+        return redirect(reverse('dashboard'))
+
+
+
+
+    context = {}
+    return 
+

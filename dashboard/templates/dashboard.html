@@ -1,7 +1,24 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+
+{% block js1 %}
+<script src="{% static 'js/jquery.js' %}"></script>
+
+
+	<script> 
+	$(document).ready(function(){
+    $("#donNow").click(function(){
+
+       $('#donButton').submit();
+
+	});
+	});
+	</script>
+
+{% endblock js1 %}
 
 {% block content %}
-{% load staticfiles %}
+
 
 	<!-- Map Display -->
 	<div id="map-display">
@@ -67,7 +84,7 @@
 					</div>
 
 					<div class='row modal-button'>
-						<button type="button" href='#' class="btn btn-default">Donate Now</button>
+						<a type="button" href="{% url 'donate' %}" class="btn btn-default">Donate Now</a>
 					</div>
 				</div> 
 				<!-- /Modal body -->
@@ -114,10 +131,22 @@
 					<!-- / -->
 				</div>
 				<!-- /Modal body -->
-				<div class='row modal-button'>
-						<button type="button" href='#' class="btn btn-default">Donate Now</button>
-				</div>
 
+<!-- passes donation info to donate page --> 
+			  <form id="donButton" action="{% url 'donate' %}" method="POST">
+                {% csrf_token %}
+                <div class='row modal-button'>
+	                <input type="hidden" name="itemName" id="itemName" value=""/>
+	                <input type="hidden" name="orgRecipient" id="orgRecipient" value=""/>
+	                
+	                <button type='submit' id="donNow" class="btn btn-default">Donate Now</button>
+                </div>
+              </form>
+              <!--
+				<div class='row modal-button'>
+					<a type="button" href="{% url 'donate' %}" class="btn btn-default" id="{{ product.name }}">Donate Now</a>
+				</div>
+ -->
 			</div> 
 			<!-- /Modal content -->
 		</div>
@@ -164,9 +193,19 @@
 					<!-- / -->
 				</div>
 				<!-- /Modal body -->
+
 				<div class='row modal-button'>
-						<button type="button" href='#' class="btn btn-default">Donate Now</button>
-				</div>
+				  <form action="{% url 'donate' %}" method="POST">
+	                {% csrf_token %}
+
+	                <button type='submit' id="donNow" class="btn btn-default">Donate Now</button>
+	                
+	              </form>
+                </div>
+
+				<!-- <div class='row modal-button'>
+					<a type="button" href="{% url 'donate' %}" class="btn btn-default">Donate Now</a>
+				</div> -->
 
 			</div> 
 			<!-- /Modal content -->
@@ -190,6 +229,7 @@
 	<!-- // <script src="{% static 'js/infobox.js' %}"></script> -->
 
     <script src="{% static 'js/map2.js' %}"></script>
+
  	<script>
 
  		// list of Orgs (JSON) 

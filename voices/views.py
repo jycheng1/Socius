@@ -29,7 +29,6 @@ def org_check(user):
 @login_required
 @user_passes_test(org_check)
 def index(request):
-    template = loader.get_template('voices/index.html')
     context = {}
     return render(request, 'voices/index.html', context)
 
@@ -171,6 +170,9 @@ def thanks(request):
         reqFin.gender=gender
         reqFin.diet = diet
         reqFin.religiousDiet = religiousDiet
+        userProfile = UserProfile.objects.get(username = request.user.username)
+        org = userProfile.org
+        reqFin.organization = org
         reqFin.save()
 
         # print(reqFin.zipcode, file=sys.stderr)
@@ -180,14 +182,12 @@ def thanks(request):
 
         return render(request, 'voices/thanks.html', context)
     else:
-        template = loader.get_template('voices/thanks.html')
         context = {}
         return render(request, 'voices/thanks.html', context)
 
 @login_required
 @user_passes_test(org_check)
 def satisfaction(request):
-    template = loader.get_template('voices/satisfaction.html')
     context = {}
     return render(request, 'voices/satisfaction.html', context)
     

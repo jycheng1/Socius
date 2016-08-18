@@ -81,7 +81,6 @@
 
  
 
-<<<<<<< HEAD
     {% if itemsDict %}
       {% for key, value in itemsDict.items %}
 
@@ -92,30 +91,8 @@
                 <div class="row center">
 
                   <div class="image-wrapper">
-                     <img class="image" src="{{ key.prodImg }}" />
+                     <img class="image" src="/socius/dashboard/media/{{ key.prodImg }}" />
                   </div>
-=======
-      <div class="row">
-          {% if prodChosen %}
-            {% for product in prodChosen %}
-            <div class="col s4 offset-s2">
-                <div class="card small">
-                  <div class="card-image waves-effect waves-block waves-light">
-                  <img class="activator" src="/socius/dashboard/media/{{ product.picture }}">
-                  </div>
-                    <div class="card-content">
-
-                    <div class="row center">
-                      <span class="card-title activator grey-text text-darken-3">{{ product.name }}</span>
-                      <!-- <h6><a class="waves-effect waves-light red darken-1 btn" href="#">Remove</a></h6> -->
-                    </div>
-                    </div>
-                </div>   
-              </div>
-       
-            <div class="col s4">
-            <div class="card-panel white">
->>>>>>> bf70dac06538f4b179443bda3adbd2b7bfd068e7
 
             <br><br><br>
 

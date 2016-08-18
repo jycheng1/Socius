@@ -26,7 +26,7 @@
                                     <th>Donation</th>
                                     <th>Order Number</th>
                                     <th>Quantity</th>
-                                    <th>Donor ID</th>
+                                    <th>Donor Username</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,7 +37,7 @@
                                     <td>{{ don.donationName }}</td>
                                     <td>{{ don.orderNum }}</td>
                                     <td>{{ don.quantity }}</td>
-                                    <td>{{ don.donorID }}</td>
+                                    <td>{{ don.donor.username }}</td>
                                 </tr>
                                 {% endfor %}
                               {% endif %}

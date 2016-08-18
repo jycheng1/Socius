@@ -1,5 +1,5 @@
 from django.db import models
-from dashboard.models import Organization
+from dashboard.models import Organization, UserProfile
 
 class Request(models.Model):
     requestDate = models.DateTimeField(auto_now_add=True)
@@ -17,6 +17,7 @@ class Request(models.Model):
     gender = models.CharField(max_length=20, default="", null=True, blank=True)
     diet = models.CharField(max_length=100, default="", null=True, blank=True)
     religiousDiet = models.CharField(max_length=100, default="", null=True, blank=True)
+    organization = models.ForeignKey(Organization, related_name = 'requests')
 
 
 
@@ -54,9 +55,6 @@ class Product(models.Model):
             self.organization.name + ' - ' + str(self.quantity))
 
 
-
-
-
 # class Products(models.Model):
 #     prodName = models.CharField(max_length=100, default=None, blank=True, null=True)
 #     prodImg = models.CharField(max_length=400, default=None, blank=True, null=True)
@@ -65,16 +63,19 @@ class Product(models.Model):
 #     def __str__(self):
 #         return self.prodName + ' - ' + str(self.prodType)
 
+
+
 class Donation(models.Model):
     donationDate = models.DateTimeField(auto_now_add=True)
     donationName = models.CharField(max_length=50, default=None, blank=True, null=True)
+    organization = models.ForeignKey(Organization, related_name = 'donations')
     orderNum = models.CharField(max_length=30, default=None, blank=True, null=True)
     quantity = models.IntegerField()
-    donorID = models.IntegerField()
+    donor = models.ForeignKey(UserProfile, related_name = 'donations1')
 
 
     def __str__(self):
         return (str(self.donationDate.strftime('%Y-%m-%d %H:%M:%S'))  + ' - ' + 
                 self.donationName + ' - ' + self.orderNum + ' - ' + 
-                str(self.quantity) + ' - ' + str(self.donorID))
+                str(self.quantity) + ' - ' + self.donor.username) 
 

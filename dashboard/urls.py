@@ -36,6 +36,8 @@ urlpatterns = [
     
     url(r'^register$', views.register, name='register'),
     url(r'^org_user_register$', views.org_user_register, name='org_user_register'),
+    url(r'^donate/$', views.donate, name="donate"),
+    url(r'^saveDon/$', views.saveDon, name="saveDon"),
     # url(r'^org-register$', views.organization_register, name='org-register'),
 
 ] 

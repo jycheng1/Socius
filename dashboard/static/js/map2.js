@@ -44,6 +44,9 @@ function showProductModal(div, product_obj, org_obj) {
 
 		// $('.modal-requested-item-reasons').html('req item reasons');
 
+		$('#itemName').val(product_obj[0].fields.name); // saves the item being donated
+		$('#orgRecipient').val(org_obj[0].fields.name); // saves the organization receiving donation
+
 		$('.modal-explanation').html('Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.');
 	};
 }
@@ -265,8 +268,8 @@ function initialize() {
 // Create markers for organizations and products ('callback' ensures this gets called first)
 function createMarkers(map, markers, callback) {
 
-	var product_positions_x = [40.459682814784514, 40.45524190247083, 40.444660899319274, 40.452172, 40.467193, 40.457462, 40.44146];
-	var product_positions_y = [-80.00989392399788, -80.02259686589241, -79.99564602971077, -80.000811, -80.007849, -79.995232, -79.997377];
+	var product_positions_x = [40.459682814784514, 40.45524190247083, 40.444660899319274, 40.452172, 40.467193, 40.457462, 40.44146, 40.452500, 40.442175, 40.434597, 40.432931, 40.430449, 40.436711, 40.442294, 40.439374, 40.438128, 40.446976, 40.443798, 40.441650,  40.437355,  40.435809, 40.448779,  40.446374,40.444289, 40.441216, 40.438981, 40.436547, 40.450118, 40.444035, 40.450690];
+	var product_positions_y = [-80.00989392399788, -80.02259686589241, -79.99564602971077, -80.000811, -80.007849, -79.995232, -79.997377, -80.038835, -80.021707, -80.006687,-80.003125,-79.996945, -79.999087, -79.994742, -79.992428, -79.991017, -79.986503, -79.987067, -79.988139, -79.987011, -79.985318, -79.983794, -79.983343, -79.984052, -79.984786, -79.984577, -79.983056, -79.977237, -79.977398, -79.969009];
 
 	console.log('create markers fx entered');
 
@@ -426,3 +429,5 @@ function createMarkers(map, markers, callback) {
 
 	callback();
 }
+
+
