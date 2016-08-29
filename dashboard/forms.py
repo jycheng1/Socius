@@ -56,5 +56,6 @@ class OrganizationForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
 	class Meta:
 		model = Product
-		exclude = ('quantity','organization',)
+		exclude = ('quantity','organization',
+			       'numDonated')
 		widgets = {'picture' : forms.FileInput()}

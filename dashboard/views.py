@@ -123,6 +123,10 @@ def view_profile(request, username):
         context['org'] = org
         # org = Organization.objects.get(userProfile = userProfile)
 
+    donations = Donation.objects.filter(donor=userProfile)
+
+    context['donations'] = donations
+
 
     return render(request, 'profile.html', context)
 
@@ -251,6 +255,7 @@ def donate(request):
         context = {}
         return render(request, 'donate.html', context)
 
+# save donation to model
 def saveDon(request):
     if request.method == 'POST':
         orderNum = request.POST.get('order_number')
@@ -270,6 +275,7 @@ def saveDon(request):
         currDonation.save()
 
         setattr(donObj, 'quantity', 0)
+        donObj.numDonated = donObj.numDonated + 1
         donObj.save()
 
         context = {}
@@ -278,10 +284,4 @@ def saveDon(request):
     else:
         context = {}
         return redirect(reverse('dashboard'))
-
-
-
-
-    context = {}
-    return 
-
+        

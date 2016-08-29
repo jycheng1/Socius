@@ -225,8 +225,12 @@ function initialize() {
 						div.appendChild(product_title);
 
 						var product_quantity = document.createElement('p');
-						product_quantity.innerHTML = product_obj[0].fields.quantity;
+						product_quantity.innerHTML = "Number of requests: " + product_obj[0].fields.quantity;
 						div.appendChild(product_quantity);
+
+						var product_donated = document.createElement('p');
+						product_donated.innerHTML = "Number of donations: " + product_obj[0].fields.numDonated;
+						div.appendChild(product_donated);
 
 
 						// console.log('hi ' + product_obj[0].fields.organization)

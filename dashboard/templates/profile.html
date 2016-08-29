@@ -23,6 +23,24 @@
 
 		</div>
 	</div> 
+
+	<div class="row userDonations-row"> 
+		<!-- <div class="col-sm-2"> -->
+		<h3>Items you have donated</h3>
+		<div class="col-sm-8">	
+		{% for elem in donations %}
+
+
+		<!-- <div class="col-sm-8">	 -->
+		    <h5><b>Date donated</b>: {{ elem.donationDate }}</h5>
+			<h5><b>Item</b>: {{ elem.donationName }}</h5>
+			<h5><b>Organization helped</b>: {{ elem.organization.name }}</h5>
+			<h5><b>Number donated</b>: {{ elem.quantity }}</h5>
+			<br>
+		<!-- </div> -->
+		<!-- </div>  -->
+		{% endfor %}
+
 	{% if org %}
 	<div class="row org-row"> 
 		<h4 style='padding-left:15px;color:green;'>Your Organization</h4>

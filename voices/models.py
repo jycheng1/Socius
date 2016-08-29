@@ -45,14 +45,15 @@ class Product(models.Model):
     picture = models.ImageField(upload_to='photos/product', blank=True, null=True)
     organization = models.ForeignKey(Organization, related_name = 'products')
     quantity = models.IntegerField(default = 0)
+    numDonated = models.IntegerField(default = 0)
 
     def __unicode__(self):
         return (self.name + ' - ' + self.product_type + ' - org: ' + 
-            self.organization.name + ' - ' + self.quantity)
+            self.organization.name + ' - ' + self.quantity + ' - ' + self.numDonated)
 
     def __str__(self):
         return (self.name + ' - ' + self.product_type + ' - org: ' + 
-            self.organization.name + ' - ' + str(self.quantity))
+            self.organization.name + ' - ' + str(self.quantity) + ' - ' + str(self.numDonated))
 
 
 # class Products(models.Model):
