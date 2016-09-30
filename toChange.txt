@@ -1,0 +1,7 @@
+- remove donate button from orgs
+- show number of requests and donations
+- user's donations
+- display number of donations in the product_register page 
+- the css for the cart page
+-if you're not logged in, you can't see the things to donate
+- product_register template/base is incorrect
